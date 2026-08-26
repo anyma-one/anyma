@@ -337,6 +337,7 @@ img { max-width: 100%; }
 .cta-line {
   margin: 0;
   font-size: 16px;
+  font-weight: 700;
   line-height: 1.6;
   color: var(--text-body);
   text-align: center;
