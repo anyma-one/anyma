@@ -326,10 +326,20 @@ img { max-width: 100%; }
 /* ---------- CTA button ---------- */
 .cta-row {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   /* Well above the handoff's 14px: the tile descriptions are ragged, so a tight gap left the
      button reading as part of the last tile rather than as its own thing. */
   margin-top: 44px;
+}
+
+.cta-line {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-body);
+  text-align: center;
 }
 
 .btn {
@@ -379,7 +389,8 @@ img { max-width: 100%; }
 
 /* ---------- footer ---------- */
 .footer {
-  margin-top: 18px;
+  /* Raised from the handoff's 18px to stay balanced with the enlarged gap above the CTA. */
+  margin-top: 48px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
   display: flex;
@@ -611,6 +622,8 @@ body.no-scroll { overflow: hidden; }
   .tile__soon-label { font-size: 10px; letter-spacing: .1em; }
 
   .cta-row { margin-top: 38px; }
+  .cta-line { font-size: 14px; }
+  .footer { margin-top: 40px; }
   .btn { width: 100%; }
 
   .footer { gap: 28px; }
