@@ -98,6 +98,19 @@ When SOUL's in-flight work is committed:
 4. Update SOUL's OG tags to `anyma.one/soul`.
 5. `npm run build` and check `/soul/` locally.
 
+## To do
+
+- **Style the waitlist confirmation page to match the start screen.** `api/waitlist-confirm.ts`
+  currently returns a self-contained page in system fonts — functional, but it is the first
+  thing a new sign-up sees after their only email, and it looks nothing like the site. It is
+  served from this origin, so it can link `/fonts.css`, `/styles.css` and `/legal.css` and use
+  the same markup as the legal pages, rather than carrying a second copy of the palette that
+  would drift. Keep it self-contained enough to render if a stylesheet ever 404s.
+- **A proper light-on-dark logo export.** Dark mode currently runs the wordmark through a CSS
+  `invert()` filter, which reads acceptably but is not a real asset. Flagged in the original
+  design handoff too.
+- **Fold SOUL in** — see above.
+
 ## Review link
 
 `npm run review` inlines the hub — fonts, images, CSS, JS — into one self-contained file at
