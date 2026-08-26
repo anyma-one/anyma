@@ -327,7 +327,9 @@ img { max-width: 100%; }
 .cta-row {
   display: flex;
   justify-content: center;
-  margin-top: 14px;
+  /* Well above the handoff's 14px: the tile descriptions are ragged, so a tight gap left the
+     button reading as part of the last tile rather than as its own thing. */
+  margin-top: 44px;
 }
 
 .btn {
@@ -608,7 +610,7 @@ body.no-scroll { overflow: hidden; }
   /* Sized to sit inside the 136px thumbnail. */
   .tile__soon-label { font-size: 10px; letter-spacing: .1em; }
 
-  .cta-row { margin-top: 28px; }
+  .cta-row { margin-top: 38px; }
   .btn { width: 100%; }
 
   .footer { gap: 28px; }
