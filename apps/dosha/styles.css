@@ -1,0 +1,1076 @@
+/* =========================================================================
+   Anyma · Dosha — implements the anyma Ayurveda Design System.
+   Grounded, calm, credible: warm matte paper, ink type, one sage voice,
+   engraved geometry. No glow (except the reveal medallion flash), no
+   mysticism. Tokens transcribed from the handoff _ds/tokens/*.css.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Surfaces — warm paper, ascending in tone */
+  --paper: #F1ECDE;
+  --plate: #E4D6BA;
+  --plate-tint: #EAE0C8;
+  --parchment-shade: #E7DCC4;
+  --ink-panel: #201C15;
+  --plate-highlight: #F3ECDB;
+
+  /* Ink */
+  --ink: #23201A;
+  --ink-charcoal: #322E26;
+  --ink-soft: #4A4438;
+  --ink-muted: #6A6152;
+  --cream: #F1ECDE;
+
+  /* Sage — the one interactive voice */
+  --accent: #7C9A6B;
+  --accent-deep: #4E6B3D;
+
+  /* Five elements (pancha mahabhuta) */
+  --ether: #3A3050;
+  --air: #C9973F;
+  --fire: #C24E2A;
+  --water: #4E7CA6;
+  --earth: #8C4223;
+
+  /* Three dosha discs */
+  --vata: #5E6FA3;
+  --pitta: #C24E2A;
+  --kapha: #2F5141;
+
+  /* Evidence taxonomy */
+  /* Evidence marks. Reassigned in the evidence-marks revision: promising took gold
+     (shares the air-element hue, reads warm and provisional) and traditional inherited
+     the old promising plum, because the previous grey sat too close to muted body text.
+     Supported and contested are unchanged. */
+  --ev-supported: #3F6B3F;
+  --ev-promising: #C9973F;
+  --ev-traditional: #8A6B84;
+  --ev-contested: #B4472A;
+
+  /* Ink & accent tints */
+  --ink-04: rgba(35, 32, 26, 0.04);
+  --ink-08: rgba(35, 32, 26, 0.08);
+  --ink-12: rgba(35, 32, 26, 0.12);
+  --ink-16: rgba(35, 32, 26, 0.16);
+  --ink-28: rgba(35, 32, 26, 0.28);
+  --ink-45: rgba(35, 32, 26, 0.45);
+  --ink-60: rgba(35, 32, 26, 0.60);
+  --accent-08: rgba(124, 154, 107, 0.10);
+  --accent-14: rgba(124, 154, 107, 0.18);
+  --accent-28: rgba(124, 154, 107, 0.32);
+  /* Solid pale sage — used for hover fills so they read as a real colour over the
+     moving background emblem (a translucent tint would let the emblem show through). */
+  --accent-pale: #E4EAD7;
+  /* Solid pale vermilion — the "blocked / not yet" counterpart to --accent-pale. */
+  --contested-pale: #F2DED7;
+
+  /* Semantic aliases */
+  --surface-base: var(--paper);
+  --surface-raised: var(--plate);
+  --surface-tint: var(--plate-tint);
+  --surface-recess: var(--parchment-shade);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-soft);
+  --text-muted: var(--ink-muted);
+  --text-on-accent: var(--paper);
+  --link: var(--accent-deep);
+  --border-hairline: var(--ink-12);
+  --border-strong: var(--ink-28);
+
+  /* Type */
+  --font-display: 'Spectral', Georgia, 'Times New Roman', serif;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Courier Prime', ui-monospace, 'SFMono-Regular', monospace;
+  --w-light: 300; --w-regular: 400; --w-medium: 500; --w-semibold: 600;
+  --text-xs: 11px; --text-sm: 13px; --text-base: 15px; --text-md: 17px;
+  --text-lg: 20px; --text-title: 26px; --text-xl: 34px; --text-2xl: 46px; --text-display: 60px;
+  --leading-tight: 1.06; --leading-snug: 1.28; --leading-normal: 1.6;
+  --tracking-tight: -0.015em; --tracking-wide: 0.06em; --tracking-label: 0.18em; --tracking-airy: 0.26em;
+
+  /* Spacing / radii */
+  --space-1: 2px; --space-2: 4px; --space-3: 8px; --space-4: 12px; --space-5: 16px;
+  --space-6: 24px; --space-7: 32px; --space-8: 44px; --space-9: 64px; --space-10: 88px;
+  --radius-xs: 3px; --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-xl: 24px; --radius-pill: 999px;
+  /* Measures, from the responsive handoff §1. Width is capped by MEASURE, not by the
+     viewport — these are the real constraint, and the breakpoints only decide when a
+     column stops being full-bleed. --measure-wide is 1120px, the desktop container. */
+  --measure-quiz: 34rem; --measure-report: 44rem; --measure-wide: 70rem;
+  /* Paragraphs never exceed this, at any width. */
+  --measure-prose: 58ch;
+
+  /* Effects */
+  --shadow-sm: 0 1px 2px rgba(74, 48, 20, 0.10);
+  --shadow-md: 0 10px 30px rgba(74, 48, 20, 0.14);
+  --shadow-lg: 0 24px 60px rgba(74, 48, 20, 0.18);
+  --ring: 0 0 0 2px var(--surface-base), 0 0 0 4px var(--accent);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms; --dur-base: 240ms; --dur-slow: 480ms;
+
+  --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --edge-torn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='e'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014 0.03' numOctaves='2' seed='5' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='7.5' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E#e");
+}
+
+/* ---------------- Base ---------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex; flex-direction: column; min-height: 100vh;
+  overflow-x: hidden; /* contain the bleeding background emblem */
+  transition: background-color var(--dur-base) var(--ease-out);
+}
+::selection { background: var(--accent-28); color: var(--ink); }
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--ink); }
+h1, h2, h3, h4 { margin: 0; font-weight: var(--w-medium); font-family: var(--font-display); color: var(--ink); }
+p { margin: 0; }
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--radius-xs); }
+/* <main> is only a programmatic focus target (route changes + the skip link), so it
+   must never paint the sage focus ring — the ring spans the full content width and
+   reads as a thick green line across the page. `outline: none` alone is not enough
+   here because the ring is drawn with box-shadow. */
+main:focus, main:focus-visible, #app:focus, #app:focus-visible {
+  outline: none; box-shadow: none;
+}
+/* Ensure the hidden attribute wins over component display rules (e.g. .btn). */
+[hidden] { display: none !important; }
+
+/* The shell carries the warm paper ground + fine grain. On the "reading" screens
+   (question, reveal) it becomes a floating paper frame card on a taupe ground; the
+   landing and browsing screens stay full-bleed. */
+.shell {
+  position: relative;
+  flex: 1 0 auto;
+  display: flex; flex-direction: column;
+  width: 100%;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(120% 90% at 50% -8%, var(--accent-08), transparent 46%),
+    radial-gradient(90% 70% at 100% 108%, rgba(108, 138, 72, 0.06), transparent 52%);
+}
+.shell::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.11; mix-blend-mode: multiply; background-image: var(--grain-url);
+}
+.shell > * { position: relative; z-index: 1; }
+.shell > main { flex: 1 0 auto; }
+
+/* Framed "reading" screens: paper card on the taupe canvas. */
+body.framed { background-color: #C9C0A8; }
+body.framed .shell {
+  flex: 0 1 auto;
+  max-width: 1120px;
+  margin: 48px auto 72px;
+  border-radius: 8px;
+  box-shadow: 0 34px 80px rgba(74, 48, 20, 0.24);
+  overflow: hidden;
+}
+/* The floating card needs room around it to read as floating. Below 1120 there is
+   none — the frame is exactly as wide as the viewport, so the taupe ground shows as
+   two bands above and below and the effect reads as a mistake rather than as paper on
+   a table. Tablet therefore gets the same full-bleed treatment as mobile, and the
+   frame appears only where it has margin on all four sides. */
+@media (max-width: 1119px) {
+  body.framed .shell { margin: 0; border-radius: 0; box-shadow: none; min-height: 100vh; max-width: none; }
+  body.framed { background-color: var(--paper); }
+}
+
+/* Typographic voices */
+.kick { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-deep); }
+.mlabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
+.elabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+.serif { font-family: var(--font-display); color: var(--ink-soft); }
+.equal { font-family: var(--font-display); font-size: 16px; color: var(--ink); }
+/* Constitution headline. Sized here rather than inline so the Full Reading's imbalance
+   headline (.imb-heading) can match it at BOTH breakpoints — an inline size would win
+   over the media query and the two would diverge on mobile. Keep the two in step. */
+.dname { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.08; color: var(--ink); }
+.subtitle { font-family: var(--font-display); font-style: italic; color: var(--ink-soft); }
+
+/* ---------------- Depth / rules ---------------- */
+.dosha-depth { position: relative; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.dosha-depth::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; border-radius: inherit;
+  background:
+    radial-gradient(135% 115% at 22% 12%, var(--plate-highlight) 0%, transparent 55%),
+    radial-gradient(130% 130% at 88% 104%, var(--ink-08) 0%, transparent 52%),
+    var(--surface-raised);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 0 0 1px var(--ink-08);
+  filter: var(--edge-torn);
+}
+.dosha-depth > * { position: relative; z-index: 1; }
+.dosha-rule { height: 1px; border: 0; background: var(--accent-28); }
+.hairline { height: 1px; border: 0; background: var(--ink-08); }
+
+/* ---------------- Layout: header / main / footer ---------------- */
+.skip-link { position: absolute; left: -999px; top: 0; z-index: 100; background: var(--ink); color: var(--paper); padding: .6rem 1rem; border-radius: 0 0 8px 0; }
+.skip-link:focus { left: 0; }
+
+.site-header {
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--measure-wide); margin: 0 auto;
+  padding: 26px 40px 0;
+}
+/* The line sits on a real in-flow element so it spans exactly the content area
+   (matching the wordmark's left edge and the scope note's right edge) and can never
+   escape its box the way an absolutely-positioned pseudo-element could. */
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-4); padding-bottom: 20px;
+  border-bottom: 1px solid var(--accent-28);
+}
+.site-header .wordmark { height: 30px; width: auto; display: block; }
+
+main {
+  flex: 1 0 auto; width: 100%;
+  padding: 0 40px 80px;
+}
+main:focus { outline: none; }
+.wrap { max-width: var(--measure-report); margin: 0 auto; }
+.wrap-quiz { max-width: 40rem; margin: 0 auto; }
+.wrap-wide { max-width: var(--measure-wide); margin: 0 auto; }
+
+.site-footer { width: 100%; max-width: var(--measure-wide); margin: 32px auto 0; padding: 0 40px 40px; }
+.site-footer .disclaimer-foot { font-family: var(--font-display); font-size: var(--text-sm); color: var(--ink-muted); line-height: var(--leading-snug); margin-bottom: var(--space-5); }
+.footer-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap;
+  padding-top: var(--space-4); border-top: 1px solid var(--border-hairline);
+}
+.footer-tagline {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--text-muted);
+}
+.footer-tagline::before { content: ""; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--text-muted); flex: none; }
+.site-footer nav { display: flex; gap: var(--space-6); flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .06em; }
+.site-footer nav a { color: var(--accent-deep); }
+
+
+/* faint turning watermark behind hero content — NOT clipped, so the full emblem
+   shows; only tiles/buttons sit opaque over it. (Horizontal bleed is contained by
+   body { overflow-x: hidden }.) */
+.watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 0; overflow: visible; }
+.watermark svg { max-width: none; }
+@keyframes ak-cw { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes ak-ccw { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
+.ak-spin { transform-box: view-box; transform-origin: 60px 60px; animation-timing-function: linear; animation-iteration-count: infinite; }
+.ak-shell { animation-name: ak-cw; animation-duration: 48s; }
+.ak-core { animation-name: ak-ccw; animation-duration: 72s; }
+/* Background emblems (landing hero + question screen) turn noticeably faster than
+   the calm reveal centrepiece, so the animation actually reads. */
+.watermark .ak-shell, .quiz-bg .ak-shell { animation-duration: 26s; }
+.watermark .ak-core, .quiz-bg .ak-core { animation-duration: 40s; }
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  font: inherit; font-family: var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase;
+  cursor: pointer; border-radius: var(--radius-sm); border: 1px solid transparent;
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: 13px 24px; font-size: var(--text-sm);
+  transition: background var(--dur-fast), transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-fast);
+}
+.btn:hover { transform: scale(1.03); box-shadow: var(--shadow-md); }
+.btn:active { transform: scale(0.98); box-shadow: none; }
+.btn-sm { padding: 9px 16px; font-size: var(--text-xs); }
+.btn-lg { padding: 15px 30px; font-size: var(--text-base); }
+.btn-primary { background: var(--ink-charcoal); color: var(--paper); border-color: var(--ink-charcoal); }
+.btn-primary:hover { background: var(--accent); color: var(--text-on-accent); border-color: var(--accent); }
+.btn-ghost, .btn-quiet { background: transparent; color: var(--text-primary); border-color: var(--border-strong); }
+.btn-ghost:hover, .btn-quiet:hover { color: var(--accent-deep); border-color: var(--accent); background: transparent; }
+/* Solid sage fill — the accent voice as a filled action. */
+.btn-accent { background: var(--accent); color: var(--text-on-accent); border-color: var(--accent); }
+.btn-accent:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: var(--paper); }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-row { display: flex; gap: var(--space-5); align-items: center; flex-wrap: wrap; }
+
+/* Repeating left-to-right shine on the primary CTA, for extra attention. */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: ""; position: absolute; top: -40%; left: 0; width: 34%; height: 180%;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(241, 236, 222, 0.30), transparent);
+  transform: skewX(-16deg) translateX(-340%);
+  animation: btn-shine 4s var(--ease-out) infinite;
+}
+@keyframes btn-shine {
+  0%   { transform: skewX(-16deg) translateX(-340%); }
+  55%  { transform: skewX(-16deg) translateX(560%); }
+  100% { transform: skewX(-16deg) translateX(560%); }
+}
+@media (prefers-reduced-motion: reduce) { .btn-shine::after { animation: none; opacity: 0; } }
+
+/* The CTA tagline sits on one line beside the button, filling the section width. */
+.cta-row { display: flex; gap: var(--space-6); align-items: center; }
+.cta-row .cta-note { flex: 1; font-family: var(--font-display); font-size: 15px; color: var(--ink-soft); white-space: nowrap; }
+@media (max-width: 767px) {
+  .cta-row { flex-wrap: wrap; }
+  .cta-row .cta-note { white-space: normal; flex: 1 1 100%; }
+}
+
+/* ---------------- ScopeNote ---------------- */
+.scope-note {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: 4px 10px; border: 1px solid var(--border-hairline); border-radius: var(--radius-pill);
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);
+  white-space: nowrap;
+}
+.scope-note-block {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border-hairline);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--text-muted);
+}
+.scope-note-block::before { content: ""; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--text-muted); flex: none; }
+
+/* ---------------- Progress bar ---------------- */
+.progress { margin-bottom: var(--space-3); }
+.progress-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-3); }
+.progress-counter { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+.progress-track { height: 6px; border-radius: var(--radius-pill); background: var(--ink-08); overflow: hidden; }
+.progress-fill { height: 100%; border-radius: var(--radius-pill); background: var(--accent); transition: width var(--dur-base) var(--ease-out); }
+
+/* ---------------- Answer options ---------------- */
+.qh { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; color: var(--ink); text-wrap: pretty; margin: 0 0 30px; }
+.options { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.answer-option {
+  font: inherit; text-align: left; cursor: pointer; width: 100%;
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-5); border-radius: var(--radius-md); color: var(--text-primary);
+  background: var(--surface-raised); border: 1px solid var(--border-hairline);
+  transition: background var(--dur-fast), transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-fast);
+}
+/* Hover = solid pale sage (not a translucent tint, so it reads over the bg emblem). */
+.answer-option:hover { background: var(--accent-pale); border: 1px solid var(--accent); transform: scale(1.015); box-shadow: var(--shadow-md); }
+/* Selected = full sage fill with paper text and an inverted letter chip. */
+.answer-option[aria-pressed="true"] { background: var(--accent); border: 1.5px solid var(--accent); transform: none; box-shadow: var(--shadow-sm); color: var(--paper); }
+.answer-option[aria-pressed="true"]:hover { background: var(--accent); transform: none; box-shadow: var(--shadow-sm); }
+.answer-option[aria-pressed="true"] .ao-label { color: var(--paper); }
+.ao-letter {
+  flex: none; width: 26px; height: 26px; border-radius: var(--radius-pill);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: var(--text-xs);
+  background: transparent; color: var(--text-muted); border: 1px solid var(--border-strong);
+}
+.answer-option[aria-pressed="true"] .ao-letter { background: var(--paper); color: var(--accent-deep); border-color: var(--paper); }
+.ao-label { font-family: var(--font-display); font-size: var(--text-md); line-height: var(--leading-snug); }
+
+/* Quiz layout: a persistent, fully-visible background emblem behind transparent
+   content; only the option tiles and nav buttons sit on solid fills over it. */
+.quiz-root { position: relative; padding: 32px 0; }
+.quiz-bg {
+  position: absolute; left: 50%; top: 320px; transform: translate(-50%, -50%);
+  width: 640px; height: 640px; max-width: none;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; z-index: 0;
+}
+.quiz-content { position: relative; z-index: 1; }
+.q-topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin: 26px 0 12px; }
+/* Reserve the nav height so revealing the Next button never shifts the layout
+   (and therefore never nudges the background emblem). */
+/* Fixed-height question area — see the RESPONSIVE SYSTEM block for the measured
+   values. min-height (not height) so longer future copy still fits: it can grow, it
+   just cannot shrink below the tallest current question. */
+
+.q-nav { margin-top: 28px; min-height: 52px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-5); }
+.q-nav .back-slot { justify-self: start; }
+.q-nav .next-slot { justify-self: end; }
+.q-nav .pass-note { justify-self: center; text-align: center; }
+@keyframes btn-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.btn-in { animation: btn-in .34s var(--ease-out) both; }
+
+/* Info trigger — a quiet circled italic "i", no label. */
+.info-trigger {
+  display: inline-grid; place-items: center;
+  width: 30px; height: 30px; padding: 0; flex: none;
+  background: transparent; border: none; color: var(--ink-muted); cursor: pointer;
+  transition: color var(--dur-fast);
+}
+.info-trigger .info-mark {
+  width: 28px; height: 28px; border-radius: 50%; border: 1px solid currentColor;
+  display: inline-grid; place-items: center;
+  font-family: var(--font-display); font-style: italic; font-size: 16px; line-height: 1;
+  text-transform: lowercase; padding-right: 1px;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.info-trigger:hover { color: var(--accent-deep); }
+.info-trigger:hover .info-mark { background: var(--accent-pale); border-color: var(--accent); }
+
+/* ---------------- Tier cards ---------------- */
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+.tier-card {
+  font: inherit; text-align: left; cursor: pointer; width: 100%; height: 100%;
+  display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-6); border-radius: var(--radius-lg);
+  background: var(--surface-raised); border: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-sm); text-decoration: none; color: inherit;
+  transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out),
+    border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out);
+}
+a.tier-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); background: var(--accent-pale); }
+.tier-card.locked { background: transparent; border: 1px dashed var(--ink-28); opacity: 0.55; cursor: default; }
+
+/* Blocked: Full Reading before the Core result exists. Same lift, but a red-tinted
+   voice that reads as "not yet" rather than "go". */
+a.tier-card.blocked { cursor: not-allowed; }
+a.tier-card.blocked:hover {
+  transform: translateY(-2px); box-shadow: var(--shadow-md);
+  border-color: var(--ev-contested); background: var(--contested-pale);
+}
+a.tier-card.blocked:hover .tier-meta { color: var(--ev-contested); border-top-color: rgba(180, 71, 42, 0.28); }
+a.tier-card.blocked:hover .idx { color: var(--ev-contested); }
+.tier-head { display: flex; align-items: baseline; justify-content: space-between; }
+.tier-title { font-family: var(--font-display); font-size: var(--text-lg); color: var(--text-primary); }
+.tier-title .idx { color: var(--accent-deep); }
+.tier-tagline { font-family: var(--font-sans); font-size: var(--text-sm); line-height: var(--leading-snug); color: var(--text-secondary); }
+.tier-meta { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--border-hairline); }
+.tier-meta .commit { letter-spacing: 0.06em; white-space: nowrap; }
+
+/* ---------------- Evidence badge (dot meter) ---------------- */
+/* Evidence mark. State colour rides on the .ev-<state> class and the SVG paints with
+   currentColor, so the mark can be dropped anywhere. 14px gap to row text per handoff. */
+.ev-badge { display: inline-flex; align-items: center; gap: 14px; }
+.ev-mark { flex: none; display: block; }
+.ev-supported { color: var(--ev-supported); }
+.ev-promising { color: var(--ev-promising); }
+.ev-traditional { color: var(--ev-traditional); }
+.ev-contested { color: var(--ev-contested); }
+.ev-word { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-primary); }
+.ev-gloss { color: var(--text-muted); }
+
+/* ---------------- Evidence legend ---------------- */
+/* One-tap key to the marks, required by the evidence-marks handoff for any screen that
+   shows them. The trigger is a quiet mono link, not a button — it is a reference, and
+   should never compete with the advice it explains. */
+.ev-legend-link {
+  font: inherit; font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-deep);
+  background: transparent; border: none; border-bottom: 1px solid var(--accent-28);
+  padding: 2px 0; cursor: pointer;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.ev-legend-link:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.legend-row { text-align: center; margin-bottom: var(--space-5); }
+/* The heading tightens up when the link follows it, so the two read as one unit. */
+.subline.has-legend { margin-bottom: 10px; }
+
+.ev-legend h3 { margin-bottom: var(--space-3); }
+.ev-legend .ev-legend-lead {
+  font-family: var(--font-display); font-size: var(--text-sm);
+  line-height: var(--leading-normal); color: var(--text-secondary); margin-bottom: var(--space-5);
+}
+.ev-legend-list { list-style: none; padding: 0; margin: 0; }
+/* Fixed first column, same intent as .adv-badge: the four diamonds must line up
+   vertically, and pinning the column rather than the label keeps them aligned even
+   when the mono font falls back to a wider face. */
+.ev-legend-row {
+  display: flex; align-items: flex-start; gap: var(--space-4);
+  padding: var(--space-4) 0; border-bottom: 1px solid var(--ink-08);
+}
+.ev-legend-row .ev-badge { flex: none; min-width: 136px; align-items: flex-start; }
+.ev-legend-row .ev-mark { margin-top: 1px; }
+.ev-legend-means {
+  font-family: var(--font-display); font-size: var(--text-sm);
+  line-height: var(--leading-snug); color: var(--text-secondary); margin: 0;
+}
+.ev-legend-notes { margin-top: var(--space-5); }
+.ev-legend-notes p {
+  font-family: var(--font-display); font-size: var(--text-sm);
+  line-height: var(--leading-snug); color: var(--text-muted); margin: 0 0 var(--space-3);
+}
+.ev-legend-notes strong { color: var(--text-primary); font-weight: var(--w-medium); }
+@media (max-width: 767px) {
+  /* Stack rather than squeeze the definition into a ribbon beside the mark. */
+  .ev-legend-row { flex-direction: column; gap: var(--space-3); }
+  .ev-legend-row .ev-badge { min-width: 0; }
+}
+
+/* ---------------- Evidence split ---------------- */
+.ev-split { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden; }
+.ev-split .side { padding: var(--space-5); }
+.ev-split .tradition { background: var(--plate); border-right: 1px solid var(--border-hairline); }
+.ev-split .evidence { background: rgba(63,107,63,0.10); }
+.ev-split .side-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--space-3); }
+.ev-split .tradition .side-label { color: var(--accent-deep); }
+.ev-split .evidence .side-label { color: var(--ev-supported); }
+.ev-split .side p { font-family: var(--font-display); font-size: var(--text-sm); line-height: var(--leading-snug); color: var(--text-secondary); margin: 0; }
+@media (max-width: 767px) { .ev-split { grid-template-columns: 1fr; } .ev-split .tradition { border-right: none; border-bottom: 1px solid var(--border-hairline); } }
+
+/* ---------------- Safety note ---------------- */
+.safety-note { display: flex; gap: var(--space-4); align-items: flex-start; padding: var(--space-5); background: var(--surface-recess); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); }
+.safety-note.high { border-left-color: var(--ev-contested); }
+.safety-note .tri { flex: none; margin-top: 1px; }
+.safety-note .s-title { display: block; font-family: var(--font-sans); font-weight: var(--w-semibold); font-size: var(--text-sm); color: var(--text-primary); margin-bottom: var(--space-2); }
+.safety-note .s-body { font-family: var(--font-display); font-size: var(--text-sm); line-height: var(--leading-snug); color: var(--text-secondary); }
+.safety-note .s-body p + p { margin-top: var(--space-3); }
+
+/* ---------------- Blend bar ---------------- */
+.blend-bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; }
+.blend-bar i { display: block; height: 100%; }
+.blend-bar i.v { background: var(--vata); }
+.blend-bar i.p { background: var(--pitta); }
+.blend-bar i.k { background: var(--kapha); }
+.blend-labels { display: flex; justify-content: space-between; margin-top: var(--space-2); }
+.blend-labels span { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--text-muted); }
+
+/* ---------------- Elemental weave ---------------- */
+.weave { display: flex; gap: 40px; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
+.weave-item { display: flex; flex-direction: column; align-items: center; gap: 11px; }
+.weave-glyph { height: 46px; display: flex; align-items: flex-end; justify-content: center; }
+.weave-cap { text-align: center; line-height: 1.3; }
+.weave-cap .mlabel { color: var(--ink); letter-spacing: 0.14em; }
+.weave-cap .pct { font-family: var(--font-display); font-size: 12.5px; color: var(--ink-soft); }
+
+/* ---------------- Reveal hero ---------------- */
+.reveal { display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* Breathing room between the header rule and the pass label. */
+.pass-label { padding-top: var(--space-7); text-align: center; }
+/* Pass label takes the sage accent, and its subline matches the constitution headline
+   size — the two read as one title block. */
+.pass-label .mlabel { color: var(--accent-deep); }
+.pass-label .subline { margin-top: 10px; line-height: 1.08; }
+/* Mono sublabels inside the reveal ("At your best", "When stretched"). */
+/* "At your best" / "Under pressure" — display-font H3, sized to sit under the section
+   subline (26px) without competing with it. */
+.reveal-sub {
+  font-family: var(--font-display); font-weight: 500; font-size: 21px;
+  letter-spacing: -0.005em; line-height: 1.2; color: var(--ink);
+  margin: 26px 0 8px;
+}
+/* Reveal prose reads left-aligned; the closing reminder stays centred. */
+.reveal-prose { width: 100%; max-width: 62ch; margin-top: 12px; text-align: left; }
+.prakriti-reminder { text-align: center; font-size: 16px; max-width: 62ch; margin: 32px auto 0; }
+.emblem { position: relative; width: 300px; height: 300px; margin: 14px 0 4px; max-width: 100%; }
+.emblem svg.ashtakona { display: block; width: 100%; height: 100%; }
+.emblem .med-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.med-fix { transition: opacity .5s ease; }
+.med-glow { position: absolute; width: 73px; height: 73px; border-radius: 50%; pointer-events: none; transition: opacity .5s ease; opacity: 0; background: radial-gradient(circle,#fff 0%,#fff 84%,rgba(255,255,255,.65) 94%,rgba(255,255,255,0) 100%); box-shadow: 0 0 26px 9px rgba(255,255,255,.8); }
+.dosha-medallion { border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.dosha-medallion svg { display: block; }
+
+/* ---------------- Reveal guidance plate ---------------- */
+.guidance-plate { padding: 28px 32px 24px; }
+.guidance-plate .plate-title { font-family: var(--font-display); font-weight: 500; font-size: 30px; letter-spacing: -.01em; color: var(--ink); text-align: center; margin-bottom: 22px; }
+.doa-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.doa-col .doa-label { margin-bottom: 6px; }
+.doa-col.favour .doa-label { color: var(--accent-deep); }
+.doa-col.avoid .doa-label { color: var(--fire); }
+.doa { padding: 13px 0; border-bottom: 1px solid var(--ink-08); font-family: var(--font-display); font-size: var(--text-base); color: var(--ink); line-height: var(--leading-snug); }
+.doa:last-child { border-bottom: none; }
+@media (max-width: 767px) { .doa-cols { grid-template-columns: 1fr; gap: 20px; } }
+
+/* Reliability list (badges live here, not in the favour/avoid buckets) */
+.reliability { margin-top: var(--space-6); }
+.reliability h4 { font-family: var(--font-display); font-size: var(--text-lg); margin-bottom: var(--space-4); }
+.rel-line { display: flex; gap: var(--space-4); align-items: flex-start; padding: 13px 0; border-top: 1px solid var(--ink-08); }
+.rel-line:first-of-type { border-top: none; }
+.rel-badge { flex: none; padding-top: 1px; }
+.rel-text { font-family: var(--font-sans); font-size: var(--text-sm); line-height: var(--leading-snug); color: var(--ink-soft); }
+
+/* ---------------- Imbalance (Full Reading · Vikriti) ---------------- */
+.imbalance { text-align: center; }
+.imbalance-intro { font-family: var(--font-display); font-style: italic; color: var(--ink-soft); text-align: center; }
+/* The imbalance block leads the Full Reading and spans the content area — it was
+   constrained to 48ch when it sat mid-page under the constitution reveal. */
+.imb-state { text-align: left; margin: 24px 0 0; }
+.imbalance-lead { padding-top: var(--space-7); }
+/* Medallion to the right of the headline, sitting with it — not pinned to the far edge
+   of the content area, which left a gap wide enough to read as two separate elements. */
+.imb-head { display: flex; align-items: center; justify-content: flex-start; gap: 24px; margin-bottom: var(--space-4); }
+.imb-medallion { flex: none; display: inline-flex; }
+.imb-head .imb-heading { margin-bottom: 0; }
+
+/* The headline sets a line at a time in the 3A reveal, so the two lines are spans rather
+   than a <br>. Block either way — the break is the layout, not the animation. */
+.imb-line { display: block; }
+
+/* Only the element glyph inside the disc pulses — the disc itself holds still, so the
+   motion reads as something alive within the dosha rather than the whole mark throbbing.
+   Even, regular rhythm: ease-in-out, no hold at the extremes.
+   Shape from the reveal handoff: a small 1.055 scale with the aura strengthening rather
+   than the glyph fading in and out, so it reads as breathing rather than blinking, and
+   it is the same mark the ignite beat resolves into. Taken slightly quicker than the
+   handoff's 2.8s — at that length the rise and fall were slow enough to read as a
+   gradient rather than a pulse. */
+@keyframes glyph-pulse {
+  0%, 100% { transform: scale(1);     filter: drop-shadow(0 0 2px rgba(255,255,255,0.9)) drop-shadow(0 0 5px rgba(255,255,255,0.45)); }
+  50%      { transform: scale(1.055); filter: drop-shadow(0 0 4px rgba(255,255,255,1))   drop-shadow(0 0 12px rgba(255,255,255,0.6)); }
+}
+.imb-medallion .dosha-medallion > span {
+  display: inline-flex; transform-origin: center;
+  animation: glyph-pulse 2.2s ease-in-out infinite;
+}
+/* During the shot the pulse waits for the medallion to land (3.05s), so the mark does
+   not breathe while it is still a scaling point of light. */
+.rvl .imb-medallion .dosha-medallion > span { animation-delay: 3.05s; }
+@media (prefers-reduced-motion: reduce) {
+  .imb-medallion .dosha-medallion > span { animation: none; opacity: 1; }
+}
+.imb-medallion { float: right; margin: 0 0 var(--space-4) var(--space-5); }
+/* Same size as the constitution headline (.dname on the reveal) — this is the headline
+   of the Full Reading now, not a sub-heading of the constitution. */
+.imb-heading { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: var(--space-4); }
+.imb-body { font-family: var(--font-display); font-size: 16px; color: var(--ink-soft); line-height: var(--leading-normal); }
+.imb-body + .imb-body { margin-top: var(--space-3); }
+
+.imb-guidance { margin-top: var(--space-7); }
+
+/* ---- Subline (SL) ----
+   The step between the display headline (.dname, 48px) and body copy. Used for section
+   headings that are content, not labels — labels stay .mlabel / .kick. */
+.subline {
+  font-family: var(--font-display); font-weight: 500;
+  letter-spacing: -0.008em; line-height: 1.18; color: var(--ink);
+  text-align: center; margin: 0 0 var(--space-5);
+}
+
+/* ---- Full-width advice card ----
+   Replaces the two-column Favour / Avoid split. Each line carries an evidence note
+   underneath, which needs the full measure — in two columns the notes wrapped to
+   ribbons. `tone` tints the whole card so Favour and Avoid separate at a glance. */
+.adv-card { padding: 22px 26px; margin-top: 14px; }
+/* Medallion beside the name. Type and qualities are one headline. */
+.adv-head { display: flex; align-items: center; gap: 16px; }
+.adv-medallion { flex: none; display: inline-flex; }
+.adv-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); margin: 0; }
+/* Run-in to the list. Mono and sage, so it reads as a label rather than competing with
+   the advice below it. */
+.adv-lead { color: var(--accent-deep); margin: 18px 0 4px; }
+
+/* Dividers sit AFTER each point, so the first point follows its lead line without a
+   rule cutting between them. */
+.adv-row { padding: 14px 0; border-top: 0; border-bottom: 1px solid var(--ink-08); }
+
+/* Favour reads sage, Avoid reads warm red. The tint goes on ::before — that is the
+   element carrying the torn-paper filter, so the colour gets the same ragged edge as
+   the neutral cards instead of sitting in a clean rectangle on top of it. */
+/* No plate highlight on the tinted cards — the top-left glare washed the colour out.
+   Just the tint and the corner shading, both shaped by the torn-edge filter. */
+.adv-favour::before {
+  background:
+    radial-gradient(130% 130% at 88% 104%, var(--ink-08) 0%, transparent 52%),
+    linear-gradient(180deg, rgba(124,154,107,0.26), rgba(124,154,107,0.15));
+}
+.adv-favour .adv-title { color: var(--accent-deep); }
+.adv-avoid::before {
+  background:
+    radial-gradient(130% 130% at 88% 104%, var(--ink-08) 0%, transparent 52%),
+    linear-gradient(180deg, rgba(180,71,42,0.20), rgba(180,71,42,0.11));
+}
+.adv-avoid .adv-title { color: var(--ev-contested); }
+.adv-favour .adv-row, .adv-avoid .adv-row { border-bottom-color: rgba(35,32,26,0.14); }
+.adv-main { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.adv-text { font-family: var(--font-display); font-size: 17px; line-height: var(--leading-snug); color: var(--ink); }
+/* Fixed-width badge column, left-aligned inside it, so the diamonds line up vertically.
+   The badge used to be right-aligned as a unit, which meant a longer state name
+   ("TRADITIONAL" is 16px wider than the rest) pushed its mark out of the column. Pinning
+   the column rather than the label keeps the marks aligned even if the mono font falls
+   back to a wider face. */
+.adv-badge { flex: none; min-width: 132px; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.adv-note { font-size: 13.5px; line-height: 1.55; color: var(--ink-muted); margin: 7px 0 0; max-width: 68ch; }
+
+@media (max-width: 767px) {
+  .adv-card { padding: 18px 18px; }
+  /* Badge drops below the advice rather than squeezing the text into a column. */
+  .adv-main { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+.general-rec { margin-top: 8px; }
+
+/* Evidence currency. Quiet by default — it is a shelf life, not a warning — and takes the
+   contested colour once the ratings pass the staleness threshold. */
+.ev-currency {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
+  line-height: 1.7; color: var(--ink-muted); text-align: center;
+  max-width: 68ch; margin: 26px auto 0;
+}
+.ev-currency.stale { color: var(--ev-contested); }
+
+/* ---------------- Disclaimer ---------------- */
+.disclaimer { font-family: var(--font-display); font-size: var(--text-sm); color: var(--ink-soft); border-left: 3px solid var(--accent-28); padding: var(--space-3) 0 var(--space-3) var(--space-5); margin-top: var(--space-5); line-height: var(--leading-snug); }
+
+/* ---------------- Forms ---------------- */
+.field { margin-bottom: var(--space-5); }
+.field label { display: block; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-3); }
+.field input[type="email"] { width: 100%; font: inherit; font-family: var(--font-sans); padding: 13px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--paper); color: var(--ink); }
+.field input:focus-visible { box-shadow: var(--ring); }
+.field .hint { font-family: var(--font-display); font-size: var(--text-sm); color: var(--ink-muted); margin-top: var(--space-3); }
+.field .error { font-family: var(--font-sans); color: var(--ev-contested); font-size: var(--text-sm); margin-top: var(--space-3); }
+
+/* ---------------- Education ---------------- */
+.edu-toc { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-5) 0 var(--space-7); }
+.edu-toc a { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; padding: 6px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-raised); color: var(--ink-soft); }
+.edu-toc a:hover { border-color: var(--accent); color: var(--accent-deep); }
+.edu-section { padding: var(--space-8) 0; border-top: 1px solid var(--ink-12); scroll-margin-top: 1rem; }
+.edu-section:first-of-type { border-top: none; }
+.edu-section h2 { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-5); }
+.edu-section p { font-family: var(--font-display); font-size: var(--text-md); line-height: var(--leading-normal); color: var(--ink-soft); }
+.edu-section p + p { margin-top: var(--space-5); }
+.edu-section p strong { color: var(--ink); font-weight: var(--w-semibold); }
+.evidence-entry { border: 1px solid var(--border-hairline); border-radius: var(--radius-md); padding: var(--space-5); margin-bottom: var(--space-4); background: var(--surface-raised); }
+.evidence-entry .entry-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+.evidence-entry .entry-head h4 { font-family: var(--font-display); font-size: var(--text-lg); }
+
+/* Scoped badge pair. The head wraps rather than squeezing: two badges plus their
+   scope labels do not fit beside a title on narrow screens. */
+.evidence-entry .entry-head { flex-wrap: wrap; }
+.ev-pair { display: inline-flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.ev-pair-item { display: inline-flex; align-items: center; gap: 7px; }
+.ev-pair-sep { color: var(--ink-muted); font-size: var(--text-sm); }
+.ev-qual { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+/* Stack the two ratings on narrow screens; the separator would otherwise dangle at
+   the end of the wrapped first line. */
+@media (max-width: 767px) {
+  .ev-pair { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .ev-pair-sep { display: none; }
+}
+
+/* ---------------- Landing sections ---------------- */
+.hero { position: relative; min-height: 330px; padding: 24px 0; display: flex; align-items: center; justify-content: center; overflow: visible; }
+.hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 0; }
+.hero h1 { font-family: var(--font-display); font-weight: 500; margin: 20px 0 22px; text-wrap: balance; }
+.hero h1 .em { font-style: italic; color: var(--accent-deep); }
+.hero .lead { font-family: var(--font-display); font-size: 20px; line-height: 1.55; color: var(--ink-soft); max-width: 50ch; margin: 0 auto 40px; text-wrap: pretty; }
+.glyph-row { display: flex; align-items: center; justify-content: center; gap: 44px; flex-wrap: wrap; }
+.glyph-row .g-item { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+/* Heading, divider and note share one row: the rule fills the space between them. */
+.section-head { margin: 40px 0 6px; }
+.section-head .row { display: flex; align-items: baseline; gap: 16px; }
+.section-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 28px; color: var(--ink); white-space: nowrap; }
+.section-head .hr { flex: 1; height: 1px; background: var(--accent-28); }
+.section-head .note { font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em; color: var(--ink-muted); white-space: nowrap; }
+.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; margin-top: 24px; }
+.bento .dosha-depth { padding: 34px 36px; }
+.bento h3 { font-family: var(--font-display); font-weight: 500; font-size: 30px; color: var(--ink); margin-bottom: 20px; }
+.step + .step { border-top: 1px solid var(--ink-08); padding-top: 20px; margin-top: 20px; }
+.step .mlabel { color: var(--accent-deep); margin-bottom: 6px; }
+.step p { font-family: var(--font-display); font-size: 15px; line-height: 1.6; color: var(--ink-soft); text-wrap: pretty; }
+.gtk { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+.gtk .mlabel { color: var(--accent-deep); margin-bottom: 10px; }
+.gtk p { font-family: var(--font-display); font-size: 15px; line-height: 1.6; color: var(--ink-soft); text-wrap: pretty; }
+
+@media (max-width: 767px) {
+  .bento { grid-template-columns: 1fr; }
+  .gtk { grid-template-columns: 1fr; gap: 24px; }
+  /* (section-head is handled in the RESPONSIVE SYSTEM block at the end of the file) */
+}
+
+/* ---------------- Loading beat ---------------- */
+.loading-beat { text-align: center; padding: 80px 16px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.loading-beat .l-emblem { width: 96px; height: 96px; opacity: .8; }
+.loading-beat p { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .18em; text-transform: uppercase; color: var(--ink-muted); }
+
+/* ---------------- Modal ---------------- */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(35,32,26,.45); z-index: 60; display: grid; place-items: end center; }
+.modal { background: var(--paper); width: 100%; max-width: var(--measure-report); border-radius: 16px 16px 0 0; padding: var(--space-7) var(--space-6) var(--space-8); box-shadow: var(--shadow-lg); max-height: 85vh; overflow-y: auto; }
+.modal h3 { font-family: var(--font-display); font-size: var(--text-title); margin-bottom: var(--space-4); }
+.modal p, .modal li { font-family: var(--font-display); color: var(--ink-soft); }
+.modal ul { padding-left: 1.1rem; }
+.modal-close { float: right; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: var(--ink-soft); line-height: 1; }
+@media (min-width: 768px) { .modal-backdrop { place-items: center; padding: 1rem; } .modal { border-radius: 16px; } }
+
+.stack > * + * { margin-top: var(--space-5); }
+.center { text-align: center; }
+.upsell { margin-top: var(--space-7); }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-5); }
+.back-link:hover { color: var(--accent-deep); }
+.prose-serif { font-family: var(--font-display); font-size: 18px; line-height: 1.62; color: var(--ink-soft); text-wrap: pretty; }
+.prose-serif .cost { color: var(--ink); }
+.prose-serif strong { color: var(--ink); font-weight: 500; }
+
+/* ================ Reveal choreography (2A · Core, 3A · Full) ================
+   From `design_handoff_dosha_reveal_loader`. The loader IS the result screen: there is
+   no spinner and no separate loading page, the emblem draws itself while the reading
+   sets around it. Keyframes, easings and delays are copied literally from the handoff.
+
+   **The whole layer is opt-in via `.rvl` on the screen root.** Every beat below is
+   scoped to `.rvl`, so the identical markup renders as the finished frame when the class
+   is absent — which is what a reader gets when they navigate back to a result they have
+   already seen, and what everyone gets under prefers-reduced-motion. No second template,
+   no chance of the two drifting apart.
+
+   Beats overlap on purpose: the medallion lands while the linework is still drawing, the
+   name arrives before the trace finishes. Nothing waits for the previous beat. */
+@keyframes dosha-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes dosha-turn  { from { transform: rotate(-14deg); } to { transform: rotate(346deg); } }
+@keyframes dosha-glow {              /* 2A — flash inside the open centre */
+  0%   { opacity: 0; transform: scale(0.45); }
+  45%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+@keyframes dosha-ignite {            /* 3A — the whole figure goes white */
+  0%   { opacity: 0; transform: scale(0.55); }
+  55%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+@keyframes dosha-medallion { from { opacity: 0; transform: scale(0.12); } to { opacity: 1; transform: none; } }
+@keyframes dosha-med-lg    { from { opacity: 0; transform: scale(0.35); } to { opacity: 1; transform: none; } }
+@keyframes dosha-slide     { from { transform: translateX(var(--dx, 0px)) scale(1.12); } to { transform: none; } }
+@keyframes dosha-fade-up   { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes dosha-line      { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes dosha-fade-out  { from { opacity: 1; } to { opacity: 0; } }
+/* Only `from` is declared, so each segment animates from 0 to its own inline width —
+   the percentages differ per reading and must not be duplicated into a keyframe. */
+@keyframes dosha-grow { from { width: 0; } }
+
+/* The trace easing is the one exception to the system ease: fast off the mark, long
+   settle, so the line arrives rather than decelerating into place.
+   Scoped to `.rvl`: outside the reveal the same emblem renders fully drawn, because
+   stroke-dasharray:1 against pathLength:1 is a single dash covering the whole figure at
+   the default offset of 0. That is what lets one emblem serve both states. */
+.rvl .ak-traced [stroke-dasharray] {
+  animation: dosha-trace var(--trace, 2.5s) cubic-bezier(0.05, 0.72, 0.25, 1) var(--d, 0s) both;
+}
+.ak-turn { display: flex; animation: dosha-turn var(--turn, 14s) linear infinite; }
+
+.rvl [data-beat] { opacity: 0; }
+.rvl [data-beat="up"]   { animation: dosha-fade-up 0.6s var(--ease-out) var(--d, 0s) both; }
+.rvl [data-beat="line"] { animation: dosha-line 0.7s var(--ease-out) var(--d, 0s) both; }
+.rvl [data-beat="med"]  { animation: dosha-medallion 0.55s var(--ease-out) var(--d, 0s) both; }
+.rvl [data-beat="med-lg"] { animation: dosha-med-lg 0.6s var(--ease-out) var(--d, 0s) both; }
+.rvl [data-beat="flash"] { animation: dosha-glow 0.75s var(--ease-out) var(--d, 0s) both; }
+.rvl [data-beat="ignite"] { animation: dosha-ignite 1.15s var(--ease-out) var(--d, 0s) both; }
+.rvl [data-beat="out"]  { opacity: 1; animation: dosha-fade-out 0.4s linear var(--d, 0s) both; }
+.rvl .blend-bar i { animation: dosha-grow 1s var(--ease-out) var(--d, 0s) both; }
+
+/* The one permitted glow in the system — the reveal moment. Nothing else glows; the
+   emblem stays matte. Sized against the medallion it lands on, not in absolute px, so
+   the two stay in proportion at any emblem size. */
+.reveal-flash {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  width: var(--flash, 118px); height: var(--flash, 118px);
+  background: radial-gradient(circle, rgba(255,255,255,0.95) 34%, rgba(255,255,255,0) 70%);
+}
+.reveal-flash.ignite {
+  background: radial-gradient(circle, rgba(255,255,255,0.98) 30%, rgba(255,255,255,0.55) 52%, rgba(255,255,255,0) 72%);
+}
+
+/* 3A — the emblem traces at the horizontal centre of the stage and glides into its slot
+   beside the headline. `--dx` is MEASURED at runtime in views/fullResult.js: the
+   headline width differs per dosha and per font-load state, so a hard-coded offset
+   visibly starts the emblem off-centre. */
+.imb-slot { position: relative; flex: none; display: flex; align-items: center; justify-content: center; }
+.rvl .imb-slot { animation: dosha-slide 0.95s var(--ease-out) 2.15s both; }
+.imb-slot .imb-trace { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Belt and braces: the views already withhold `.rvl` when reduced motion is set, so
+     the finished frame renders with the normal .rise fade and none of this runs. */
+  .rvl [data-beat], .rvl .blend-bar i, .rvl .imb-slot { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .ak-traced [stroke-dasharray] { animation: none !important; stroke-dashoffset: 0 !important; }
+  .ak-turn { animation: none !important; }
+  .reveal-flash { display: none; }
+}
+
+/* ---------------- Entrance motion (loading + scroll) ----------------
+   On load: screen roots and hero elements RISE in (fade + 10–18px upward),
+   staggered via an inline `--d` delay. On scroll: `.rv` elements below the fold
+   reveal as they enter the viewport (IntersectionObserver adds `.in`). All of it
+   respects prefers-reduced-motion. See src/ui/reveal.js for the observer. */
+@keyframes dosha-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.rise { animation: dosha-rise var(--dur-slow) var(--ease-out) both; }
+.rv {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .8s var(--ease-out) var(--d, 0s), transform .8s var(--ease-out) var(--d, 0s);
+  will-change: opacity, transform;
+}
+.rv.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .ak-spin { animation: none !important; }
+  .rise, .rv { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* =======================================================================
+   RESPONSIVE SYSTEM — from `design_handoff_responsive`
+   =======================================================================
+   Two breakpoints, three widths. Everything between them scales fluidly:
+   the handoff is explicit that intermediate breakpoints need a content
+   reason, and there are none here.
+
+       mobile   < 768px    design width 390, full-bleed, 22px sides
+       tablet   768–1119   34px sides, content centred
+       desktop  >= 1120    48px sides, centred, max 1120 (--measure-wide)
+
+   This block is the authority on what changes across widths, and it sits
+   last so it wins the cascade. Per-component media queries elsewhere in
+   this file handle that component's own internals; anything in the
+   handoff's §7 table lives HERE, in one place, in the order that table
+   gives it. Width is capped by MEASURE, never by the viewport.
+   ======================================================================= */
+
+/* ---- Screen container ------------------------------------------------ */
+/* Top padding stays 0: the header's own padding and its rule already set
+   the vertical rhythm, and adding the handoff's 26/34px on top of that
+   double-spaces every screen. Sides and bottom follow the handoff. */
+main { padding: 0 22px 30px; }
+.site-header { padding: 18px 22px 0; }
+.site-footer { padding: 0 22px 32px; }
+
+/* ---- Header (§5) ----------------------------------------------------- */
+/* Mobile stacks the scope line under the wordmark; tablet and up is one
+   justified row. */
+.header-inner { flex-direction: column; align-items: flex-start; gap: 4px; padding-bottom: 14px; }
+.site-header .wordmark { height: 20px; }
+.header-inner .scope-note { font-size: 8.5px; }
+
+/* ---- Type ramp (§3) -------------------------------------------------- */
+/* Mobile column of the ramp. Tablet and desktop steps are below. */
+.hero h1 { font-size: 32px; line-height: 1.06; letter-spacing: -0.02em; }
+.hero .lead { font-size: 15px; line-height: 1.55; max-width: 34ch; }
+.qh { font-size: 26px; line-height: 1.18; }
+.dname, .imb-heading, .pass-label .subline { font-size: 36px; }
+.subline { font-size: 24px; }
+.adv-title { font-size: 22px; }
+.kick { font-size: 9.5px; letter-spacing: 0.2em; }
+.mlabel, .elabel { font-size: 8.5px; letter-spacing: 0.16em; }
+.prose-serif, .imb-body { font-size: 15px; line-height: 1.66; }
+/* Paragraphs never exceed 58ch, at any width (§1). */
+.prose-serif, .imb-body, .adv-note, .hero .lead, .imbalance-intro { max-width: var(--measure-prose); }
+.prose-serif, .imbalance-intro { margin-left: auto; margin-right: auto; }
+
+/* ---- Touch targets (§5) ---------------------------------------------- */
+/* "Every interactive row >= 44px tall at every width." .btn-sm was 33px.
+   Where the control is deliberately small — the circled "i", the legend link — the
+   HIT AREA grows and the mark does not: an invisible inset pseudo-element, so the
+   design keeps its restraint and the thumb still lands. */
+.btn { min-height: 44px; }
+.answer-option { min-height: 44px; }
+.info-trigger { min-width: 44px; min-height: 44px; }
+.ev-legend-link { position: relative; }
+.ev-legend-link::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }
+
+/* ---- Buttons: stacked full-width on mobile, primary first (§5) ------- */
+.btn-row { flex-direction: column; align-items: stretch; gap: 10px; }
+.btn-row > .btn { width: 100%; }
+
+/* ---- Question box height ---------------------------------------------- */
+/* The footer must not jump between questions, so the box reserves the tallest one.
+   RE-MEASURE after editing a prompt, an option, the type ramp or --measure-quiz — all
+   four move it. Measured with the real strings at each width (tallest of all 40
+   questions, both passes): 328px at 390, 342px at 834, 349px at 1120. The column is
+   34rem from tablet up, so tablet and desktop differ only by the 32 -> 34px H2.
+   Values below carry ~8px of headroom. */
+.q-body { min-height: 336px; }
+
+/* ---- Quiz column (§6B) ----------------------------------------------- */
+/* Full-bleed on mobile, held to --measure-quiz and centred from tablet. */
+.wrap-quiz { max-width: none; }
+/* Footer: stacked full-width on mobile, Back beneath Next. */
+.q-nav { grid-template-columns: 1fr; gap: 10px; }
+.q-nav .back-slot, .q-nav .next-slot { justify-self: stretch; }
+.q-nav .back-slot .btn, .q-nav .next-slot .btn { width: 100%; }
+.q-nav .pass-note { order: -1; }
+
+/* ---- Tier grid (§6A) ------------------------------------------------- */
+.tier-grid { grid-template-columns: 1fr; gap: 12px; }
+
+/* ---- Reveal emblem + medallion (§6C, §7) ----------------------------- */
+/* 210 -> 260 -> 300, medallion 52 -> 64 -> 73. The medallion reads
+   --med-size; the glow disc tracks it so the two stay concentric. */
+.emblem { width: 210px; height: 210px; --med-size: 52px; }
+.med-glow { width: var(--med-size, 73px); height: var(--med-size, 73px); }
+
+/* ---- Blend bar (§6C) ------------------------------------------------- */
+/* Full width on mobile, capped at 480 from tablet. */
+.blend-wrap { width: 100%; margin: 22px 0 4px; }
+.blend-bar { height: 12px; }
+
+/* ---- Section head ---------------------------------------------------- */
+/* The hairline rule and the trailing mono note are desktop furniture. Below 1120 the
+   heading takes the whole width: `white-space: nowrap` on the h2 is what pushed
+   "Deepen Your Exploration Step by Step" off the right edge at 390, and the note's own
+   nowrap overflowed by a hair at exactly 834. Neither carries meaning that the heading
+   does not already carry, so they are simply absent until there is room. */
+.section-head .row { flex-wrap: wrap; }
+.section-head h2 { white-space: normal; }
+.section-head .hr, .section-head .note { display: none; }
+
+/* ---- Element glyph sizes (§6A, §6C) ----------------------------------- */
+/* Hero row 22 -> 28, weave row 34 -> 38. The renderer writes width/height ATTRIBUTES on
+   the SVG; a CSS rule beats a presentation attribute, so the ramp lives here rather
+   than threading a size argument through every call site. */
+.glyph-row .g-item > svg { width: 22px; height: 22px; }
+.weave-glyph > svg { width: 34px; height: 34px; }
+.weave-glyph { height: 38px; }
+
+/* ---- Elemental weave (§6C, §7) --------------------------------------- */
+/* ONE ROW OF FIVE AT EVERY WIDTH — the handoff forbids re-flowing into
+   3+2 or grouping by dosha, so this is a fixed 5-column grid and never a
+   wrapping flex row. Spacing tightens on mobile instead of breaking. */
+.weave { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: start; justify-content: stretch; }
+.weave-item { min-width: 0; }
+.weave-cap .mlabel { letter-spacing: 0.08em; word-break: break-word; }
+
+@media (min-width: 768px) {
+  /* ---- Tablet ---- */
+  main { padding: 0 34px 40px; }
+  .site-header { padding: 20px 34px 0; }
+  .site-footer { padding: 0 34px 40px; }
+
+  .header-inner { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-4); padding-bottom: 16px; }
+  .site-header .wordmark { height: 24px; }
+  .header-inner .scope-note { font-size: 9px; }
+
+  .hero h1 { font-size: 46px; letter-spacing: -0.022em; line-height: 1.05; }
+  .hero .lead { font-size: 18px; max-width: 46ch; }
+  .qh { font-size: 32px; line-height: 1.15; }
+  .dname, .imb-heading, .pass-label .subline { font-size: 44px; }
+  .subline { font-size: 28px; }
+  .adv-title { font-size: 26px; }
+  .kick { font-size: 11px; }
+  .mlabel, .elabel { font-size: 9.5px; letter-spacing: 0.2em; }
+  .prose-serif, .imb-body { font-size: 16px; line-height: 1.68; }
+
+  /* Buttons return to an inline row. */
+  .btn-row { flex-direction: row; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+  .btn-row > .btn { width: auto; }
+
+  /* Quiz: 34rem centred, footer justified Back / Next. */
+  .q-body { min-height: 356px; }
+  .wrap-quiz { max-width: var(--measure-quiz); margin: 0 auto; }
+  .q-nav { grid-template-columns: 1fr auto 1fr; gap: var(--space-5); }
+  .q-nav .back-slot { justify-self: start; }
+  .q-nav .next-slot { justify-self: end; }
+  .q-nav .back-slot .btn, .q-nav .next-slot .btn { width: auto; }
+  .q-nav .pass-note { order: 0; }
+
+  .tier-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  .emblem { width: 260px; height: 260px; --med-size: 64px; }
+  .blend-wrap { max-width: 480px; }
+  .blend-bar { height: 14px; }
+
+  .weave { display: flex; gap: 34px; justify-content: center; flex-wrap: nowrap; }
+  .weave-cap .mlabel { letter-spacing: 0.14em; }
+  .glyph-row .g-item > svg { width: 28px; height: 28px; }
+  .weave-glyph > svg { width: 38px; height: 38px; }
+  .weave-glyph { height: 42px; }
+}
+
+@media (min-width: 1120px) {
+  /* ---- Desktop ---- */
+  main { padding: 0 48px 40px; }
+  .site-header { padding: 26px 48px 0; }
+  .site-footer { padding: 0 48px 40px; }
+
+  .hero h1 { font-size: 52px; }
+  .qh { font-size: 34px; }
+  .dname, .imb-heading, .pass-label .subline { font-size: 52px; }
+  .kick { font-size: 11px; }
+  .mlabel, .elabel { font-size: 10px; letter-spacing: 0.22em; }
+  .adv-title { font-size: 28px; }
+
+  .tier-grid { grid-template-columns: repeat(3, 1fr); }
+  .emblem { width: 300px; height: 300px; --med-size: 73px; }
+
+  .section-head .hr { display: block; }
+  .section-head .note { display: inline; }
+}

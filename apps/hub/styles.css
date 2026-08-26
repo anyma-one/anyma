@@ -1,0 +1,639 @@
+/* =========================================================================
+   anyma — start screen
+   Recreated from design_handoff_anyma_start_screen (screens 4b/5b/6a/6b).
+   Light + dark follow the system preference; there is no in-page toggle.
+   ========================================================================= */
+
+/* ---------- tokens ---------- */
+:root {
+  --el-ink:        #1d2734;
+  --el-slate:      #2a3b4f;
+  --el-paper:      #faf7f0;
+  --el-cream:      #f3efe5;
+  --el-mist:       #b9c2cd;
+  --el-n-500:      #79808a;
+  --el-amber:      #feaa50;
+  --el-peach:      #f9cea5;
+  --el-terracotta: #a44f37;
+
+  --font-display: "Yeseva One", Georgia, "Times New Roman", serif;
+  --font-body:    "Karla", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease:  cubic-bezier(.22, .61, .36, 1);
+  --dur:   620ms;
+
+  /* themed */
+  --surface:   var(--el-paper);
+  --text:      var(--el-ink);
+  --text-body: #2f3640;
+  --line:      rgba(29, 39, 52, .12);
+  --muted:     var(--el-n-500);
+
+  --thumb-shadow: 0 10px 28px rgba(29, 39, 52, .13), 0 2px 6px rgba(29, 39, 52, .06);
+  --logo-filter:  none;
+
+  --btn-bg:   var(--el-ink);
+  --btn-text: var(--el-cream);
+
+  --card-bg:    var(--el-paper);
+  --card-body:  var(--text-body);
+  --card-close: var(--el-n-500);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface:   var(--el-ink);
+    --text:      var(--el-cream);
+    --text-body: var(--el-mist);
+    --line:      rgba(250, 247, 240, .16);
+    --muted:     var(--el-mist);
+
+    --thumb-shadow: inset 0 0 0 1px rgba(250, 247, 240, .14),
+                    0 0 26px rgba(250, 247, 240, .16),
+                    0 6px 20px rgba(0, 0, 0, .28);
+    /* TODO: replace with a proper light-on-dark logo export (see README) */
+    --logo-filter: invert(1) sepia(.12) saturate(.6) brightness(1.05);
+
+    --btn-bg:   var(--el-cream);
+    --btn-text: var(--el-ink);
+
+    --card-bg:    linear-gradient(180deg, var(--el-slate) 0%, var(--el-ink) 100%);
+    --card-close: var(--el-mist);
+  }
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--el-ink);
+  color: var(--el-cream);
+  font-size: 14px;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--el-amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- frame ---------- */
+.frame {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 96px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- logo + hairline ---------- */
+.logo {
+  align-self: flex-start;
+  height: 108px;
+  width: auto;
+  margin: -34px -14px;
+  filter: var(--logo-filter);
+}
+
+.hairline {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  margin: 20px 0 0;
+  background: var(--line);
+}
+
+/* ---------- headline ---------- */
+.headline-block {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* The break after the comma is explicit in the markup, so the headline always reads as the
+   two intended lines rather than rewrapping with the viewport. */
+.headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.16;
+  color: var(--text);
+}
+
+.intro {
+  margin: 0;
+  max-width: 756px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* ---------- section label ---------- */
+/* Set in the body face rather than the display face — it shares its treatment with the
+   "coming soon" mark on the locked tile, so the two read as the same kind of object. */
+.section-label {
+  /* 32px of visual gap above the text, less the 12px of glow padding. */
+  margin: 20px 0 0;
+  /* Full content width, not shrink-to-fit: the text slides ±38px, and a box sized to the
+     text would clip it on the way out. Clipping at the left edge is deliberate — that is
+     what makes it wipe in rather than just drift in. */
+  align-self: stretch;
+  overflow: hidden;
+  /* Room for the glow, which this clipping box would otherwise cut with a hard edge. */
+  padding: 12px 0;
+}
+
+.section-label__text {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text);
+  animation: label-sweep var(--sweep) var(--ease) 450ms infinite;
+}
+
+/* 5.175s, chosen so the keyframe percentages below land on exact absolute times:
+   8.70%=0.45s arrived · 15.46%=0.80s first hold ends/rise starts · 27.05%=1.40s peak ·
+   45.89%=2.375s receded · 84.54%=4.375s second hold ends · 94.20%=4.875s dissolved. */
+.section-label { --sweep: 5.175s; }
+
+/* Four beats: flies in out of focus and faint → holds in ink → flashes amber, the glow
+   swelling and falling back → flies out still warm.
+   Two things that look like redundancy but are not: the off state is a zero-radius
+   transparent shadow rather than `none` (which does not interpolate, so the glow would snap
+   on instead of swelling), and every shadow keyframe carries the same two layers, since
+   shadow lists only interpolate smoothly when their layer counts match. */
+@keyframes label-sweep {
+  0%   { opacity: 0; filter: blur(7px); transform: translateX(-38px);
+         color: var(--text);     text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+  /* 0.45s — arrived */
+  8.70%  { opacity: 1; filter: blur(0); transform: translateX(0);
+         color: var(--text);     text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+  /* 0.80s — end of the first hold; the rise starts here */
+  15.46% { color: var(--text);   text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+  /* 1.40s — peak (rise 0.60s) */
+  27.05% { color: var(--el-amber); text-shadow: 0 0 10px rgba(254, 170, 80, .50),
+                                                0 0 18px rgba(254, 170, 80, .14); }
+  /* 2.375s — receded fully, back to ink with the glow gone (fall 0.975s) */
+  45.89% { color: var(--text);   text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+  /* 4.375s — end of the second hold, two full seconds sitting still in ink after the flash.
+     This also closes the hold for opacity/filter/transform: those are next specified on the
+     exit, and without a keyframe pinning them here the label would spend the entire cycle
+     quietly blurring, fading and drifting right instead of sitting still. */
+  84.54% { opacity: 1; filter: blur(0); transform: translateX(0);
+         color: var(--text);     text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+  /* 4.875s — dissolved */
+  94.20% { opacity: 0; filter: blur(6px); transform: translateX(22px);
+         color: var(--text);     text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+  100% { opacity: 0; filter: blur(8px); transform: translateX(38px);
+         color: var(--text);     text-shadow: 0 0 0 rgba(254, 170, 80, 0),
+                                              0 0 0 rgba(254, 170, 80, 0); }
+}
+
+/* ---------- tiles ---------- */
+.tiles {
+  list-style: none;
+  /* 30px in the spec, less the label's 12px of glow padding below it. */
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  align-content: start;
+}
+
+/* Also styles the locked tile, which is a <button> (it opens the sign-up) — hence the reset. */
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tile__thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--thumb-shadow);
+}
+
+.tile__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur) var(--ease);
+}
+
+.tile__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.2;
+  transform-origin: left center;
+  transition: transform var(--dur) var(--ease), color 340ms var(--ease);
+}
+
+.tile__desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* The locked tile hovers exactly like the others — it just also reveals its mark. */
+@media (hover: hover) {
+  .tile:hover .tile__thumb img { transform: scale(1.05); }
+  .tile:hover .tile__title {
+    transform: scale(1.07);
+    color: var(--el-amber);
+  }
+  .tile--locked:hover .tile__soon { opacity: 1; }
+  .tile--locked:hover .tile__soon-label { transform: scale(1); }
+}
+
+/* locked tile — art sits untouched until hover, then the whole thumbnail fills with the
+   same sunset gradient the CTA uses and says so. */
+.tile__soon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(130% 280% at 50% 118%,
+    var(--el-peach) 0%, #fdc37f 32%,
+    var(--el-amber) 62%, var(--el-terracotta) 100%);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.tile__soon-label {
+  color: var(--el-slate);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: scale(.88);
+  transition: transform var(--dur) var(--ease);
+}
+
+/* On touch there is no hover, so the artwork stays as it is and the tile explains itself
+   when tapped — it opens the sign-up. */
+
+/* ---------- CTA button ---------- */
+.cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.btn {
+  position: relative;
+  isolation: isolate;
+  min-width: 220px;
+  height: 58px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform var(--dur) var(--ease),
+              color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(130% 280% at 50% 118%,
+    var(--el-peach) 0%, #fdc37f 32%,
+    var(--el-amber) 62%, var(--el-terracotta) 100%);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    color: var(--el-slate);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(254, 170, 80, .30);
+  }
+  .btn:hover::before { opacity: 1; }
+}
+
+.btn:active { transform: translateY(-1px) scale(.985); }
+
+.btn--full { width: 100%; }
+
+/* ---------- footer ---------- */
+.footer {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 32px;
+}
+
+.footer__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 340ms var(--ease);
+}
+.footer__link:hover { opacity: .6; }
+
+/* ---------- pop-ups ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background: rgba(29, 39, 52, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  opacity: 0;
+  transition: opacity 300ms var(--ease),
+              background-color 300ms var(--ease),
+              backdrop-filter 300ms var(--ease),
+              -webkit-backdrop-filter 300ms var(--ease);
+}
+.overlay[hidden] { display: none; }
+
+.overlay.is-open {
+  opacity: 1;
+  background: rgba(29, 39, 52, .46);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 40px;
+  border-radius: 18px;
+  background: var(--card-bg);
+  box-shadow: 0 24px 60px rgba(29, 39, 52, .34);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 380ms var(--ease), transform 380ms var(--ease);
+}
+
+.overlay.is-open .card {
+  opacity: 1;
+  transform: none;
+}
+
+.card__close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--card-close);
+  cursor: pointer;
+  transition: opacity 340ms var(--ease);
+}
+.card__close:hover { opacity: .6; }
+
+.card__title {
+  margin: 0;
+  padding-right: 32px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.card__body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--card-body);
+}
+
+/* ---------- suggest form ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.form__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.form__label:not(:first-child) { margin-top: 10px; }
+
+.form__input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: border-color 340ms var(--ease);
+}
+.form__input::placeholder { color: var(--muted); opacity: .7; }
+.form__input:focus { border-color: var(--el-amber); }
+
+.form__input--area { resize: vertical; min-height: 110px; }
+
+.form__opt {
+  font-weight: 400;
+  opacity: .8;
+}
+
+.form__fine {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.form__fine a { color: inherit; }
+
+.form__status {
+  margin: 6px 0 0;
+  min-height: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.form__status--error { color: var(--el-terracotta); }
+.form__status--ok    { color: var(--el-amber); }
+
+.form .btn { margin-top: 10px; }
+.form .btn[disabled] { opacity: .55; cursor: default; }
+
+body.no-scroll { overflow: hidden; }
+
+/* ---------- entrance animation ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.rise {
+  animation: rise 640ms var(--ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* stagger, top to bottom (desktop) */
+.logo           { --d:   0ms; }
+.hairline       { --d:  80ms; }
+.headline-block { --d: 160ms; }
+.section-label  { --d: 240ms; }
+.tiles > li:nth-child(1) { --d: 340ms; }
+.tiles > li:nth-child(2) { --d: 420ms; }
+.tiles > li:nth-child(3) { --d: 500ms; }
+.cta-row        { --d: 600ms; }
+.footer         { --d: 680ms; }
+
+/* =========================================================================
+   mobile — screens 6a / 6b (locked variant: horizontal tile rows)
+   ========================================================================= */
+@media (max-width: 767px) {
+  .frame { padding: 56px 24px 32px; }
+
+  .logo { height: 58px; margin: -19px 0; }
+
+  .headline-block { margin-top: 22px; }
+  .headline { font-size: 32px; line-height: 1.2; }
+  .intro { font-size: 14px; }
+
+  /* 18px of visual gap above the text, less the 12px of glow padding. */
+  .section-label { margin-top: 6px; }
+  .section-label__text { font-size: 16px; letter-spacing: .16em; }
+
+  .tiles {
+    /* 26px in the spec, less the label's 12px of glow padding below it. */
+    margin-top: 14px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .tile {
+    display: grid;
+    grid-template-columns: 136px 1fr;
+    grid-template-areas:
+      "thumb title"
+      "thumb desc";
+    align-content: center;
+    column-gap: 18px;
+    row-gap: 4px;
+  }
+
+  .tile__thumb {
+    grid-area: thumb;
+    width: 136px;
+    height: 86px;
+    aspect-ratio: auto;
+  }
+
+  .tile__title { grid-area: title; font-size: 26px; align-self: end; }
+  .tile__desc  { grid-area: desc;  font-size: 14px; line-height: 1.55; align-self: start; }
+
+  /* Sized to sit inside the 136px thumbnail. */
+  .tile__soon-label { font-size: 10px; letter-spacing: .1em; }
+
+  .cta-row { margin-top: 28px; }
+  .btn { width: 100%; }
+
+  .footer { gap: 28px; }
+
+  /* per-spec mobile stagger */
+  .tiles > li:nth-child(1) { --d: 330ms; }
+  .tiles > li:nth-child(2) { --d: 400ms; }
+  .tiles > li:nth-child(3) { --d: 470ms; }
+  .cta-row { --d: 560ms; }
+  .footer  { --d: 630ms; }
+
+  .overlay { padding: 24px; }
+  .card { max-width: 330px; padding: 28px; }
+  .card__title { font-size: 26px; }
+  .card__body { font-size: 14px; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
+  /* The looping label would otherwise never stop moving. */
+  .section-label__text { animation: none; opacity: 1; transform: none; }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

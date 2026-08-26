@@ -1,0 +1,16 @@
+{
+  "name": "anyma",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "anyma — the start screen and the games it opens, served as one site at anyma.one.",
+  "workspaces": [
+    "apps/soul"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node dev-server.mjs 8100",
+    "serve": "node dev-server.mjs 8100",
+    "review": "node build-review.mjs"
+  }
+}

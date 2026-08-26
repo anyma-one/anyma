@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>anyma — feed the mind, nourish the soul</title>
+  <meta name="description" content="Educational games about ancient, esoteric and mystic knowledge. Learn in a playful way about ancient, esoteric and spiritual practices." />
+  <meta name="theme-color" content="#faf7f0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1d2734" media="(prefers-color-scheme: dark)" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="anyma — feed the mind, nourish the soul" />
+  <meta property="og:description" content="Educational games about ancient, esoteric and mystic knowledge." />
+  <meta property="og:url" content="https://anyma.one/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="./assets/anyma-logo.png" />
+  <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/yesevaone-4.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/karla-1.woff2" crossorigin />
+  <link rel="stylesheet" href="./fonts.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#start-exploring">Skip to the games</a>
+
+  <main class="frame">
+    <!-- logo -->
+    <img class="logo rise" src="./assets/anyma-logo.png" alt="anyma" width="320" height="320" />
+
+    <hr class="hairline rise" />
+
+    <!-- headline -->
+    <div class="headline-block rise">
+      <h1 class="headline">feed the mind,<br />nourish the soul</h1>
+      <p class="intro">learn in a playful way about ancient, esoteric and spiritual practices, connecting the past with the present and shaping the way forward into a wholesome future.</p>
+    </div>
+
+    <!-- section label -->
+    <h2 class="section-label rise" id="start-exploring">
+      <span class="section-label__text">start exploring</span>
+    </h2>
+
+    <!-- tiles -->
+    <ul class="tiles">
+      <li class="rise">
+        <a class="tile" href="/soul">
+          <span class="tile__thumb">
+            <img src="./assets/thumb-soul-800.avif"
+                 srcset="./assets/thumb-soul-400.avif 400w, ./assets/thumb-soul-800.avif 800w"
+                 sizes="(max-width: 767px) 136px, 33vw"
+                 alt="" width="800" height="500" />
+          </span>
+          <span class="tile__title">soul</span>
+          <span class="tile__desc">Explore animal mythology and your own psychology through 3 levels of depth.</span>
+        </a>
+      </li>
+
+      <li class="rise">
+        <a class="tile" href="/dosha">
+          <span class="tile__thumb">
+            <img src="./assets/thumb-dosha-800.avif"
+                 srcset="./assets/thumb-dosha-400.avif 400w, ./assets/thumb-dosha-800.avif 800w"
+                 sizes="(max-width: 767px) 136px, 33vw"
+                 alt="" width="800" height="500" />
+          </span>
+          <span class="tile__title">dosha</span>
+          <span class="tile__desc">Learn about Ayurvedic advice and how it compares against modern evidence.</span>
+        </a>
+      </li>
+
+      <li class="rise">
+        <button class="tile tile--locked" type="button" data-open="ching">
+          <span class="tile__thumb">
+            <img src="./assets/thumb-ching-800.avif"
+                 srcset="./assets/thumb-ching-400.avif 400w, ./assets/thumb-ching-800.avif 800w"
+                 sizes="(max-width: 767px) 136px, 33vw"
+                 alt="" width="800" height="500" loading="lazy" />
+            <span class="tile__soon"><span class="tile__soon-label">coming soon</span></span>
+          </span>
+          <span class="tile__title">ching</span>
+          <span class="tile__desc">Learn to interpret and cast one of the oldest divination methods of the world.</span>
+        </button>
+      </li>
+    </ul>
+
+    <!-- CTA -->
+    <div class="cta-row rise">
+      <button class="btn" type="button" data-open="suggest">Suggest a project</button>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer rise">
+      <button class="footer__link" type="button" data-open="about">About</button>
+      <a class="footer__link" href="/imprint">Imprint</a>
+      <a class="footer__link" href="/privacy">Data &amp; Privacy</a>
+    </footer>
+  </main>
+
+  <!-- about pop-up -->
+  <div class="overlay" id="about" role="dialog" aria-modal="true" aria-labelledby="about-title" hidden>
+    <div class="card">
+      <button class="card__close" type="button" data-close aria-label="Close">&times;</button>
+      <h2 class="card__title" id="about-title">about</h2>
+      <p class="card__body">anyma designs educational games to explore foreign, ancient, and mystic knowledge. anyma's goal is to make the true value of these sources available through play and exploration.</p>
+    </div>
+  </div>
+
+  <!-- ching sign-up pop-up -->
+  <div class="overlay" id="ching" role="dialog" aria-modal="true" aria-labelledby="ching-title" hidden>
+    <div class="card">
+      <button class="card__close" type="button" data-close aria-label="Close">&times;</button>
+      <h2 class="card__title" id="ching-title">ching is coming</h2>
+      <p class="card__body">Learn to interpret and cast the iChing — one of the oldest books and divination methods of the world. This game is still in development. Get notified, once it's ready.</p>
+
+      <form class="form" id="ching-form" novalidate>
+        <label class="form__label" for="c-email">Email</label>
+        <input class="form__input" id="c-email" name="email" type="email" maxlength="254"
+               required autocomplete="email" placeholder="you@example.com" />
+
+        <p class="form__fine">We send one confirmation email now, and one more when ching opens — nothing else. Unsubscribe any time. See <a href="/privacy">Data &amp; Privacy</a>.</p>
+
+        <p class="form__status" id="c-status" role="status" aria-live="polite"></p>
+        <button class="btn btn--full" type="submit" id="c-submit">Notify me</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- suggest pop-up -->
+  <div class="overlay" id="suggest" role="dialog" aria-modal="true" aria-labelledby="suggest-title" hidden>
+    <div class="card">
+      <button class="card__close" type="button" data-close aria-label="Close">&times;</button>
+      <h2 class="card__title" id="suggest-title">suggest a project</h2>
+      <p class="card__body">Do you have an ancient, mystical or spiritual topic you'd like to learn about in a playful way? Or would you like to collaborate on a project featuring a field you can share and teach about?</p>
+      <p class="card__body">We'd love to hear from you!</p>
+
+      <form class="form" id="suggest-form" novalidate>
+        <label class="form__label" for="s-title">Title</label>
+        <input class="form__input" id="s-title" name="title" type="text" maxlength="120" required
+               autocomplete="off" placeholder="e.g. tarot, runes, alchemy" />
+
+        <label class="form__label" for="s-body">Your idea</label>
+        <textarea class="form__input form__input--area" id="s-body" name="body" rows="5" maxlength="2000"
+                  required placeholder="What should it teach, and why does it matter to you?"></textarea>
+
+        <label class="form__label" for="s-email">Email <span class="form__opt">— optional, only so we can reply</span></label>
+        <input class="form__input" id="s-email" name="email" type="email" maxlength="254"
+               autocomplete="email" placeholder="you@example.com" />
+
+        <p class="form__fine">We use your address only to answer this suggestion, and delete it afterwards. See <a href="/privacy">Data &amp; Privacy</a>.</p>
+
+        <p class="form__status" id="s-status" role="status" aria-live="polite"></p>
+        <button class="btn btn--full" type="submit" id="s-submit">Send suggestion</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./main.js" type="module"></script>
+</body>
+</html>

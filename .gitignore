@@ -1,0 +1,19 @@
+.DS_Store
+.env
+.env.local
+
+# Machine-local Claude Code config — personal, not project source.
+# Globbed, not anchored: these also live inside apps/.
+**/.claude/settings.local.json
+**/.claude/launch.json
+
+# Internal working notes. This repo is public; these stay on disk, untracked.
+HANDOVER.md
+**/HANDOVER.md
+**/BRIEF-*.md
+**/PRACTICE-EVIDENCE-REVIEW.md
+.vercel
+node_modules/
+dist/
+.review/
+*.tsbuildinfo
