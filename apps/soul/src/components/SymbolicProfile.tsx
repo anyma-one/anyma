@@ -1,0 +1,53 @@
+import { SYMBOLIC_FRAMING } from "../symbolic";
+import type { RevealItem } from "../reveal";
+import type { TierId } from "../data/copy";
+import { Locked } from "./ui/Locked";
+
+// Symbolic profile panel, rendered from the tiered reveal model: revealed values
+// show normally; locked layers (Ruling planet at Tier 1, Mythic role) render as
+// blurred placeholders with an unlock CTA.
+export function SymbolicProfile({
+  items,
+  onUnlock,
+  onWaitlist,
+  bare = false,
+}: {
+  items: RevealItem[];
+  onUnlock: (tier: TierId) => void;
+  onWaitlist?: () => void;
+  /**
+   * Drop the panel chrome and the "Symbolic echoes" label, for callers that supply
+   * their own (the Tier-3 result page renders this inside a collapsible row whose
+   * header already carries the title). Additive: Tiers 1-2 omit it and are unchanged.
+   */
+  bare?: boolean;
+}) {
+  return (
+    <div className={bare ? "" : "panel"}>
+      {!bare && <p className="section-label">Symbolic echoes</p>}
+      <p className="symbolic__framing">{SYMBOLIC_FRAMING}</p>
+      <div className="reveal-list">
+        {items.map((item) =>
+          item.value !== null ? (
+            <div className="reveal-row" key={item.label}>
+              <div className="reveal-row__head">
+                <span className="reveal-row__key">{item.label}</span>
+                <span className="reveal-row__val">{item.value}</span>
+              </div>
+              {item.note && <p className="reveal-row__note">{item.note}</p>}
+            </div>
+          ) : (
+            <Locked
+              key={item.label}
+              label={item.label}
+              unlock={item.unlock!}
+              onUnlock={onUnlock}
+              onWaitlist={onWaitlist}
+              tight
+            />
+          ),
+        )}
+      </div>
+    </div>
+  );
+}

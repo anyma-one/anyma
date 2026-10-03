@@ -16,6 +16,10 @@ const RESEND_FROM = process.env.WAITLIST_FROM ?? "anyma <hello@anyma.one>";
 
 // Which project the signer came in for. Kept closed so a caller cannot write arbitrary text.
 const KNOWN_INTERESTS = new Set(["ching", "dosha", "soul"]);
+// Where in an app the signup happened. Soul tracks this; the hub's ching form does not send
+// one. Closed set for the same reason as the interests: the client must not be able to write
+// arbitrary text into the table.
+const KNOWN_SOURCES = new Set(["home-card", "tier-nav", "locked", "nudge", "link", "deepen"]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface ReqLike {
@@ -93,6 +97,8 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
   const email = normalizeEmail(payload?.email);
   const rawInterest = typeof payload?.interest === "string" ? payload.interest : "";
   const interest = KNOWN_INTERESTS.has(rawInterest) ? rawInterest : null;
+  const rawSource = typeof payload?.source === "string" ? payload.source : "";
+  const source = KNOWN_SOURCES.has(rawSource) ? rawSource : null;
 
   if (!email || !interest) {
     res.status(400).json({ error: "invalid_input" });
@@ -108,12 +114,15 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
 
   let row: WaitlistRow | undefined;
   try {
-    // Upsert on email, merging — only the columns sent here are written, so a row that SOUL
-    // created keeps its own `source` and its existing token.
+    // Upsert on email, merging. Only the columns sent here are written, and `source` is
+    // omitted entirely when the caller didn't send a recognised one — so a signup from the
+    // hub never blanks the attribution on a row soul created.
     const upsert = await fetch(`${url}/rest/v1/waitlist?on_conflict=email`, {
       method: "POST",
       headers: supabaseHeaders(key, "resolution=merge-duplicates,return=representation"),
-      body: JSON.stringify([{ email, interest, consent_at: new Date().toISOString() }]),
+      body: JSON.stringify([
+        { email, interest, consent_at: new Date().toISOString(), ...(source ? { source } : {}) },
+      ]),
     });
     if (!upsert.ok) throw new Error(`supabase ${upsert.status}`);
     row = (await upsert.json())[0] as WaitlistRow;

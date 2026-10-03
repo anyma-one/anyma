@@ -1,6 +1,10 @@
 .DS_Store
+# Public repo: never let a key through. apps/soul/.env.local holds the Deep Dive passcode
+# and an Anthropic key; its own .gitignore covers it, this is the second lock.
 .env
 .env.local
+**/.env.local
+**/*.local
 
 # Machine-local Claude Code config — personal, not project source.
 # Globbed, not anchored: these also live inside apps/.
@@ -10,8 +14,11 @@
 # Internal working notes. This repo is public; these stay on disk, untracked.
 HANDOVER.md
 **/HANDOVER.md
+**/HANDOVER-archive-*.md
 **/BRIEF-*.md
 **/PRACTICE-EVIDENCE-REVIEW.md
+**/MYTHOLOGY-*.md
+**/ANIMALS-*.md
 .vercel
 node_modules/
 dist/

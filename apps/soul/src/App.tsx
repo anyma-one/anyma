@@ -1,0 +1,201 @@
+import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
+import type { Answers, MatchResult } from "./engine";
+import type { TierId } from "./data/copy";
+import { TIERS } from "./tiers";
+import { Home } from "./components/Home";
+import { Quiz } from "./components/Quiz";
+import { Loading } from "./components/Loading";
+import { Results } from "./components/Results";
+import { DeepDive } from "./components/DeepDive";
+import { WaitlistModal } from "./components/WaitlistModal";
+import { Legal } from "./components/Legal";
+import type { LegalPage } from "./components/Legal";
+import { clearProgress, loadProgress, saveProgress } from "./persistence/sessions";
+import type { InProgressSession } from "./persistence/sessions";
+import type { WaitlistSource } from "./persistence/waitlist";
+import { logResult } from "./persistence/remoteLog";
+
+type Screen =
+  | { name: "home" }
+  | { name: "quiz"; tier: TierId; resume?: InProgressSession }
+  | { name: "loading"; tier: TierId; result: MatchResult }
+  | { name: "reveal"; tier: TierId; result: MatchResult }
+  | { name: "deepdive" };
+
+// Legal pages are hash-routed (#impressum / #privacy / #terms) and render as an overlay
+// above whatever screen is active — so the footer's Impressum link works from anywhere
+// and the pages have shareable URLs + a working browser Back button.
+// The Imprint lives at the top of the combined #privacy page; #imprint / #impressum are
+// kept as aliases so any stray link still lands on it.
+function parseLegalHash(): LegalPage | null {
+  const h = window.location.hash.replace(/^#/, "");
+  if (h === "privacy" || h === "imprint" || h === "impressum") return "privacy";
+  if (h === "terms") return "terms";
+  return null;
+}
+
+// Shareable deep link to the sign-up form: anyma.one/#waitlist (or #join) lands on the
+// page and auto-opens the waitlist modal. Signups from it are tagged source "link".
+const WAITLIST_HASHES = new Set(["waitlist", "join"]);
+function isWaitlistHash(): boolean {
+  return WAITLIST_HASHES.has(window.location.hash.replace(/^#/, ""));
+}
+
+// Each screen renders its own night Shell/Header (handoff pattern), so App is
+// just the screen state machine: landing → quiz → loading → reveal.
+export default function App() {
+  const [screen, setScreen] = useState<Screen>(() =>
+    // DEV ONLY: #deep-preview opens the Deep Dive straight to its result screen and
+    // #deep-preview-chat straight to the interview, both seeded from fixtures in
+    // DeepDive.tsx — no interview, no API spend. Statically false in a production
+    // build, so Rollup drops it. Safe to delete.
+    (import.meta.env.DEV || __PREVIEW_TOOLS__) &&
+    (window.location.hash.startsWith("#deep-preview") || window.location.hash === "#deep-demo")
+      ? { name: "deepdive" }
+      : { name: "home" },
+  );
+  // Deep Dive waitlist modal. The Deep Dive is a closed beta: the Home card opens its
+  // passcode screen (which links here), everything else still opens the waitlist. Null = closed.
+  // Open the waitlist on first load if arrived via the #waitlist deep link.
+  const [waitlist, setWaitlist] = useState<WaitlistSource | null>(() =>
+    isWaitlistHash() ? "link" : null,
+  );
+  // Legal overlay, driven entirely by the URL hash (footer links, tabs, Back button).
+  const [legal, setLegal] = useState<LegalPage | null>(() => parseLegalHash());
+
+  useEffect(() => {
+    // Count a landing that came straight in on the deep link.
+    if (isWaitlistHash()) track("waitlist_open", { source: "link" });
+    const onHashChange = () => {
+      setLegal(parseLegalHash());
+      if (isWaitlistHash()) openWaitlist("link");
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  // Drop the hash without leaving a bare "#".
+  const clearHash = () =>
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+
+  const closeLegal = () => {
+    clearHash();
+    setLegal(null);
+  };
+
+  const closeWaitlist = () => {
+    if (isWaitlistHash()) clearHash();
+    setWaitlist(null);
+  };
+
+  const goHome = () => setScreen({ name: "home" });
+
+  function openWaitlist(source: WaitlistSource) {
+    track("waitlist_open", { source });
+    setWaitlist(source);
+  }
+
+  function startDeepDive() {
+    track("quiz_start", { tier: "deep-dive", resumed: false });
+    setScreen({ name: "deepdive" });
+  }
+
+  function startTier(tier: TierId) {
+    clearProgress(tier);
+    track("quiz_start", { tier, resumed: false });
+    setScreen({ name: "quiz", tier });
+  }
+
+  function resumeTier(tier: TierId, session: InProgressSession) {
+    track("quiz_start", { tier, resumed: true });
+    setScreen({ name: "quiz", tier, resume: session });
+  }
+
+  function completeTier(tier: TierId, answers: Answers) {
+    clearProgress(tier);
+    const result = TIERS[tier].run(answers);
+    track("quiz_complete", {
+      tier,
+      primary: result.primary.archetype.id,
+      secondary: result.secondary.archetype.id,
+      splitPrimary: result.split.primary,
+      muddy: result.muddy,
+    });
+    logResult(tier, result); // anonymous result -> Supabase (no-op if backend unconfigured)
+    setScreen({ name: "loading", tier, result });
+  }
+
+  // Start (or resume) a specific tier — used by the result page's nudge and the
+  // locked-content "Unlock at …" placeholders.
+  function goToTier(tier: TierId) {
+    const session = loadProgress(tier);
+    if (session) resumeTier(tier, session);
+    else startTier(tier);
+  }
+
+  let screenEl: JSX.Element;
+  switch (screen.name) {
+    case "home":
+      screenEl = (
+        <Home
+          onStart={startTier}
+          onResume={resumeTier}
+          onHome={goHome}
+          onStartDeepDive={startDeepDive}
+        />
+      );
+      break;
+
+    case "quiz":
+      screenEl = (
+        <Quiz
+          key={screen.tier + (screen.resume ? "-resume" : "-fresh")}
+          tier={screen.tier}
+          questions={TIERS[screen.tier].questions}
+          initialAnswers={screen.resume?.answers}
+          initialIndex={screen.resume?.index}
+          onProgress={(answers, index) =>
+            saveProgress(screen.tier, answers, index, TIERS[screen.tier].questions.length)
+          }
+          onComplete={(answers) => completeTier(screen.tier, answers)}
+          onCancel={goHome}
+        />
+      );
+      break;
+
+    case "loading":
+      screenEl = (
+        <Loading
+          tier={screen.tier}
+          onDone={() => setScreen({ name: "reveal", tier: screen.tier, result: screen.result })}
+        />
+      );
+      break;
+
+    case "reveal":
+      screenEl = (
+        <Results
+          tier={TIERS[screen.tier]}
+          result={screen.result}
+          onRetake={() => startTier(screen.tier)}
+          onUnlock={goToTier}
+          onHome={goHome}
+          onDeepDive={openWaitlist}
+        />
+      );
+      break;
+
+    case "deepdive":
+      screenEl = <DeepDive onHome={goHome} onJoinWaitlist={openWaitlist} />;
+      break;
+  }
+
+  return (
+    <>
+      {screenEl}
+      {waitlist !== null && <WaitlistModal source={waitlist} onClose={closeWaitlist} />}
+      {legal !== null && <Legal page={legal} onClose={closeLegal} />}
+    </>
+  );
+}
