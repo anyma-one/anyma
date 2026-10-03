@@ -51,7 +51,7 @@ own functions move in — see below.
 | `SUPABASE_URL` | suggestions, waitlist | database |
 | `SUPABASE_SERVICE_ROLE_KEY` | suggestions, waitlist | service-role key |
 | `SUGGEST_TO` / `SUGGEST_FROM` | optional | override recipient / sender |
-| `WAITLIST_SITE_URL` | optional | confirmation-link origin (default `https://anyma.one`) |
+| `WAITLIST_SITE_URL` | optional | confirmation-link origin (default `https://www.anyma.one`) |
 | `ANTHROPIC_API_KEY` + `ANTHROPIC_*_MODEL` | SOUL's Deep Dive | once SOUL's functions move in |
 
 ### Database
@@ -95,7 +95,7 @@ When SOUL's in-flight work is committed:
    functions in `api/` replace them. Confirmation links already in people's inboxes keep
    working: same table, same `token` column.
 3. Move SOUL's remaining 7 functions from `apps/soul/api/` up into the root `api/`.
-4. Update SOUL's OG tags to `anyma.one/soul`.
+4. Update SOUL's OG tags to `www.anyma.one/soul`.
 5. `npm run build` and check `/soul/` locally.
 
 ## To do

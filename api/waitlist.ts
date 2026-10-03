@@ -11,7 +11,7 @@
 // Config (host env): SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY (all required);
 // WAITLIST_FROM / WAITLIST_SITE_URL (optional overrides).
 
-const SITE_URL = process.env.WAITLIST_SITE_URL ?? "https://anyma.one";
+const SITE_URL = process.env.WAITLIST_SITE_URL ?? "https://www.anyma.one";
 const RESEND_FROM = process.env.WAITLIST_FROM ?? "anyma <hello@anyma.one>";
 
 // Which project the signer came in for. Kept closed so a caller cannot write arbitrary text.
