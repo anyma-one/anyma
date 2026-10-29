@@ -999,7 +999,9 @@ export function DeepDive({
 
         {reportDone && structured && (
           <div className="dd-save">
-            <Button variant="ghost" size="sm" caps onClick={() => window.print()}>
+            {/* Same size as Share, quieter variant: the two are a pair of choices, but
+                sharing is the louder one. */}
+            <Button variant="ghost" size="lg" caps onClick={() => window.print()}>
               Save your reading
             </Button>
             <p className="dd-save__hint">
