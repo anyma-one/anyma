@@ -1,4 +1,5 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Layout } from "./ui/Layout";
 import { Loading } from "./Loading";
 import type { Block, Segment } from "../deepdive/reportFormat";
@@ -923,6 +924,58 @@ export function DeepDive({
         {/* Share card. Tier 3 is the only one that puts written words on the card —
             the distillation, which is why this is an image the reader places rather
             than a page we host. Lines are taken from the promoted section verbatim. */}
+        {/* A printable copy of the whole reading, rendered beside the app rather than from
+            it. The sections on screen live in <Disclosure>s and may be collapsed, so
+            printing the live DOM would quietly drop whatever the reader never opened. This
+            is always complete, and `@media print` swaps which of the two is visible. */}
+        {reportDone && structured && deepData &&
+          createPortal(
+            <article className="dd-print">
+              <header className="dd-print__head">
+                {deepData[0].card && (
+                  <img className="dd-print__card" src={deepData[0].card} alt="" />
+                )}
+                <p className="dd-print__eyebrow">Your animal shape</p>
+                <h1 className="dd-print__animal">{deepData[0].name}</h1>
+                {deepData[0].epithet && (
+                  <p className="dd-print__epithet">{deepData[0].epithet}</p>
+                )}
+              </header>
+
+              {structured.distillation && (
+                <section className="dd-print__section dd-print__section--lead">
+                  <h2 className="dd-print__label">{structured.distillation.title}</h2>
+                  {renderBlocks(structured.distillation.blocks)}
+                </section>
+              )}
+
+              {structured.lead.length > 0 && (
+                <section className="dd-print__section">{renderBlocks(structured.lead)}</section>
+              )}
+
+              {structured.sections.map((section, i) => (
+                <section className="dd-print__section" key={`${section.title}-${i}`}>
+                  <h2 className="dd-print__label">{section.title}</h2>
+                  {renderBlocks(section.blocks)}
+                </section>
+              ))}
+
+              <footer className="dd-print__foot">
+                <p>anyma · Deep Dive · www.anyma.one</p>
+                <p>
+                  A reading for reflection, not a diagnosis. Saved{" "}
+                  {new Date().toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                  .
+                </p>
+              </footer>
+            </article>,
+            document.body,
+          )}
+
         {reportDone && deepData && focusData && (
           // Shares the painted card, not the line-art mask: the card is what the Deep Dive
           // shows on screen, so it is what should leave with the reader. Falls back to the
@@ -942,6 +995,17 @@ export function DeepDive({
             artIsCard={Boolean(deepData[0].card)}
             filenameBase={`anyma-${deepData[0].name.toLowerCase()}`}
           />
+        )}
+
+        {reportDone && structured && (
+          <div className="dd-save">
+            <Button variant="ghost" size="sm" caps onClick={() => window.print()}>
+              Save your reading
+            </Button>
+            <p className="dd-save__hint">
+              Opens your print dialog — choose “Save as PDF” to keep a copy.
+            </p>
+          </div>
         )}
 
         {reportDone && (
