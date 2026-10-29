@@ -177,3 +177,26 @@ wireForm({
       ? "You're already on the list — nothing more to do."
       : "Check your inbox: we sent one email to confirm.",
 });
+
+/* ---------- hand old deep links back to soul ---------- */
+
+// soul lived at this origin until the start screen took it, and its screens were hashes:
+// anyma.one/#privacy, /#waitlist and so on. A hash never reaches the server, so no redirect
+// rule can catch these — only the page that now answers at the root can. The hub itself
+// uses no hashes, so anything in this list is a link from before the move.
+const SOUL_HASHES = new Set([
+  "privacy",
+  "imprint",
+  "impressum",
+  "terms",
+  "waitlist",
+]);
+
+(() => {
+  const hash = location.hash.replace(/^#/, "");
+  if (!hash) return;
+  // Deep Dive screens are all prefixed, so match the family rather than list every one.
+  if (SOUL_HASHES.has(hash) || hash.startsWith("deep")) {
+    location.replace(`/soul/#${hash}`);
+  }
+})();
