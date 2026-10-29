@@ -14,5 +14,9 @@
     "review": "node build-review.mjs",
     "typecheck": "npm run typecheck --workspace apps/soul",
     "test": "npm run test --workspace apps/soul"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^147.0.0",
+    "puppeteer-core": "^24.43.1"
   }
 }

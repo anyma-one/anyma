@@ -1,5 +1,4 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { Layout } from "./ui/Layout";
 import { Loading } from "./Loading";
 import type { Block, Segment } from "../deepdive/reportFormat";
@@ -17,6 +16,7 @@ import { PROFILES } from "../data/profiles";
 import { buildDeepReveal } from "../reveal";
 import { toMatchResult } from "../deepdive/matchResult";
 import { shapeFit } from "../deepdive/shapeFit";
+import { buildReadingPdfPayload, downloadReadingPdf } from "../deepdive/readingPdf";
 import type { Match, MatchResult } from "../engine";
 import { RevealCarousel, type CarouselAnimal } from "./RevealCarousel";
 import type { FocusKey } from "./ui/revealCarousel";
@@ -104,6 +104,9 @@ export function DeepDive({
       ? null
       : loadReading(),
   );
+  // Must sit with the other hooks: the report screen returns early, so a hook declared
+  // beside `structured` further down would be called conditionally.
+  const [saving, setSaving] = useState<"idle" | "working" | "error">("idle");
   const [stage, setStage] = useState<Stage>(() =>
     saved ? "report" : demo || loadPasscode() ? "intro" : "locked",
   );
@@ -924,57 +927,6 @@ export function DeepDive({
         {/* Share card. Tier 3 is the only one that puts written words on the card —
             the distillation, which is why this is an image the reader places rather
             than a page we host. Lines are taken from the promoted section verbatim. */}
-        {/* A printable copy of the whole reading, rendered beside the app rather than from
-            it. The sections on screen live in <Disclosure>s and may be collapsed, so
-            printing the live DOM would quietly drop whatever the reader never opened. This
-            is always complete, and `@media print` swaps which of the two is visible. */}
-        {reportDone && structured && deepData &&
-          createPortal(
-            <article className="dd-print">
-              <header className="dd-print__head">
-                {deepData[0].card && (
-                  <img className="dd-print__card" src={deepData[0].card} alt="" />
-                )}
-                <p className="dd-print__eyebrow">Your animal shape</p>
-                <h1 className="dd-print__animal">{deepData[0].name}</h1>
-                {deepData[0].epithet && (
-                  <p className="dd-print__epithet">{deepData[0].epithet}</p>
-                )}
-              </header>
-
-              {structured.distillation && (
-                <section className="dd-print__section dd-print__section--lead">
-                  <h2 className="dd-print__label">{structured.distillation.title}</h2>
-                  {renderBlocks(structured.distillation.blocks)}
-                </section>
-              )}
-
-              {structured.lead.length > 0 && (
-                <section className="dd-print__section">{renderBlocks(structured.lead)}</section>
-              )}
-
-              {structured.sections.map((section, i) => (
-                <section className="dd-print__section" key={`${section.title}-${i}`}>
-                  <h2 className="dd-print__label">{section.title}</h2>
-                  {renderBlocks(section.blocks)}
-                </section>
-              ))}
-
-              <footer className="dd-print__foot">
-                <p>anyma · Deep Dive · www.anyma.one</p>
-                <p>
-                  A reading for reflection, not a diagnosis. Saved{" "}
-                  {new Date().toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                  .
-                </p>
-              </footer>
-            </article>,
-            document.body,
-          )}
 
         {reportDone && deepData && focusData && (
           // Shares the painted card, not the line-art mask: the card is what the Deep Dive
@@ -997,15 +949,42 @@ export function DeepDive({
           />
         )}
 
-        {reportDone && structured && (
+        {reportDone && structured && deepData && (
           <div className="dd-save">
             {/* Same size as Share, quieter variant: the two are a pair of choices, but
                 sharing is the louder one. */}
-            <Button variant="ghost" size="lg" caps onClick={() => window.print()}>
-              Save your reading
+            <Button
+              variant="ghost"
+              size="lg"
+              caps
+              disabled={saving === "working"}
+              onClick={async () => {
+                setSaving("working");
+                try {
+                  await downloadReadingPdf(
+                    buildReadingPdfPayload(
+                      structured,
+                      { name: deepData[0].name, epithet: deepData[0].epithet, card: deepData[0].card },
+                      deepData[1]
+                        ? { name: deepData[1].name, card: deepData[1].card }
+                        : null,
+                      import.meta.env.BASE_URL,
+                    ),
+                  );
+                  setSaving("idle");
+                } catch {
+                  setSaving("error");
+                }
+              }}
+            >
+              {saving === "working" ? "Preparing…" : "Save your reading"}
             </Button>
             <p className="dd-save__hint">
-              Opens your print dialog — choose “Save as PDF” to keep a copy.
+              {saving === "error"
+                ? "That didn't work. Please try again in a moment."
+                : saving === "working"
+                  ? "Setting your reading in six pages. This takes a few seconds."
+                  : "A six-page PDF to keep."}
             </p>
           </div>
         )}

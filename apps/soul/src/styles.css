@@ -3020,6 +3020,11 @@ body.no-scroll {
 
 /* ==========================================================================
    Saving a reading as a PDF
+   --------------------------------------------------------------------------
+   The reading is rendered server-side into the six-page night design
+   (api/reading-pdf.ts + public/pdf/reading.css), not printed from this page:
+   that design is dark and full-bleed, which needs `printBackground`, and a
+   browser's print dialog leaves "Background graphics" off by default.
    ========================================================================== */
 
 .dd-save {
@@ -3037,126 +3042,4 @@ body.no-scroll {
   font-size: var(--text-xs);
   color: var(--cream-45);
   text-align: center;
-}
-
-/* The printable copy. Hidden on screen; `@media print` below swaps it in for the app.
-   It is a portal child of <body>, so hiding #root leaves exactly this behind. */
-.dd-print {
-  display: none;
-}
-
-@media print {
-  /* Swap the whole app for the printable copy. display:none (not visibility) so the
-     hidden tree reserves no space — otherwise it prints as leading blank pages. */
-  #root {
-    display: none !important;
-  }
-  .dd-print {
-    display: block;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    /* Ink and legibility: the app is light-on-dark, which prints as a wall of toner
-       and reads worse on paper. */
-    background: #fff;
-    color: #1a1a1a;
-    font-family: var(--font-reading, Georgia, "Times New Roman", serif);
-    font-size: 11.5pt;
-    line-height: 1.6;
-  }
-
-  @page {
-    margin: 18mm 16mm;
-  }
-
-  html,
-  body {
-    background: #fff !important;
-  }
-
-  .dd-print__head {
-    text-align: center;
-    /* Keep the card, the name and the first words together on page one. */
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-  .dd-print__card {
-    width: 52mm;
-    height: auto;
-    margin: 0 auto var(--space-4);
-    display: block;
-  }
-  .dd-print__eyebrow {
-    margin: 0;
-    font-family: var(--font-sans, sans-serif);
-    font-size: 8pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #6b6b6b;
-  }
-  .dd-print__animal {
-    margin: 2mm 0 0;
-    font-family: var(--font-display, Georgia, serif);
-    font-weight: 400;
-    font-size: 26pt;
-    line-height: 1.1;
-  }
-  .dd-print__epithet {
-    margin: 1mm 0 0;
-    font-size: 11pt;
-    font-style: italic;
-    color: #555;
-  }
-
-  .dd-print__section {
-    margin-top: 8mm;
-    /* Don't strand a heading at the foot of a page. */
-    break-inside: auto;
-    page-break-inside: auto;
-  }
-  .dd-print__section--lead {
-    margin-top: 10mm;
-    padding: 5mm 6mm;
-    background: #f6f3ec;
-    border-radius: 2mm;
-  }
-  .dd-print__label {
-    margin: 0 0 3mm;
-    font-family: var(--font-sans, sans-serif);
-    font-size: 8.5pt;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #6b6b6b;
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-  .dd-print .dd-report__h {
-    margin: 5mm 0 2mm;
-    font-family: var(--font-display, Georgia, serif);
-    font-weight: 400;
-    font-size: 15pt;
-    line-height: 1.25;
-    color: #1a1a1a;
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-  .dd-print .dd-report__p {
-    margin: 0 0 3.5mm;
-    orphans: 3;
-    widows: 3;
-  }
-
-  .dd-print__foot {
-    margin-top: 10mm;
-    padding-top: 4mm;
-    border-top: 0.3mm solid #d9d4c8;
-    font-family: var(--font-sans, sans-serif);
-    font-size: 8pt;
-    color: #8a8a8a;
-    text-align: center;
-  }
-  .dd-print__foot p {
-    margin: 0 0 1mm;
-  }
 }
