@@ -728,6 +728,7 @@ export function DeepDive({
         lineMs={12000}
         holdLast
         sub="Examining closely. This takes a moment."
+        note="Please keep this window open — your reading is being written now, and closing it will lose it."
       />
     );
   }
@@ -923,6 +924,9 @@ export function DeepDive({
             the distillation, which is why this is an image the reader places rather
             than a page we host. Lines are taken from the promoted section verbatim. */}
         {reportDone && deepData && focusData && (
+          // Shares the painted card, not the line-art mask: the card is what the Deep Dive
+          // shows on screen, so it is what should leave with the reader. Falls back to the
+          // mask if an animal somehow has no card.
           <ShareCard
             content={buildCardContent(
               deepData[0].name,
@@ -934,7 +938,8 @@ export function DeepDive({
                   )
                 : [],
             )}
-            artUrl={deepData[0].art}
+            artUrl={deepData[0].card ?? deepData[0].art}
+            artIsCard={Boolean(deepData[0].card)}
             filenameBase={`anyma-${deepData[0].name.toLowerCase()}`}
           />
         )}

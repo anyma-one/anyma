@@ -21,11 +21,13 @@ const FORMATS: { key: CardFormat; label: string; note: string }[] = [
 function ShareModal({
   content,
   artUrl,
+  artIsCard,
   filenameBase,
   onClose,
 }: {
   content: CardContent;
   artUrl: string;
+  artIsCard?: boolean;
   filenameBase: string;
   onClose: () => void;
 }) {
@@ -52,7 +54,7 @@ function ShareModal({
     (async () => {
       try {
         for (const { key } of FORMATS) {
-          const blob = await renderCard({ format: key, content, artUrl });
+          const blob = await renderCard({ format: key, content, artUrl, artIsCard });
           if (cancelled) return;
           const url = URL.createObjectURL(blob);
           urls.push(url);
@@ -134,10 +136,13 @@ function ShareModal({
 export function ShareCard({
   content,
   artUrl,
+  artIsCard,
   filenameBase,
 }: {
   content: CardContent;
   artUrl: string;
+  /** Set on the Deep Dive, whose artwork is a painted card rather than a line-art mask. */
+  artIsCard?: boolean;
   filenameBase: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -152,6 +157,7 @@ export function ShareCard({
         <ShareModal
           content={content}
           artUrl={artUrl}
+          artIsCard={artIsCard}
           filenameBase={filenameBase}
           onClose={() => setOpen(false)}
         />

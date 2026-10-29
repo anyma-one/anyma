@@ -24,6 +24,7 @@ export function Loading({
   lines = LINES,
   kicker = "Channeling your voice",
   sub,
+  note,
   lineMs = LINE_MS,
   holdLast = false,
 }: {
@@ -36,6 +37,8 @@ export function Loading({
   kicker?: string;
   /** Optional second line under the status copy. */
   sub?: string;
+  /** A quieter, set-apart line for something the reader must act on (or not act on). */
+  note?: string;
   /** How long each status line shows. */
   lineMs?: number;
   /** Stop on the last line instead of looping (for a sequence that reads as progress). */
@@ -97,6 +100,11 @@ export function Loading({
           <p>{line}</p>
         </div>
         {sub && <p className="loading-sub">{sub}</p>}
+        {note && (
+          <p className="loading-note" role="status">
+            {note}
+          </p>
+        )}
       </div>
     </div>
   );

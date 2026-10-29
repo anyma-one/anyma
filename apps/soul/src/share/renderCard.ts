@@ -91,11 +91,21 @@ function paintBackground(ctx: CanvasRenderingContext2D, w: number, h: number) {
 export interface RenderOptions {
   format: CardFormat;
   content: CardContent;
-  /** Public URL of the animal line-art PNG. */
+  /** Public URL of the artwork: the animal line-art PNG, or a Deep Dive card. */
   artUrl: string;
+  /**
+   * True when `artUrl` is a Deep Dive card (full-colour, portrait) rather than a line-art
+   * mask. Cards are drawn as they are; masks get tinted cream and squared off.
+   */
+  artIsCard?: boolean;
 }
 
-export async function renderCard({ format, content, artUrl }: RenderOptions): Promise<Blob> {
+export async function renderCard({
+  format,
+  content,
+  artUrl,
+  artIsCard = false,
+}: RenderOptions): Promise<Blob> {
   const spec = CARD_SPECS[format];
   await ensureFonts();
 
@@ -147,11 +157,20 @@ export async function renderCard({ format, content, artUrl }: RenderOptions): Pr
   // --- artwork -------------------------------------------------------------
   try {
     const img = await loadImage(artUrl);
-    const art = tintedArt(img, spec.artSize, CREAM);
     ctx.save();
     ctx.shadowColor = "rgba(169, 238, 242, 0.45)";
     ctx.shadowBlur = spec.artSize * 0.18;
-    ctx.drawImage(art, cx - spec.artSize / 2, y, spec.artSize, spec.artSize);
+    if (artIsCard) {
+      // A painted card, not a mask: no tint, and keep its proportions. Fitting to the
+      // reserved HEIGHT means a portrait card sits in the same vertical slot as the
+      // square line-art, just narrower — nothing below it has to move.
+      const ratio = img.naturalWidth / img.naturalHeight || 1;
+      const w = spec.artSize * ratio;
+      ctx.drawImage(img, cx - w / 2, y, w, spec.artSize);
+    } else {
+      const art = tintedArt(img, spec.artSize, CREAM);
+      ctx.drawImage(art, cx - spec.artSize / 2, y, spec.artSize, spec.artSize);
+    }
     ctx.restore();
   } catch {
     // A missing PNG must not cost the reader their card — leave the space empty

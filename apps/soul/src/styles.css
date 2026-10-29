@@ -986,6 +986,21 @@ body,
   font-size: var(--text-sm);
   color: var(--cream-45);
 }
+/* Set apart from the mood copy above it: this one is an instruction, and losing a Deep
+   Dive to a closed tab is the one mistake the loading screen can actually prevent. */
+.loading-note {
+  margin: var(--space-6) auto 0;
+  padding-top: var(--space-4);
+  max-width: 34ch;
+  border-top: 1px solid var(--cream-12);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  /* A step brighter than .loading-sub's 45: quieter than the mood copy, but it has to
+     actually get read. */
+  color: var(--cream-70);
+}
 @keyframes sa-kicker-breathe {
   0%,
   100% {
