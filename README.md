@@ -98,6 +98,21 @@ When SOUL's in-flight work is committed:
 4. Update SOUL's OG tags to `www.anyma.one/soul`.
 5. `npm run build` and check `/soul/` locally.
 
+## Redirects
+
+`vercel.json` sends a handful of root paths to `/soul/`. SOUL owned this origin until the
+start screen took it, so those URLs are still out in the world — `og-image.png` most of all,
+since it is embedded in every link preview shared before the move, and a 404 there turns an
+already-posted card into a blank.
+
+Hashes cannot be handled this way: a fragment never reaches the server, so no redirect rule
+can see it. `apps/hub/main.js` forwards SOUL's own screens (`#privacy`, `#waitlist`, `#terms`,
+the Deep Dive family) instead. The hub uses no hashes of its own.
+
+**`vercel.json` takes no comments** — not even a `$comment` key inside a `redirects` entry,
+which fails schema validation and makes the whole deployment fail while Vercel quietly keeps
+serving the previous build. Explain things here instead.
+
 ## To do
 
 - **Style the waitlist confirmation page to match the start screen.** `api/waitlist-confirm.ts`

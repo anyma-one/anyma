@@ -8,12 +8,7 @@
     { "path": "/api/keepalive", "schedule": "0 6 * * *" }
   ],
   "redirects": [
-    {
-      "$comment": "soul owned the root until the start screen took it. These paths are still out in the world — og-image.png in particular is embedded in every link preview shared before the move — so they follow the app to /soul/ rather than 404.",
-      "source": "/og-image.png",
-      "destination": "/soul/og-image.png",
-      "permanent": true
-    },
+    { "source": "/og-image.png", "destination": "/soul/og-image.png", "permanent": true },
     { "source": "/anyma-logo.png", "destination": "/soul/anyma-logo.png", "permanent": true },
     { "source": "/anyma-logo-black.png", "destination": "/soul/anyma-logo-black.png", "permanent": true },
     { "source": "/animals/:file*", "destination": "/soul/animals/:file*", "permanent": true },
