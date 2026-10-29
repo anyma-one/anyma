@@ -244,7 +244,16 @@ export async function renderCard({
 }
 
 /**
- * Hand the card to the OS share sheet where that exists (mobile), else download it.
+ * On a phone or tablet, hand the card to the OS share sheet — there a "download" lands in
+ * Files for the person to go and find, while the sheet puts it straight into Photos or a
+ * message. On a desktop it is the other way round: the download IS the result, and the
+ * sheet is an extra dialog in front of it.
+ *
+ * Capability detection is not enough to tell those apart — desktop Safari supports Web
+ * Share with files and will happily open the macOS sheet — so this asks about the input
+ * device instead. `(pointer: coarse)` describes the PRIMARY pointer, so a touchscreen
+ * laptop driven by a trackpad still counts as desktop, which is what we want.
+ *
  * Returns how it was delivered so the caller can word the confirmation honestly.
  */
 export async function deliverCard(blob: Blob, filename: string): Promise<"shared" | "downloaded"> {
@@ -252,8 +261,12 @@ export async function deliverCard(blob: Blob, filename: string): Promise<"shared
   const nav = navigator as Navigator & {
     canShare?: (d: { files: File[] }) => boolean;
     share?: (d: { files: File[] }) => Promise<void>;
+    maxTouchPoints?: number;
   };
-  if (nav.canShare?.({ files: [file] }) && nav.share) {
+  const handheld =
+    (window.matchMedia?.("(pointer: coarse)").matches ?? false) && (nav.maxTouchPoints ?? 0) > 0;
+
+  if (handheld && nav.canShare?.({ files: [file] }) && nav.share) {
     try {
       await nav.share({ files: [file] });
       return "shared";
