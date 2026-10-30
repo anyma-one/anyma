@@ -10,9 +10,6 @@
   "redirects": [
     { "source": "/og-image.png", "destination": "/soul/og-image.png", "permanent": true },
     { "source": "/anyma-logo.png", "destination": "/soul/anyma-logo.png", "permanent": true },
-    { "source": "/anyma-logo-black.png", "destination": "/soul/anyma-logo-black.png", "permanent": true },
-    { "source": "/animals/:file*", "destination": "/soul/animals/:file*", "permanent": true },
-    { "source": "/cards/:file*", "destination": "/soul/cards/:file*", "permanent": true },
-    { "source": "/fonts/:file*", "destination": "/soul/fonts/:file*", "permanent": true }
+    { "source": "/anyma-logo-black.png", "destination": "/soul/anyma-logo-black.png", "permanent": true }
   ]
 }
