@@ -355,10 +355,10 @@ export function progressBar(current, total) {
 }
 
 /* ---------- Button helper ---------- */
-export function button(label, { variant = "primary", size = "", href, id, attrs = "", link = false, extraClass = "" } = {}) {
+export function button(label, { variant = "primary", size = "", href, id, attrs = "", link = false, extraClass = "", type = "button" } = {}) {
   const cls = `btn btn-${variant}${size ? " btn-" + size : ""}${extraClass ? " " + extraClass : ""}`;
   if (href) return `<a class="${cls}" href="${href}"${link ? " data-link" : ""}${id ? ` id="${id}"` : ""} ${attrs}>${label}</a>`;
-  return `<button class="${cls}" type="button"${id ? ` id="${id}"` : ""} ${attrs}>${label}</button>`;
+  return `<button class="${cls}" type="${type}"${id ? ` id="${id}"` : ""} ${attrs}>${label}</button>`;
 }
 
 /* ---------- Tier card ---------- */

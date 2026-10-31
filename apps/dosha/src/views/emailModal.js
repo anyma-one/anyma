@@ -38,7 +38,7 @@ export function openEmailModal(onDone) {
         <p class="hint">Educational content only. No diagnosis, and nothing here is medical advice.</p>
         <p class="error" id="email-error" hidden>Please enter a valid email address.</p>
       </div>
-      ${button("Start the current-state pass →", { variant: "primary", size: "lg", attrs: 'style="width:100%"' })}
+      ${button("Start the current-state pass →", { variant: "primary", size: "lg", type: "submit", attrs: 'style="width:100%"' })}
     </form>
     <p class="serif" style="font-size:13px;color:var(--ink-muted);margin-top:14px">Prefer not to? The
       education library and all safety content stay open to everyone, no email needed.</p>
