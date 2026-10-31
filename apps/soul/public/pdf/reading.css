@@ -541,6 +541,14 @@ a { color: var(--turquoise); text-decoration: none; }
 .page--close .page__inner { padding: 56px 72px 56px; }
 
 /* ---------- Atmosphere ---------- */
+/* What the PDF actually uses: the atmosphere below, baked into JPEGs by
+   scripts/bake-pdf-assets.mjs. Live blur, blend modes and stacked gradients made Chromium
+   rasterise every page losslessly (~11 MB); JPEGs embed as they are. Re-run the script after
+   changing .night, .grain, .haze or .stars. */
+.bg-night, .bg-page { background-size: 100% 100%; background-repeat: no-repeat; }
+.bg-night { background-image: url(bg-night.jpg); background-color: var(--void-night); }
+.bg-page  { background-image: url(bg-page.jpg);  background-color: var(--void); }
+
 /* Night ground: nebula washes + vignette (cover + closing page) */
 .night {
   background:
@@ -667,8 +675,17 @@ a { color: var(--turquoise); text-decoration: none; }
   height: auto;
   aspect-ratio: 2 / 3;
   border-radius: 16px;
-  box-shadow: var(--glow-aura-lg);
+  box-shadow: 0 0 0 1px rgba(169, 238, 242, 0.20);
 }
+/* The aura around each card: a PNG baked from --glow-aura-lg / --glow-aura by
+   scripts/bake-pdf-assets.mjs, placed behind the card. As a live blurred box-shadow it became a
+   soft-masked bitmap that Apple's PDF renderer (Preview, Mail, iOS) drew as hard pale rectangles.
+   The halo images carry their padding (240px / 190px) around the card's own size. The thin ring
+   stays a shadow: with no blur it remains vector. */
+.card-glow { position: relative; display: block; isolation: isolate; }
+.card-glow__halo { position: absolute; z-index: -1; max-width: none; pointer-events: none; }
+.card-glow--lg .card-glow__halo { left: -240px; top: -240px; width: 800px; height: 960px; }
+.card-glow--sm .card-glow__halo { left: -190px; top: -190px; width: 580px; height: 680px; }
 .short {
   border-radius: 24px;
   background: color-mix(in oklab, var(--indigo) 82%, transparent);
@@ -691,7 +708,7 @@ a { color: var(--turquoise); text-decoration: none; }
   border: 1px solid var(--cream-12);
   padding: 24px;
 }
-.second__img { display: block; width: 200px; height: auto; aspect-ratio: 2 / 3; border-radius: 10px; box-shadow: var(--glow-aura); }
+.second__img { display: block; width: 200px; height: auto; aspect-ratio: 2 / 3; border-radius: 10px; box-shadow: 0 0 0 1px rgba(169, 238, 242, 0.30); }
 .second__text { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
 .second__name { font-family: var(--font-display); font-weight: 500; font-size: 36px; line-height: 1.1; color: var(--cream); margin-bottom: 4px; }
 .second__body { font-family: var(--font-sans); font-size: 15px; line-height: 1.6; color: var(--cream); text-wrap: pretty; }

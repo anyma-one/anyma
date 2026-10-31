@@ -86,8 +86,7 @@ function originOf(req: ReqLike): string {
 /** A reading page: dimmed stars, content, footer. Section number/heading are optional so
  *  continuation pages can reuse the same chrome without repeating a heading. */
 const readingPage = (inner: string, primaryName: string): string => `
-<section class="page">
-  <div class="stars stars--dim"></div>
+<section class="page bg-page">
   <div class="page__inner">
     ${inner}
     <div class="footer">
@@ -107,7 +106,13 @@ const section = (num: string, heading: string, body: string): string => `
 function buildHtml(d: ReadingPayload, origin: string): string {
   const name = d.primary?.name ?? "";
   const base = d.base && d.base.startsWith("/") ? d.base : "/soul/";
-  const cardUrl = (p?: string | null) => (p ? `${origin}${p}` : "");
+  // The app's cards are WebP, which Chromium re-encodes losslessly into the PDF (~1.7 MB each).
+  // The PDF uses JPEG copies baked by scripts/bake-pdf-assets.mjs, embedded as they are.
+  const cardUrl = (p?: string | null) => {
+    if (!p) return "";
+    const id = /\/cards\/([a-z]+)\.webp$/.exec(p)?.[1];
+    return id ? `${origin}${base}pdf/cards/${id}.jpg` : `${origin}${p}`;
+  };
   const wordmark = `${origin}${base}pdf/wordmark-aura.png`;
 
   const short = list(d.shortVersion)
@@ -119,9 +124,7 @@ function buildHtml(d: ReadingPayload, origin: string): string {
 
   // 1 · cover
   pages.push(`
-<section class="page page--cover night grain">
-  <div class="haze"><i></i><i></i><i></i></div>
-  <div class="stars"></div>
+<section class="page page--cover bg-night">
   <div class="page__inner">
     <div class="cover__top">
       <img class="cover__wordmark" src="${wordmark}" alt="anyma">
@@ -133,7 +136,7 @@ function buildHtml(d: ReadingPayload, origin: string): string {
         <h1 class="cover__name">${esc(name)}</h1>
         <span class="cover__epithet">${esc(d.primary?.epithet)}</span>
       </div>
-      ${d.primary?.card ? `<img class="card-img" src="${cardUrl(d.primary.card)}" alt="${esc(name)}">` : ""}
+      ${d.primary?.card ? `<span class="card-glow card-glow--lg"><img class="card-glow__halo" src="${origin}${base}pdf/glow-lg.png" alt=""><img class="card-img" src="${cardUrl(d.primary.card)}" alt="${esc(name)}"></span>` : ""}
     </div>
     <div class="short">
       <span class="label">The short version</span>
@@ -157,7 +160,7 @@ function buildHtml(d: ReadingPayload, origin: string): string {
   // 3 · second nature + beyond the spirit
   const secondPanel = d.secondary
     ? `<div class="second">
-        ${d.secondary.card ? `<img class="second__img" src="${cardUrl(d.secondary.card)}" alt="${esc(d.secondary.name)}">` : ""}
+        ${d.secondary.card ? `<span class="card-glow card-glow--sm"><img class="card-glow__halo" src="${origin}${base}pdf/glow-sm.png" alt=""><img class="second__img" src="${cardUrl(d.secondary.card)}" alt="${esc(d.secondary.name)}"></span>` : ""}
         <div class="second__text">
           <span class="label">Your second nature</span>
           <h3 class="second__name">${esc(d.secondary.name)}</h3>
@@ -209,9 +212,7 @@ function buildHtml(d: ReadingPayload, origin: string): string {
     )
     .join("\n");
   pages.push(`
-<section class="page page--close night grain">
-  <div class="haze"><i></i><i></i><i></i></div>
-  <div class="stars"></div>
+<section class="page page--close bg-night">
   <div class="page__inner">
     <div class="close__head">
       <span class="label label--accent">06</span>
@@ -275,8 +276,8 @@ function reflow(): string[] {
       if (!cont?.classList.contains("page--cont")) {
         const footer = page.querySelector(".footer")!.outerHTML;
         const el = document.createElement("section");
-        el.className = "page page--cont";
-        el.innerHTML = `<div class="stars stars--dim"></div><div class="page__inner"><div class="content"></div>${footer}</div>`;
+        el.className = "page bg-page page--cont";
+        el.innerHTML = `<div class="page__inner"><div class="content"></div>${footer}</div>`;
         page.after(el);
         cont = el;
       }
@@ -352,10 +353,11 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
     if (warnings.length) res.setHeader("X-Anyma-Layout-Warnings", warnings.join("; "));
     res.status(200);
 
-    // STREAMED, deliberately. A Vercel function's response body is capped at 4.5 MB, and
-    // this design runs to roughly twice that — the night ground, the haze and the card art
-    // all rasterise. Streamed responses are exempt from that cap, so the file is written in
-    // chunks with no Content-Length (which is what makes it a chunked transfer).
+    // STREAMED, deliberately. A Vercel function's response body is capped at 4.5 MB. With the
+    // atmosphere, card auras and cards baked into JPEG/PNG (scripts/bake-pdf-assets.mjs) a
+    // reading is ~1.2 MB, down from ~11 MB of live effects rasterised by Chromium. Streaming
+    // keeps any future growth from hitting the cap: chunks with no Content-Length make it a
+    // chunked transfer, which the cap does not apply to.
     //
     // The alternative — upload to storage and hand back a URL — would mean keeping a copy
     // of someone's reading on a server, which the privacy policy says we do not do.
