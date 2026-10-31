@@ -364,13 +364,15 @@ export function button(label, { variant = "primary", size = "", href, id, attrs 
 /* ---------- Tier card ---------- */
 export function tierCard({
   index, name, tagline, meta, commitment, href,
-  locked = false, fullStart = false, blocked = false,
+  locked = false, fullStart = false, blocked = false, signup = false,
 }) {
   const inner = `
     <div class="tier-head"><span class="tier-title"><span class="idx">${index}</span>&nbsp;·&nbsp;${escapeHtml(name)}</span></div>
     <div class="tier-tagline">${escapeHtml(tagline)}</div>
     <div class="tier-meta"><span>${escapeHtml(meta)}</span>${commitment ? `<span class="commit">${escapeHtml(commitment)}</span>` : ""}</div>`;
   if (locked) return `<div class="tier-card locked" aria-disabled="true">${inner}</div>`;
+  // Not open yet: the card opens the Individual Reading sign-up pop-up instead of navigating.
+  if (signup) return `<button class="tier-card signup" type="button" data-individual-signup>${inner}</button>`;
   // Full Reading is gated on the Core result. When Core isn't done the card takes a
   // blocked (red-tinted) hover and explains itself in a pop-up instead of navigating.
   if (blocked) {

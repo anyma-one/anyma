@@ -414,7 +414,7 @@ main:focus { outline: none; }
   transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out),
     border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out);
 }
-a.tier-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); background: var(--accent-pale); }
+a.tier-card:hover, button.tier-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); background: var(--accent-pale); }
 .tier-card.locked { background: transparent; border: 1px dashed var(--ink-28); opacity: 0.55; cursor: default; }
 
 /* Blocked: Full Reading before the Core result exists. Same lift, but a red-tinted
@@ -702,6 +702,10 @@ a.tier-card.blocked:hover .idx { color: var(--ev-contested); }
 .field input:focus-visible { box-shadow: var(--ring); }
 .field .hint { font-family: var(--font-display); font-size: var(--text-sm); color: var(--ink-muted); margin-top: var(--space-3); }
 .field .error { font-family: var(--font-sans); color: var(--ev-contested); font-size: var(--text-sm); margin-top: var(--space-3); }
+.consent { display: flex; gap: var(--space-3); align-items: flex-start; margin: 0 0 var(--space-5); font-family: var(--font-display); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-soft); cursor: pointer; }
+.consent input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--ink-charcoal); }
+#individual-form .error { font-family: var(--font-sans); color: var(--ev-contested); font-size: var(--text-sm); margin: 0 0 var(--space-4); }
+#individual-form .status { font-family: var(--font-display); font-size: 17px; color: var(--ink); margin: 0; }
 
 /* ---------------- Education ---------------- */
 .edu-toc { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-5) 0 var(--space-7); }
@@ -783,6 +787,12 @@ a.tier-card.blocked:hover .idx { color: var(--ev-contested); }
 .prose-serif { font-family: var(--font-display); font-size: 18px; line-height: 1.62; color: var(--ink-soft); text-wrap: pretty; }
 .prose-serif .cost { color: var(--ink); }
 .prose-serif strong { color: var(--ink); font-weight: 500; }
+.legal-body { max-width: var(--measure-prose); }
+.legal-body h2 { font-family: var(--font-display); font-weight: 500; font-size: 22px; color: var(--ink); margin: var(--space-6) 0 var(--space-3); }
+.legal-body p, .legal-body ul { margin: 0 0 var(--space-4); }
+.legal-body ul { padding-left: 1.2em; }
+.legal-body li { margin-bottom: var(--space-2); }
+.legal-body a, .consent a, .field .hint a { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ================ Reveal choreography (2A · Core, 3A · Full) ================
    From `design_handoff_dosha_reveal_loader`. The loader IS the result screen: there is

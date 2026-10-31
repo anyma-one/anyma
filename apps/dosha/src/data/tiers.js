@@ -22,7 +22,7 @@ export const TIERS = {
     index: 3,
     name: "Individual Reading",
     tagline: "Go further than a questionnaire can. Explore your reading in detail — against your own situation, your preferences and your doubts.",
-    meta: "Paid · coming soon",
-    locked: true,
+    meta: "Paid · coming soon · get notified",
+    signup: true,
   },
 };

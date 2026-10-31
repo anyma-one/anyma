@@ -67,6 +67,28 @@ create table public.suggestions (
 alter table public.suggestions enable row level security;
 
 alter table public.waitlist add column if not exists interest text;
+
+-- dosha: Full Reading sign-ups (no email is sent; api/dosha-signup.ts, kind "full")
+create table public.dosha_full_signups (
+  id         uuid primary key default gen_random_uuid(),
+  email      text not null unique,
+  consent_at timestamptz not null,
+  created_at timestamptz not null default now()
+);
+alter table public.dosha_full_signups enable row level security;
+
+-- dosha: Individual Reading waitlist, double opt-in (api/dosha-signup.ts kind "individual",
+-- confirmed by api/dosha-confirm.ts)
+create table public.dosha_individual_waitlist (
+  id          uuid primary key default gen_random_uuid(),
+  email       text not null unique,
+  token       uuid not null unique default gen_random_uuid(),
+  verified    boolean not null default false,
+  consent_at  timestamptz not null,
+  verified_at timestamptz,
+  created_at  timestamptz not null default now()
+);
+alter table public.dosha_individual_waitlist enable row level security;
 ```
 
 RLS on with no policies is correct: the functions use the service-role key, which bypasses

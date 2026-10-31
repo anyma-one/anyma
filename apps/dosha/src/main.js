@@ -8,7 +8,7 @@ import { renderCoreResult } from "./views/coreResult.js";
 import { renderFullResult } from "./views/fullResult.js";
 import { renderEducation } from "./views/education.js";
 import { renderPlaceholder } from "./views/placeholder.js";
-import { openEmailModal, openCoreRequiredModal } from "./views/emailModal.js";
+import { openEmailModal, openCoreRequiredModal, openIndividualModal } from "./views/emailModal.js";
 import { hasCoreResult, hasEmail } from "./lib/storage.js";
 import { closeModal, openEvidenceLegend } from "./ui/modal.js";
 
@@ -117,6 +117,7 @@ document.addEventListener("click", (e) => {
   if (blocked) { e.preventDefault(); openCoreRequiredModal(navigate); return; }
   const fs = e.target.closest("[data-full-start]");
   if (fs) { e.preventDefault(); startFullReading(); return; }
+  if (e.target.closest("[data-individual-signup]")) { openIndividualModal(); return; }
   // Evidence-mark key. One delegated listener rather than per-view wiring, so the
   // legend is reachable from every screen that renders a mark — including views
   // rendered after this file has run.
