@@ -35,6 +35,9 @@ const closeDialog = (el) => {
 
   const finish = () => {
     el.hidden = true;
+    // A pop-up that ended on its success screen opens on the form again next time.
+    el.querySelectorAll("[data-form]").forEach((n) => { n.hidden = false; });
+    el.querySelectorAll("[data-success]").forEach((n) => { n.hidden = true; });
     if (!document.querySelector(".overlay.is-open")) {
       document.body.classList.remove("no-scroll");
     }
@@ -98,30 +101,31 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const val = (form, name) => form.elements.namedItem(name).value.trim();
 
 // `collect` returns the payload to send, or a string to show as a validation error.
-// `done` turns the response body into the success message.
-const wireForm = ({ formId, statusId, submitId, endpoint, collect, done }) => {
+// `done` turns the response body into the success message. `required` names the field that
+// must hold text before the submit button wakes up.
+const wireForm = ({ formId, statusId, submitId, required, endpoint, collect, done }) => {
   const form = document.getElementById(formId);
   const status = document.getElementById(statusId);
   const submit = document.getElementById(submitId);
   if (!form) return;
+  const card = form.closest(".card");
+  const field = form.elements.namedItem(required);
 
-  const setStatus = (msg, kind) => {
-    status.textContent = msg;
-    status.className = "form__status" + (kind ? ` form__status--${kind}` : "");
-  };
+  const sync = () => { submit.disabled = !field.value.trim(); };
+  field.addEventListener("input", sync);
+  sync();
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    status.textContent = "";
 
     const payload = collect(form);
     if (typeof payload === "string") {
-      setStatus(payload, "error");
+      status.textContent = payload;
       return;
     }
 
     submit.disabled = true;
-    setStatus("Sending…");
-
     try {
       const res = await fetch(endpoint, {
         method: "POST",
@@ -132,11 +136,15 @@ const wireForm = ({ formId, statusId, submitId, endpoint, collect, done }) => {
 
       const data = await res.json().catch(() => ({}));
       form.reset();
-      setStatus(done(data), "ok");
+      card.querySelector("[data-message]").textContent = done(data);
+      card.querySelectorAll("[data-form]").forEach((n) => { n.hidden = true; });
+      const success = card.querySelector("[data-success]");
+      success.hidden = false;
+      success.querySelector(".btn").focus();
     } catch {
-      setStatus("That didn't go through. Please try again, or write to hello@anyma.one.", "error");
+      status.textContent = "That didn't go through. Please try again, or write to hello@anyma.one.";
     } finally {
-      submit.disabled = false;
+      sync();
     }
   });
 };
@@ -145,37 +153,40 @@ wireForm({
   formId: "suggest-form",
   statusId: "s-status",
   submitId: "s-submit",
+  required: "body",
   endpoint: "/api/suggest",
   collect: (form) => {
-    // NOT `form.title` — HTMLElement.title (the attribute) shadows the named getter.
-    const title = val(form, "title");
     const body = val(form, "body");
     const email = val(form, "email");
 
-    if (!title || !body) return "Please fill in both a title and your idea.";
+    if (!body) return "Please tell us your idea.";
     // Email is optional here — but if one is given, a typo means we can never reply.
     if (email && !EMAIL_RE.test(email)) return "That email address doesn't look right.";
 
+    // The form has no title field any more; the inbox subject uses the idea's first line.
+    const first = body.split("\n")[0].trim();
+    const title = first.length > 80 ? `${first.slice(0, 79).trimEnd()}…` : first;
     return { title, body, email: email || null };
   },
-  done: () => "Thank you — your suggestion reached us.",
+  done: () =>
+    "Your idea has reached us. If it grows into a project, you will be among the first to hear about it.",
 });
 
 wireForm({
   formId: "ching-form",
   statusId: "c-status",
   submitId: "c-submit",
+  required: "email",
   endpoint: "/api/waitlist",
   collect: (form) => {
     const email = val(form, "email");
-    if (!email) return "Please enter your email address.";
     if (!EMAIL_RE.test(email)) return "That email address doesn't look right.";
     return { email, interest: "ching" };
   },
   done: (data) =>
     data.status === "already_verified"
-      ? "You're already on the list — nothing more to do."
-      : "Check your inbox: we sent one email to confirm.",
+      ? "You're already on the list. We'll write to you when ching opens."
+      : "We sent you one email. Click the link in it to confirm, and we'll write again when ching opens.",
 });
 
 /* ---------- hand old deep links back to soul ---------- */

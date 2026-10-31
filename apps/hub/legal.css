@@ -20,7 +20,8 @@
 .legal__title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   font-size: 40px;
   line-height: 1.2;
   color: var(--text);
@@ -35,7 +36,8 @@
 .legal h2 {
   margin: 40px 0 0;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   font-size: 26px;
   line-height: 1.25;
   color: var(--text);
