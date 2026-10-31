@@ -778,6 +778,30 @@ a.tier-card.blocked:hover .idx { color: var(--ev-contested); }
 .modal ul { padding-left: 1.1rem; }
 .modal-close { float: right; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: var(--ink-soft); line-height: 1; }
 @media (min-width: 768px) { .modal-backdrop { place-items: center; padding: 1rem; } .modal { border-radius: 16px; } }
+/* Phones: the pop-up is a bottom sheet. Desktop type and spacing made it read as a squeezed
+   desktop window, so it gets its own scale here; the x sits in the corner as a full tap target
+   instead of floating into the kicker line, and the button label stays on one line. */
+@media (max-width: 767px) {
+  .modal {
+    position: relative;
+    padding: 24px 20px calc(20px + env(safe-area-inset-bottom));
+    max-height: 88dvh;
+    border-radius: 20px 20px 0 0;
+  }
+  .modal-close {
+    position: absolute; top: 8px; right: 8px; float: none;
+    width: 44px; height: 44px; display: grid; place-items: center; font-size: 1.6rem;
+  }
+  .modal .kick { padding-right: 44px; font-size: 10px; letter-spacing: .14em; }
+  .modal h3 { font-size: 24px; line-height: 1.15; margin-bottom: 10px; }
+  .modal p { line-height: 1.5; }
+  .modal .field { margin-bottom: 14px; }
+  .modal .field label { margin-bottom: 8px; }
+  .modal .field .hint { font-size: 13px; line-height: 1.45; margin-top: 10px; }
+  .modal .consent { margin-bottom: 16px; font-size: 13px; line-height: 1.45; }
+  .modal .btn-lg { padding: 14px 12px; font-size: 12px; letter-spacing: .1em; white-space: nowrap; }
+  .modal .btn-row { margin-top: 18px !important; }
+}
 
 .stack > * + * { margin-top: var(--space-5); }
 .center { text-align: center; }

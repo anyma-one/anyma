@@ -26,7 +26,7 @@ export function openEmailModal(onDone) {
 
   openModal(`
     <div class="kick" style="margin-bottom:10px">Full Reading · Vikriti · Free</div>
-    <h3>One Step Before the Current-State Pass</h3>
+    <h3>One Step Before the Current&#8209;State Pass</h3>
     <p class="serif" style="font-size:15px;color:var(--ink-soft)">Full Reading is free. We ask for your
       email so we can write to you about dosha. Your Core result
       (<strong style="color:var(--ink)">${escapeHtml(label)}</strong>) is carried forward — you'll only
