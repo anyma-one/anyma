@@ -68,6 +68,11 @@ alter table public.suggestions enable row level security;
 
 alter table public.waitlist add column if not exists interest text;
 
+-- every project an address signed up for (`interest` keeps only the latest one).
+-- Rows from before the hub existed have no interest and were all soul sign-ups.
+alter table public.waitlist add column if not exists interests text[] not null default '{}';
+update public.waitlist set interests = array[coalesce(interest, 'soul')] where interests = '{}';
+
 -- dosha: Full Reading sign-ups (no email is sent; api/dosha-signup.ts, kind "full")
 create table public.dosha_full_signups (
   id         uuid primary key default gen_random_uuid(),

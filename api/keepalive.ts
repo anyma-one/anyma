@@ -1,4 +1,5 @@
-// Keeps the Supabase project from being paused for inactivity.
+// Daily housekeeping (Vercel Cron, vercel.json): keeps Supabase awake and deletes stale
+// unconfirmed sign-ups.
 //
 // SELF-CONTAINED (README §4 / HANDOVER §4).
 //
@@ -7,9 +8,16 @@
 // (vercel.json) calls this once a day; it makes one tiny read (a single waitlist id)
 // so the project always counts as active. It returns nothing from the table.
 //
+// It also deletes waitlist rows that were never confirmed within 30 days of the (latest)
+// sign-up, as the privacy policy promises. Confirmed rows are never touched here.
+//
 // If CRON_SECRET is set in Vercel, Vercel sends it as `Authorization: Bearer …` on
-// cron calls and anything else is refused. Without it the endpoint still only does
-// that one harmless read.
+// cron calls and anything else is refused. Without it anyone can trigger the run, which is
+// harmless: the read returns nothing and the delete only removes rows that are due anyway.
+
+// Double opt-in tables. Each has `verified` and `consent_at` (refreshed on every sign-up).
+const UNCONFIRMED_TABLES = ["waitlist", "dosha_individual_waitlist"];
+const UNCONFIRMED_TTL_DAYS = 30;
 
 interface ReqLike {
   method?: string;
@@ -47,7 +55,25 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
       res.status(502).json({ ok: false, status: r.status });
       return;
     }
-    res.status(200).json({ ok: true });
+
+    const cutoff = new Date(Date.now() - UNCONFIRMED_TTL_DAYS * 86_400_000).toISOString();
+    const deleted: Record<string, number | string> = {};
+    for (const table of UNCONFIRMED_TABLES) {
+      const d = await fetch(
+        `${url}/rest/v1/${table}?verified=eq.false&consent_at=lt.${encodeURIComponent(cutoff)}`,
+        {
+          method: "DELETE",
+          headers: { apikey: key, Authorization: `Bearer ${key}`, Prefer: "return=minimal,count=exact" },
+        }
+      );
+      // Report per table rather than failing the run: one missing table must not stop the
+      // other from being cleaned, nor the keep-alive read from counting.
+      // count=exact reports how many rows went in Content-Range ("*/3") without returning them.
+      deleted[table] = d.ok
+        ? Number(d.headers.get("content-range")?.split("/")[1] ?? 0)
+        : `error ${d.status}`;
+    }
+    res.status(200).json({ ok: true, deleted });
   } catch (err) {
     const detail = err instanceof Error ? err.message : "Unknown error";
     res.status(502).json({ ok: false, detail });

@@ -114,6 +114,18 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
 
   let row: WaitlistRow | undefined;
   try {
+    // One row per email, but a person may sign up for several projects. `interest` holds the
+    // latest one; `interests` accumulates every project, so a second sign-up never drops the
+    // first. Read-then-merge is fine here: two sign-ups racing for the same address within
+    // milliseconds is not a real case.
+    const existing = await fetch(
+      `${url}/rest/v1/waitlist?email=eq.${encodeURIComponent(email)}&select=interests`,
+      { headers: supabaseHeaders(key, "return=representation") }
+    );
+    if (!existing.ok) throw new Error(`supabase ${existing.status}`);
+    const prior = ((await existing.json()) as { interests?: string[] | null }[])[0]?.interests ?? [];
+    const interests = prior.includes(interest) ? prior : [...prior, interest];
+
     // Upsert on email, merging. Only the columns sent here are written, and `source` is
     // omitted entirely when the caller didn't send a recognised one — so a signup from the
     // hub never blanks the attribution on a row soul created.
@@ -121,7 +133,13 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
       method: "POST",
       headers: supabaseHeaders(key, "resolution=merge-duplicates,return=representation"),
       body: JSON.stringify([
-        { email, interest, consent_at: new Date().toISOString(), ...(source ? { source } : {}) },
+        {
+          email,
+          interest,
+          interests,
+          consent_at: new Date().toISOString(),
+          ...(source ? { source } : {}),
+        },
       ]),
     });
     if (!upsert.ok) throw new Error(`supabase ${upsert.status}`);
