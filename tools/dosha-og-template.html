@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Source of apps/dosha/assets/og-image.jpg (the link preview). Not part of the site.
+     To re-render: copy it to dist/dosha/_og/og.html while the local dev server runs
+     (port 8100), open it at 1200x630 and screenshot as JPEG quality 88. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="/dosha/styles.css">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background-color: var(--paper); }
+  .og {
+    position: relative; width: 1200px; height: 630px; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    background: radial-gradient(900px 520px at 50% 42%, #F6F2E7 0%, var(--paper) 60%, #E9E2D0 100%);
+  }
+  .og::after { content: ""; position: absolute; inset: 0; background-image: var(--grain-url); opacity: .4; mix-blend-mode: multiply; pointer-events: none; }
+  .og .watermark { z-index: 0; }
+  .og .wm { position: relative; z-index: 1; height: 44px; width: auto; margin-bottom: 30px; }
+  .og .kick { position: relative; z-index: 1; font-size: 15px; letter-spacing: .26em; }
+  .og h1 { position: relative; z-index: 1; font-family: var(--font-display); font-weight: 500; font-size: 68px; line-height: 1.06; letter-spacing: -0.02em; color: var(--ink); margin: 22px 0 40px; }
+  .og h1 .em { font-style: italic; color: var(--accent-deep); }
+  .og .glyph-row { position: relative; z-index: 1; gap: 56px; }
+  .og .elabel { font-size: 12px; }
+</style></head>
+<body>
+<div class="og" id="og">
+  <div class="watermark" id="wm"></div>
+  <img class="wm" src="/dosha/assets/anyma-wordmark-accent-deep.png" alt="">
+  <div class="kick">Individual ayurveda assessment</div>
+  <h1>3000-year-old alchemy,<br>five elements, <span class="em">one reading</span></h1>
+  <div class="glyph-row" id="glyphs"></div>
+</div>
+<script type="module">
+  import { ashtakona, elementGlyph } from "/dosha/src/ui/components.js";
+  document.getElementById("wm").innerHTML = ashtakona({ size: 1100, spin: false, opacity: 0.05, strokeWidth: 1.1 });
+  document.getElementById("glyphs").innerHTML = [["ether","Ether"],["air","Air"],["fire","Fire"],["water","Water"],["earth","Earth"]]
+    .map(([k, l]) => `<div class="g-item">${elementGlyph(k, 34)}<span class="elabel">${l}</span></div>`).join("");
+  window.__ready = true;
+</script>
+</body></html>
