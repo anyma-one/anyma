@@ -6,7 +6,7 @@
 //
 // Serverless functions are NOT handled here: Vercel picks up /api at the repo root on its
 // own, independently of the output directory.
-import { cp, rm, mkdir, readdir, access } from "node:fs/promises";
+import { cp, rm, mkdir, readdir, access, readFile, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -51,6 +51,12 @@ console.log("built  /            <- apps/hub");
 /* ---- dosha: plain static, every path already relative ---- */
 if (await exists(join(ROOT, "apps/dosha"))) {
   await copyContents(join(ROOT, "apps/dosha"), join(DIST, "dosha"));
+  // The site serves /dosha without a trailing slash (vercel.json trailingSlash: false), so
+  // "./styles.css" would resolve to the hub's /styles.css. Pin the page's own relative paths
+  // to /dosha/ here; everything they load (CSS urls, module imports) resolves from those.
+  const doshaIndex = join(DIST, "dosha/index.html");
+  const html = await readFile(doshaIndex, "utf8");
+  await writeFile(doshaIndex, html.replace(/(href|src)="\.\//g, '$1="/dosha/'));
   console.log("built  /dosha/      <- apps/dosha");
 } else {
   console.log("SKIP   /dosha/      (apps/dosha not present)");
