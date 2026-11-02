@@ -698,7 +698,7 @@ a.tier-card.blocked:hover .idx { color: var(--ev-contested); }
 /* ---------------- Forms ---------------- */
 .field { margin-bottom: var(--space-5); }
 .field label { display: block; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-3); }
-.field input[type="email"] { width: 100%; font: inherit; font-family: var(--font-sans); padding: 13px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--paper); color: var(--ink); }
+.field input[type="email"] { width: 100%; font: inherit; font-family: var(--font-sans); font-size: 16px; /* under 16px iOS Safari zooms the page on focus and stays zoomed */ padding: 13px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--paper); color: var(--ink); }
 .field input:focus-visible { box-shadow: var(--ring); }
 .field .hint { font-family: var(--font-display); font-size: var(--text-sm); color: var(--ink-muted); margin-top: var(--space-3); }
 .field .error { font-family: var(--font-sans); color: var(--ev-contested); font-size: var(--text-sm); margin-top: var(--space-3); }
@@ -778,29 +778,34 @@ a.tier-card.blocked:hover .idx { color: var(--ev-contested); }
 .modal ul { padding-left: 1.1rem; }
 .modal-close { float: right; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: var(--ink-soft); line-height: 1; }
 @media (min-width: 768px) { .modal-backdrop { place-items: center; padding: 1rem; } .modal { border-radius: 16px; } }
-/* Phones: the pop-up is a bottom sheet. Desktop type and spacing made it read as a squeezed
-   desktop window, so it gets its own scale here; the x sits in the corner as a full tap target
-   instead of floating into the kicker line, and the button label stays on one line. */
+/* Phones: the pop-up is a bottom sheet with its own scale. The grid track is pinned to the
+   screen width (minmax(0,1fr)) so nothing inside can widen the sheet past the edges. */
 @media (max-width: 767px) {
+  .modal-backdrop { grid-template-columns: minmax(0, 1fr); }
   .modal {
     position: relative;
-    padding: 24px 20px calc(20px + env(safe-area-inset-bottom));
-    max-height: 88dvh;
-    border-radius: 20px 20px 0 0;
+    min-width: 0;
+    padding: 30px 24px calc(24px + env(safe-area-inset-bottom));
+    max-height: 90dvh;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -10px 40px rgba(35, 32, 26, .16);
   }
   .modal-close {
-    position: absolute; top: 8px; right: 8px; float: none;
-    width: 44px; height: 44px; display: grid; place-items: center; font-size: 1.6rem;
+    position: absolute; top: 14px; right: 14px; float: none;
+    width: 36px; height: 36px; display: grid; place-items: center;
+    border-radius: 50%; background: rgba(35, 32, 26, .06);
+    font-size: 1.3rem; color: var(--ink-soft);
   }
-  .modal .kick { padding-right: 44px; font-size: 10px; letter-spacing: .14em; }
-  .modal h3 { font-size: 24px; line-height: 1.15; margin-bottom: 10px; }
-  .modal p { line-height: 1.5; }
-  .modal .field { margin-bottom: 14px; }
+  .modal .kick { padding-right: 48px; font-size: 10px; letter-spacing: .16em; margin-bottom: 14px !important; }
+  .modal h3 { font-size: 23px; line-height: 1.2; margin-bottom: 12px; text-wrap: balance; }
+  .modal p { line-height: 1.55; text-wrap: pretty; }
+  .modal form { margin-top: 22px !important; }
+  .modal .field { margin-bottom: 16px; }
   .modal .field label { margin-bottom: 8px; }
-  .modal .field .hint { font-size: 13px; line-height: 1.45; margin-top: 10px; }
-  .modal .consent { margin-bottom: 16px; font-size: 13px; line-height: 1.45; }
-  .modal .btn-lg { padding: 14px 12px; font-size: 12px; letter-spacing: .1em; white-space: nowrap; }
-  .modal .btn-row { margin-top: 18px !important; }
+  .modal .field .hint { font-size: 12.5px; line-height: 1.5; color: var(--ink-muted); margin-top: 10px; }
+  .modal .consent { margin-bottom: 18px; font-size: 13px; line-height: 1.5; }
+  .modal .btn-lg { width: 100%; min-height: 52px; padding: 0 12px; font-size: 12px; letter-spacing: .12em; white-space: nowrap; }
+  .modal .btn-row { margin-top: 20px !important; }
 }
 
 .stack > * + * { margin-top: var(--space-5); }
