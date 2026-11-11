@@ -137,14 +137,14 @@ body.no-scroll { overflow: hidden; }
 
 .logo {
   display: block;
-  height: 108px;
+  height: 48px;
   width: auto;
-  margin: -34px -14px;
   align-self: flex-start;
   filter: var(--logo-filter);
+  transition: transform .45s cubic-bezier(.34, 1.56, .64, 1);
 }
-
-.rule { height: 1px; margin: 20px 0 0; border: 0; background: var(--line); }
+/* The mark tips into a small turn of its spiral on hover — shared across all three pages. */
+.logo:hover { transform: rotate(-8deg) scale(1.06); }
 
 .h1, .h2, .tile__title, .cta__title, .card__title {
   margin: 0;
@@ -154,7 +154,7 @@ body.no-scroll { overflow: hidden; }
   color: var(--text);
 }
 
-.hero { margin-top: 34px; display: flex; flex-direction: column; gap: 10px; }
+.hero { margin-top: 40px; display: flex; flex-direction: column; gap: 10px; }
 .h1 { font-size: 54px; line-height: 1.16; }
 .h1 br { display: none; }
 .lede { margin: 0; max-width: 756px; font-size: 18px; line-height: 1.6; color: var(--text-body); }
@@ -397,8 +397,8 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 600px) {
   html { background: var(--page-bg-mobile); background-color: var(--page-base); }
   .page { padding: 56px 24px 32px; }
-  .logo { height: 58px; margin: -19px 0; }
-  .hero { margin-top: 22px; gap: 8px; }
+  .logo { height: 36px; }
+  .hero { margin-top: 28px; gap: 8px; }
   .h1 { font-size: 31px; line-height: 1.2; }
   .h1 br { display: inline; }
   .lede { font-size: 14px; }
@@ -434,5 +434,6 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tile__img, .tile__soon, .btn, .overlay, .card { transition: none; }
+  .tile__img, .tile__soon, .btn, .overlay, .card, .logo { transition: none; }
+  .logo:hover { transform: none; }
 }

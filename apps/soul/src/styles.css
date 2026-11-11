@@ -46,16 +46,25 @@ body,
   padding: 0;
   cursor: pointer;
 }
-/* anyma wordmark, glowing with the same aura the reveal moments use. */
+/* anyma mark in moonlight cream, glowing with the same aura the reveal moments use. */
 .brand-lockup__logo {
   display: block;
-  height: 46px;
+  height: 40px;
   width: auto;
-  filter: drop-shadow(0 0 10px var(--aura-30));
-  transition: filter 0.25s ease;
+  filter: drop-shadow(0 0 6px var(--aura-30)) drop-shadow(0 0 14px var(--aura-30));
+  transition: filter 0.25s ease, transform 0.45s cubic-bezier(.34, 1.56, .64, 1);
 }
-.brand-lockup:hover .brand-lockup__logo {
-  filter: drop-shadow(0 0 16px var(--aura));
+/* The mark tips into a small turn of its spiral on hover — shared across all three pages —
+   and its aura brightens. */
+.brand-lockup:hover .brand-lockup__logo,
+.brand-lockup:focus-visible .brand-lockup__logo {
+  filter: drop-shadow(0 0 8px var(--aura-30)) drop-shadow(0 0 18px var(--aura));
+  transform: rotate(-8deg) scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-lockup__logo { transition: filter 0.25s ease; }
+  .brand-lockup:hover .brand-lockup__logo,
+  .brand-lockup:focus-visible .brand-lockup__logo { transform: none; }
 }
 .appbar__spacer {
   flex: 1;

@@ -49,7 +49,7 @@ export function Layout({ header, children }: { header: HeaderConfig; children: R
               <button className="brand-lockup" onClick={onHome} aria-label="anyma — home">
                 <img
                   className="brand-lockup__logo"
-                  src={`${import.meta.env.BASE_URL}anyma-logo.png`}
+                  src={`${import.meta.env.BASE_URL}anyma-mark.svg`}
                   alt="anyma"
                 />
               </button>
