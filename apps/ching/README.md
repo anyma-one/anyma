@@ -115,7 +115,8 @@ Quick and Deep Cast need no server, keys or `.env.local`.
   (only the six fields listed). Learn section 02 split into 02 and 03; later sections renumbered.
 - Make It Yours (the Full Cast dialogue) is now its own page, `/ching/make-it-yours`.
 - The sign-up and unlock steps are a modal over the reading.
-- Fonts: Young Serif, Crimson Pro, IBM Plex Mono and Kaisei Tokumin, self-hosted.
+- Fonts: Young Serif, Crimson Pro, IBM Plex Mono and Kaisei Tokumin, self-hosted. Noto Serif TC
+  (400, 500) sits behind Kaisei in `--font-cjk` for hanzi Kaisei lacks (owner, 11 Nov 2026).
 - "learn more" on the yes/no note and About in the footer open the Learn (resources) page (owner, 11 Nov 2026).
 - The landing ring's centre is `src/assets/home-centre-seal.svg` (屯 in bronze, sent by the owner
   separately; the package only linked to it). It stays still while the ring turns in.
@@ -165,4 +166,3 @@ isn't deployed from there, because Vercel only deploys the root `api/`. When Ful
 - The Full Cast dialogue hasn't been run against the real API (no key in this folder), and the
   manual prompt checks in `api/_lib/full-cast-system-prompt.md` are still to do.
 - Optional extras: shake-to-toss, sound, switching off guided-cast help for returning users.
-- Noto Serif TC isn't self-hosted yet; Chinese falls back to system serif fonts.

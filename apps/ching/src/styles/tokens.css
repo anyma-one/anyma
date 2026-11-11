@@ -107,7 +107,7 @@
 :root{
 /* ---- families ---- */
 --font-display:"Young Serif",Georgia,serif;      /* Latin display only */
---font-cjk:"Kaisei Tokumin",serif;               /* hanzi, and Latin beside hanzi */
+--font-cjk:"Kaisei Tokumin","Noto Serif TC",serif;               /* hanzi, and Latin beside hanzi */
 --font-body:"Crimson Pro",Georgia,serif;
 --font-label:"IBM Plex Mono",ui-monospace,monospace;
 

@@ -16,6 +16,9 @@ import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/kaisei-tokumin/400.css";
 import "@fontsource/kaisei-tokumin/500.css";
+// Fallback for hanzi Kaisei Tokumin (a Japanese font) lacks. Browsers fetch only the subsets a page uses.
+import "@fontsource/noto-serif-tc/400.css";
+import "@fontsource/noto-serif-tc/500.css";
 import "./styles/tokens.css";
 import "./styles/app.css";
 
