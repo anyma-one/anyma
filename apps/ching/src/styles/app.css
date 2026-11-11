@@ -697,6 +697,29 @@ a.site-header__label:hover {
 .level-tile__price-hover {
   opacity: 0;
 }
+/* The box fits the label that's showing; the hidden one sits over it, out of the layout. */
+.level-tile__price > span {
+  white-space: nowrap;
+}
+.level-tile__price-hover,
+.level-tile.is-active .level-tile__price-rest,
+.level-tile:focus-visible .level-tile__price-rest {
+  position: absolute;
+  left: 16px;
+  top: 9px;
+}
+.level-tile.is-active .level-tile__price-hover,
+.level-tile:focus-visible .level-tile__price-hover {
+  position: static;
+}
+@media (hover: hover) {
+  .level-tile:hover .level-tile__price-rest {
+    position: absolute;
+  }
+  .level-tile:hover .level-tile__price-hover {
+    position: static;
+  }
+}
 .level-tile.is-active,
 .level-tile:focus-visible {
   border-color: var(--tile-border-hover);
@@ -2544,4 +2567,140 @@ a.site-header__label:hover {
   border-radius: var(--radius-xs);
   padding: 8px 12px;
   color: var(--text-on-cinnabar);
+}
+
+/* Level III while Full Cast is closed: "coming soon", and the tile darkens instead of turning red. */
+.level-tile--soon .level-tile__wash {
+  background: #0d0a08;
+}
+.level-tile--soon.is-active .level-tile__wash,
+.level-tile--soon:focus-visible .level-tile__wash {
+  opacity: 0.55;
+}
+.level-tile--soon.is-active .level-tile__name,
+.level-tile--soon:focus-visible .level-tile__name {
+  color: var(--text-on-dark);
+}
+.level-tile--soon.is-active .level-tile__desc,
+.level-tile--soon:focus-visible .level-tile__desc {
+  color: var(--bone-300);
+}
+.level-tile--soon.is-active .level-tile__eyebrow,
+.level-tile--soon:focus-visible .level-tile__eyebrow {
+  color: var(--bronze-500);
+}
+.level-tile--soon.is-active .level-tile__price,
+.level-tile--soon:focus-visible .level-tile__price {
+  background: var(--button-regular-bg);
+  color: var(--text-on-paper);
+  box-shadow: none;
+  left: 0;
+}
+@media (hover: hover) {
+  .level-tile--soon:hover .level-tile__wash {
+    opacity: 0.55;
+  }
+  .level-tile--soon:hover .level-tile__name {
+    color: var(--text-on-dark);
+  }
+  .level-tile--soon:hover .level-tile__desc {
+    color: var(--bone-300);
+  }
+  .level-tile--soon:hover .level-tile__eyebrow {
+    color: var(--bronze-500);
+  }
+  .level-tile--soon:hover .level-tile__price {
+    background: var(--button-regular-bg);
+    color: var(--text-on-paper);
+    box-shadow: none;
+    left: 0;
+  }
+}
+button.level-tile {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* The logo brightens and lifts slightly on hover. */
+.header-logo {
+  transition: filter var(--dur-hover) var(--ease-ritual), transform var(--dur-hover) var(--ease-ritual);
+}
+.site-header__home:hover .header-logo,
+.site-header__home:focus-visible .header-logo {
+  filter: brightness(1.25) drop-shadow(0 0 10px rgba(183, 136, 77, 0.35));
+  transform: translateY(-1px);
+}
+
+/* Links styled as buttons keep their own text colour on hover (the site-wide link hover is
+   bronze-300, the same as the regular button's hover background, which hid the label). */
+a.button--regular:hover {
+  color: var(--text-on-paper);
+}
+a.button--important:hover,
+a.button--on-red:hover {
+  color: var(--text-on-cinnabar);
+}
+a.button--ghost:hover {
+  color: var(--button-ghost-hover);
+}
+.gate-modal__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Guided cast: the total is typed in. */
+.ask-total__row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+.ask-total__input {
+  width: 72px;
+  min-height: 56px;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-dark-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-on-dark);
+  font-family: var(--font-display);
+  font-size: 26px;
+  text-align: center;
+}
+.ask-total__input:focus-visible {
+  border-color: var(--bronze-500);
+}
+.ask-total__input[aria-invalid="true"] {
+  border-color: var(--cinnabar-500);
+}
+.ask-total__retry {
+  color: #e8a495;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* The label box resizes with its label: clipped, and animated where the browser can. */
+.level-tile__price {
+  overflow: hidden;
+  interpolate-size: allow-keywords;
+  width: max-content;
+}
+@supports (interpolate-size: allow-keywords) {
+  .level-tile__price {
+    transition:
+      background-color var(--dur-tile-overlay) var(--ease-ritual),
+      color var(--dur-tile-overlay) var(--ease-ritual),
+      box-shadow var(--dur-tile-overlay) var(--ease-ritual),
+      left var(--dur-tile-slide) var(--ease-slide),
+      width var(--dur-tile-slide) var(--ease-slide);
+  }
+}
+/* Level III has one label, which always shows. */
+.level-tile--soon .level-tile__price-rest,
+.level-tile--soon:hover .level-tile__price-rest,
+.level-tile--soon.is-active .level-tile__price-rest,
+.level-tile--soon:focus-visible .level-tile__price-rest {
+  position: static;
+  opacity: 1;
 }

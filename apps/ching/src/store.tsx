@@ -29,6 +29,8 @@ interface Store {
   startUpgrade: () => void;
   completeCast: (coins: number[][]) => StoredCast;
   unlockFull: () => void;
+  /** Quick → Deep on the same cast, without casting again (owner, 11 Nov 2026). */
+  revealDeep: () => void;
   setDialogue: (messages: ChatMessage[]) => void;
   loadEntry: (entry: StoredCast) => void;
   clearHistory: () => void;
@@ -110,6 +112,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         // Deep → Full unlocks the same cast; no new cast (BUILD §4).
         saveCurrent({ ...current, level: "full" });
         saveHistory(history.map((e) => (e.at === current.at ? { ...e, level: "full" } : e)));
+      },
+      revealDeep: () => {
+        if (!current || current.level !== "quick") return;
+        saveCurrent({ ...current, level: "deep" });
+        saveHistory(history.map((e) => (e.at === current.at ? { ...e, level: "deep" } : e)));
       },
       setDialogue: (messages) => {
         if (!current) return;

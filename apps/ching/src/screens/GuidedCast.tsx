@@ -1,7 +1,7 @@
 // Deep Cast: the guided cast (design: screens.md §3 "Deep Cast variant"; HANDOFF §6). The person
 // tosses, reads the coins and names the total; help fades over the six tosses. Then they find the
 // lower and upper trigram. Every step is a button: no touch or shaking needed.
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { castLine, lineFromCoins, LINE_TYPES } from "../lib/cast.js";
 import { forcedCoins } from "../devCast";
 import { copy, fill, hexagrams, lineType, trigrams, ui } from "../data";
@@ -69,6 +69,11 @@ export function GuidedCast({ onComplete }: { onComplete: (coins: number[][], fig
   const [announcement, setAnnouncement] = useState("");
   const [drawing, setDrawing] = useState<number | null>(null);
   const [findHighlight, setFindHighlight] = useState<Highlight>(null);
+  // The total is typed, and asked again until it's right (owner, 11 Nov 2026).
+  const [typed, setTyped] = useState("");
+  const [wrong, setWrong] = useState(0);
+  const totalId = useId();
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const focusRef = useRef<HTMLElement | null>(null);
   const figureRef = useRef<HTMLDivElement>(null);
   const done = useRef(false);
@@ -102,14 +107,32 @@ export function GuidedCast({ onComplete }: { onComplete: (coins: number[][], fig
     setCurrent(line);
     setAnswer(null);
     setHintOpen(false);
+    setTyped("");
+    setWrong(0);
     setLanded(reduced);
     if (!reduced) setTimeout(() => setLanded(true), 1160);
   };
 
+  const checkTyped = (e: FormEvent) => {
+    e.preventDefault();
+    if (!current || answer) return;
+    const given = Number(typed.trim());
+    if (!typed.trim()) return;
+    if (given !== current.total) {
+      track("guided_answer", { correct: false, toss });
+      setWrong((w) => w + 1);
+      setTyped("");
+      inputRef.current?.focus();
+      return;
+    }
+    track("guided_answer", { correct: true, toss });
+    doAnswer(given);
+  };
+
+  /** Called once the right total is in. */
   const doAnswer = (given: number) => {
     if (!current || answer) return;
     const correct = given === current.total;
-    track("guided_answer", { correct, toss });
     setAnswer({ given, correct });
     setAnnouncement(announceLine(toss, current.total));
     if (current.changing && firstChangingAt === null) setFirstChangingAt(toss);
@@ -192,17 +215,37 @@ export function GuidedCast({ onComplete }: { onComplete: (coins: number[][], fig
         )}
 
         {current && landed && !answer && (
-          <fieldset className="ask-total">
-            <legend ref={setFocus} tabIndex={-1} className="ask-total__q">
+          <form className="ask-total" onSubmit={checkTyped} noValidate>
+            <label htmlFor={totalId} className="ask-total__q">
               {copy.guide.askTotal}
-            </legend>
-            <div className="choices">
-              {[6, 7, 8, 9].map((t) => (
-                <button key={t} type="button" className="choice choice--total" onClick={() => doAnswer(t)}>
-                  {t}
-                </button>
-              ))}
+            </label>
+            <div className="ask-total__row">
+              <input
+                id={totalId}
+                ref={(el) => {
+                  inputRef.current = el;
+                  setFocus(el);
+                }}
+                className="ask-total__input"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={2}
+                autoComplete="off"
+                value={typed}
+                onChange={(e) => setTyped(e.target.value.replace(/\D/g, ""))}
+                aria-invalid={wrong > 0 && !typed}
+                aria-describedby={wrong > 0 ? `${totalId}-retry` : undefined}
+              />
+              <button type="submit" className="button button--important" disabled={!typed}>
+                {ui.cast.typedTotal.check} <span aria-hidden="true">→</span>
+              </button>
             </div>
+            {wrong > 0 && (
+              <p className="ask-total__retry" id={`${totalId}-retry`} role="alert" key={wrong}>
+                {ui.cast.typedTotal.retry}
+              </p>
+            )}
             {help === "full" && (
               <div className="hint">
                 <p>
@@ -224,7 +267,7 @@ export function GuidedCast({ onComplete }: { onComplete: (coins: number[][], fig
                   {copy.guide.hintButton} <span aria-hidden="true">→</span>
                 </button>
               ))}
-          </fieldset>
+          </form>
         )}
 
         {current && answer && (

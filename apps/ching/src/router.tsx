@@ -51,14 +51,14 @@ export function Link({
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
-  /** Runs before navigating (e.g. to record the chosen level). */
-  onNavigate?: () => void;
+  /** Runs before navigating (e.g. to record the chosen level). Return false to stay. */
+  onNavigate?: () => void | false;
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick">) {
   const { navigate } = useRouter();
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
-    onNavigate?.();
+    if (onNavigate?.() === false) return;
     navigate(to);
   };
   return (

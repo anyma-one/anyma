@@ -29,6 +29,7 @@
       "one-time payment"
     ],
     "levelHover": "begin",
+    "levelSoon": "coming soon",
     "what": {
       "eyebrow": "What is the I Ching?",
       "heading": "One of The Oldest Books and Divination Methods in The World",
@@ -68,7 +69,12 @@
     "figureSolid": "solid",
     "figureBroken": "broken",
     "figureChanging": ", changing",
-    "figureEmpty": "line {n} not cast yet"
+    "figureEmpty": "line {n} not cast yet",
+    "typedTotal": {
+      "_status": "DRAFT for owner proofreading (11 Nov 2026): the guided cast asks for the total as a typed number.",
+      "check": "check",
+      "retry": "Not quite. Heads count 3 and tails count 2. Add them up and try again."
+    }
   },
   "reading": {
     "eyebrow": "Your hexagram · {number}",
@@ -147,6 +153,14 @@
         "network": "Network error. Please check your connection and try again.",
         "generic": "Something went wrong. Please try again."
       }
+    },
+    "deepChoice": {
+      "_status": "DRAFT for owner proofreading (11 Nov 2026).",
+      "eyebrow": "Deep Cast",
+      "heading": "How Would You Like to Continue?",
+      "body": "Reveal the Deep Cast reading of the cast you just made, or cast again yourself and learn to read your own coins.",
+      "reveal": "reveal this cast",
+      "recast": "cast again myself"
     },
     "waitlist": {
       "_status": "Approved by the owner, 11 Nov 2026. Full Cast is closed until payment is decided.",

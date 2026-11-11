@@ -17,11 +17,21 @@ export type GateKind = "deep" | "full";
 
 export function GateModal({
   kind,
+  devUnlock = true,
+  onReveal,
+  startAtChoice = false,
   onClose,
   onSignedUp,
   onUnlocked,
 }: {
   kind: GateKind;
+  /** Dev server only: show the access-code box (it needs a cast to unlock). */
+  devUnlock?: boolean;
+  /** Deep Cast from a Quick reading: after the sign-up, offer "reveal this cast" (onReveal) or
+   *  "cast again myself" (onSignedUp). */
+  onReveal?: () => void;
+  /** Already signed up: open straight on that choice. */
+  startAtChoice?: boolean;
   onClose: () => void;
   onSignedUp: () => void;
   onUnlocked: () => void;
@@ -36,6 +46,7 @@ export function GateModal({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [onList, setOnList] = useState(false);
+  const [choosing, setChoosing] = useState(startAtChoice);
   const closeRef = useRef(onClose);
   closeRef.current = onClose;
 
@@ -79,12 +90,38 @@ export function GateModal({
 
   // Once on the list, the form is gone: focus its message so keyboard users keep their place.
   useEffect(() => {
-    if (onList) dialogRef.current?.querySelector<HTMLElement>("h2")?.focus();
-  }, [onList]);
+    if (onList || choosing) dialogRef.current?.querySelector<HTMLElement>("h2")?.focus();
+  }, [onList, choosing]);
 
   const deep = kind === "deep";
   const su = ui.gate.signup;
   const wl = ui.gate.waitlist;
+  const dc = ui.gate.deepChoice;
+
+  if (deep && choosing) {
+    return (
+      <div className="scrim" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+        <div className="gate-modal" role="dialog" aria-modal="true" aria-labelledby={hid} ref={dialogRef}>
+          <button type="button" className="gate-modal__close" aria-label={ui.gate.close} onClick={onClose}>
+            ×
+          </button>
+          <span className="eyebrow">{dc.eyebrow}</span>
+          <h2 id={hid} className="gate-modal__heading" tabIndex={-1}>
+            {dc.heading}
+          </h2>
+          <p>{dc.body}</p>
+          <div className="gate-modal__choices">
+            <button type="button" className="button button--on-red" onClick={onReveal}>
+              {dc.reveal} <span aria-hidden="true">→</span>
+            </button>
+            <button type="button" className="button button--on-red" onClick={onSignedUp}>
+              {dc.recast} <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -98,7 +135,8 @@ export function GateModal({
       return;
     }
     track("signup_completed");
-    if (deep) onSignedUp();
+    if (deep && onReveal) setChoosing(true);
+    else if (deep) onSignedUp();
     else setOnList(true);
   };
 
@@ -173,7 +211,7 @@ export function GateModal({
               {deep ? su.fine : wl.fine}
             </p>
 
-            {!deep && import.meta.env.DEV && (
+            {!deep && devUnlock && import.meta.env.DEV && (
               <form onSubmit={onUnlock} className="gate-modal__form gate-modal__dev">
                 <label htmlFor={codeId} className="gate-modal__label">
                   Dev only · {ACCESS_CODE_LABEL}

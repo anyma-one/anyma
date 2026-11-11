@@ -1,10 +1,12 @@
 // Landing (design: screens.md §1, LevelTile.md).
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { copy, ui, type Level } from "../data";
-import { Link } from "../router";
+import { Link, useRouter } from "../router";
 import { useStore } from "../store";
 import { track } from "../analytics";
 import { Zh } from "../components/Text";
+import { GateModal, type GateKind } from "../components/GateModal";
+import { isSignedUp } from "../signup";
 import centreSeal from "../assets/home-centre-seal.svg";
 
 const LEVELS: Level[] = ["quick", "deep", "full"];
@@ -95,40 +97,96 @@ function useRedOnScroll(list: React.RefObject<HTMLUListElement>) {
   }, [list]);
 }
 
+/**
+ * The three levels. Quick Cast goes straight to the question. Deep Cast asks for the sign-up
+ * first (unless this device has signed up), then goes to the question. Full Cast is closed for
+ * now: its tile says "coming soon" and opens the Full Cast sign-up.
+ */
 export function LevelTiles() {
   const { chooseLevel } = useStore();
+  const { navigate } = useRouter();
   const list = useRef<HTMLUListElement>(null);
+  const [gate, setGate] = useState<GateKind | null>(null);
+  const closeGate = useCallback(() => setGate(null), []);
   useRedOnScroll(list);
+
+  const choose = (level: Level) => {
+    chooseLevel(level);
+    track("level_chosen", { level });
+  };
+
   return (
-    <ul className="level-tiles" ref={list}>
-      {copy.levels.map((l, i) => {
-        const level = LEVELS[i];
-        return (
-          <li key={l.name}>
-            <Link
-              to="ask"
-              className="level-tile"
-              onNavigate={() => {
-                chooseLevel(level);
-                track("level_chosen", { level });
-              }}
-            >
+    <>
+      <ul className="level-tiles" ref={list}>
+        {copy.levels.map((l, i) => {
+          const level = LEVELS[i];
+          const body = (
+            <>
               <span className="level-tile__wash" aria-hidden="true" />
               <span className="eyebrow level-tile__eyebrow">{ui.landing.levelEyebrows[i]}</span>
               <span className="level-tile__name">{l.name}</span>
               <span className="level-tile__desc">{l.description}</span>
-              <span className="level-tile__price" aria-hidden="true">
-                <span className="level-tile__price-rest">{ui.landing.levelPrices[i]}</span>
-                <span className="level-tile__price-hover">
-                  {ui.landing.levelHover} <span aria-hidden="true">→</span>
+            </>
+          );
+          if (level === "full") {
+            return (
+              <li key={l.name}>
+                <button
+                  type="button"
+                  className="level-tile level-tile--soon"
+                  onClick={() => {
+                    track("level_chosen", { level });
+                    setGate("full");
+                  }}
+                >
+                  {body}
+                  <span className="level-tile__price">
+                    <span className="level-tile__price-rest">{ui.landing.levelSoon}</span>
+                  </span>
+                </button>
+              </li>
+            );
+          }
+          return (
+            <li key={l.name}>
+              <Link
+                to="ask"
+                className="level-tile"
+                onNavigate={() => {
+                  choose(level);
+                  if (level === "deep" && !isSignedUp()) {
+                    setGate("deep");
+                    return false;
+                  }
+                }}
+              >
+                {body}
+                <span className="level-tile__price" aria-hidden="true">
+                  <span className="level-tile__price-rest">{ui.landing.levelPrices[i]}</span>
+                  <span className="level-tile__price-hover">
+                    {ui.landing.levelHover} <span aria-hidden="true">→</span>
+                  </span>
                 </span>
-              </span>
-              <span className="visually-hidden">, {ui.landing.levelPrices[i]}</span>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+                <span className="visually-hidden">, {ui.landing.levelPrices[i]}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      {gate && (
+        <GateModal
+          kind={gate}
+          devUnlock={false}
+          onClose={closeGate}
+          onSignedUp={() => {
+            setGate(null);
+            navigate("ask");
+          }}
+          onUnlocked={closeGate}
+        />
+      )}
+    </>
   );
 }
 

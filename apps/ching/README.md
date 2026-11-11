@@ -64,6 +64,15 @@ Quick and Deep Cast need no server, keys or `.env.local`.
 
 ## Decisions taken (defaults until the owner decides; BUILD §10)
 
+- **Owner, 11 Nov 2026 (after first test):**
+  - Level III on the start screen says "coming soon", darkens on hover and opens the Full Cast sign-up.
+  - Choosing Deep Cast on the start screen asks for the sign-up there, then goes to the question.
+  - Deep Cast from a Quick reading: after the sign-up (or straight away if already signed up)
+    the person chooses "reveal this cast" (the same cast, now read at Deep Cast, BUILD §4's new
+    cast no longer forced) or "cast again myself" (the guided cast). Copy: `gate.deepChoice`, draft.
+  - The guided cast asks for the total as a typed number, and asks again until it's right.
+    Copy: `cast.typedTotal`, draft.
+
 - **Full Cast is closed for now (owner, 11 Nov 2026).** Payment is decided later. Every Full Cast
   button opens a sign-up modal instead ("Make It Yours"), with one email for the shared anyma
   list (`source: "full-cast"`), then "You're on the list". Nothing unlocks. Its copy

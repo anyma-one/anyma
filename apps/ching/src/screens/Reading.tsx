@@ -27,12 +27,13 @@ import { prefersReducedMotion } from "./Cast";
 import { isSignedUp } from "../signup";
 
 export function Reading() {
-  const { current, flow, startUpgrade, unlockFull } = useStore();
+  const { current, flow, startUpgrade, unlockFull, revealDeep } = useStore();
   const { navigate } = useRouter();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const figureRef = useRef<HTMLDivElement>(null);
   const [gate, setGate] = useState<GateKind | null>(null);
   const [revealing, setRevealing] = useState(false);
+  const [deepChoiceOnly, setDeepChoiceOnly] = useState(false);
   const autoGate = useRef(false);
 
   // The reveal: the sheet fades in and the hexagram glides here from the toss (motion.md).
@@ -81,10 +82,11 @@ export function Reading() {
     startUpgrade();
     navigate("cast");
   };
+  // Signed up or not, the person then chooses: reveal this cast at Deep Cast, or cast again.
   const toDeep = () => {
     track("upgrade_clicked", { to: "deep" });
-    if (isSignedUp()) startDeep();
-    else setGate("deep");
+    setDeepChoiceOnly(isSignedUp());
+    setGate("deep");
   };
   const toFull = () => {
     track("upgrade_clicked", { to: "full" });
@@ -159,6 +161,16 @@ export function Reading() {
         <GateModal
           kind={gate}
           onClose={closeGate}
+          startAtChoice={gate === "deep" && deepChoiceOnly}
+          onReveal={
+            gate === "deep"
+              ? () => {
+                  setGate(null);
+                  revealDeep(); // the same cast, now read at Deep Cast
+                  window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+                }
+              : undefined
+          }
           onSignedUp={() => {
             setGate(null);
             startDeep();
