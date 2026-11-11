@@ -2591,9 +2591,9 @@ a.site-header__label:hover {
 }
 .level-tile--soon.is-active .level-tile__price,
 .level-tile--soon:focus-visible .level-tile__price {
-  background: var(--button-regular-bg);
-  color: var(--text-on-paper);
-  box-shadow: none;
+  background: transparent;
+  color: var(--bronze-300);
+  box-shadow: inset 0 0 0 1px var(--bronze-500);
   left: 0;
 }
 @media (hover: hover) {
@@ -2610,9 +2610,9 @@ a.site-header__label:hover {
     color: var(--bronze-500);
   }
   .level-tile--soon:hover .level-tile__price {
-    background: var(--button-regular-bg);
-    color: var(--text-on-paper);
-    box-shadow: none;
+    background: transparent;
+    color: var(--bronze-300);
+    box-shadow: inset 0 0 0 1px var(--bronze-500);
     left: 0;
   }
 }
