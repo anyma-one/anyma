@@ -2474,6 +2474,9 @@ a.site-header__label:hover {
 
 /* ---------- Reduced motion (motion.md): durations 1ms; coins appear; no glow ---------- */
 @media (prefers-reduced-motion: reduce) {
+  .header-logo { transition: none; }
+  .site-header__home:hover .header-logo,
+  .site-header__home:focus-visible .header-logo { transform: none; }
   *,
   *::before,
   *::after {
@@ -2623,14 +2626,15 @@ button.level-tile {
   cursor: pointer;
 }
 
-/* The logo brightens and lifts slightly on hover. */
+/* The logo brightens and tips into a small turn of its spiral on hover — the same move as
+   the other anyma pages, at half the turn. */
 .header-logo {
-  transition: filter var(--dur-hover) var(--ease-ritual), transform var(--dur-hover) var(--ease-ritual);
+  transition: filter var(--dur-hover) var(--ease-ritual), transform .45s cubic-bezier(.34, 1.56, .64, 1);
 }
 .site-header__home:hover .header-logo,
 .site-header__home:focus-visible .header-logo {
   filter: brightness(1.25) drop-shadow(0 0 10px rgba(183, 136, 77, 0.35));
-  transform: translateY(-1px);
+  transform: rotate(-4deg) scale(1.03);
 }
 
 /* Links styled as buttons keep their own text colour on hover (the site-wide link hover is
