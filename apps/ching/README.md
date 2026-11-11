@@ -69,9 +69,9 @@ Quick and Deep Cast need no server, keys or `.env.local`.
   - Choosing Deep Cast on the start screen asks for the sign-up there, then goes to the question.
   - Deep Cast from a Quick reading: after the sign-up (or straight away if already signed up)
     the person chooses "reveal this cast" (the same cast, now read at Deep Cast, BUILD §4's new
-    cast no longer forced) or "cast again myself" (the guided cast). Copy: `gate.deepChoice`, draft.
+    cast no longer forced) or "cast again myself" (the guided cast). Copy: `gate.deepChoice`, approved.
   - The guided cast asks for the total as a typed number, and asks again until it's right.
-    Copy: `cast.typedTotal`, draft.
+    Copy: `cast.typedTotal`, approved.
 - **Owner, 11 Nov 2026 (second round):**
   - "reveal this cast" is offered only when the cast has changing lines; otherwise Deep Cast is
     the guided cast, after the sign-up if needed.

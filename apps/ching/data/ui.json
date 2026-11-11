@@ -71,9 +71,9 @@
     "figureChanging": ", changing",
     "figureEmpty": "line {n} not cast yet",
     "typedTotal": {
-      "_status": "DRAFT for owner proofreading (11 Nov 2026): the guided cast asks for the total as a typed number.",
+      "_status": "Approved by the owner, 11 Nov 2026: the guided cast asks for the total as a typed number.",
       "check": "check",
-      "retry": "Not quite. Heads count 3 and tails count 2. Add them up and try again."
+      "retry": "Not quite. Try again."
     }
   },
   "reading": {
@@ -160,7 +160,7 @@
       }
     },
     "deepChoice": {
-      "_status": "DRAFT for owner proofreading (11 Nov 2026).",
+      "_status": "Approved by the owner, 11 Nov 2026.",
       "eyebrow": "Deep Cast",
       "heading": "How Would You Like to Continue?",
       "body": "Reveal the Deep Cast reading of the cast you just made, or cast again yourself and learn to read your own coins.",
