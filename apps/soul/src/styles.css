@@ -49,7 +49,7 @@ body,
 /* anyma mark in moonlight cream, glowing with the same aura the reveal moments use. */
 .brand-lockup__logo {
   display: block;
-  height: 40px;
+  height: 56px;
   width: auto;
   filter: drop-shadow(0 0 6px var(--aura-30)) drop-shadow(0 0 14px var(--aura-30));
   transition: filter 0.25s ease, transform 0.45s cubic-bezier(.34, 1.56, .64, 1);
@@ -1882,6 +1882,9 @@ body,
 }
 
 @media (max-width: 720px) {
+  .brand-lockup__logo {
+    height: 48px;
+  }
   .appbar {
     padding: var(--space-5);
     gap: var(--space-4);
@@ -1900,6 +1903,9 @@ body,
      header is scoped via .app:not([data-tier]) (only the landing omits a tier).
      No !important needed — card padding (.tier-card__body) and the explainer
      gap both live in the stylesheet here, not as inline styles. */
+  .brand-lockup__logo {
+    height: 40px;
+  }
   .app:not([data-tier]) .appbar {
     padding: 18px 36px;
     /* clear status bar / dynamic island when rendered edge-to-edge */

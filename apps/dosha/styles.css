@@ -221,15 +221,12 @@ body.framed .shell {
   width: 100%; max-width: var(--measure-wide); margin: 0 auto;
   padding: 26px 40px 0;
 }
-/* The line sits on a real in-flow element so it spans exactly the content area
-   (matching the wordmark's left edge and the scope note's right edge) and can never
-   escape its box the way an absolutely-positioned pseudo-element could. */
+/* Just the mark, top left — no rule under the header. */
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--space-4); padding-bottom: 20px;
-  border-bottom: 1px solid var(--accent-28);
 }
-.site-header .wordmark { height: 44px; width: auto; display: block; transition: transform .45s cubic-bezier(.34, 1.56, .64, 1); }
+.site-header .wordmark { height: 56px; width: auto; display: block; transition: transform .45s cubic-bezier(.34, 1.56, .64, 1); }
 /* The mark tips into a small turn of its spiral on hover — shared across all three pages. */
 .site-header a:hover .wordmark, .site-header a:focus-visible .wordmark { transform: rotate(-8deg) scale(1.06); }
 
@@ -970,7 +967,7 @@ main { padding: 0 22px 30px; }
 /* Mobile stacks the scope line under the wordmark; tablet and up is one
    justified row. */
 .header-inner { flex-direction: column; align-items: flex-start; gap: 4px; padding-bottom: 14px; }
-.site-header .wordmark { height: 34px; }
+.site-header .wordmark { height: 40px; }
 
 /* ---- Type ramp (§3) -------------------------------------------------- */
 /* Mobile column of the ramp. Tablet and desktop steps are below. */
@@ -1067,7 +1064,7 @@ main { padding: 0 22px 30px; }
   .site-footer { padding: 0 34px 40px; }
 
   .header-inner { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-4); padding-bottom: 16px; }
-  .site-header .wordmark { height: 38px; }
+  .site-header .wordmark { height: 48px; }
 
   .hero h1 { font-size: 46px; letter-spacing: -0.022em; line-height: 1.05; }
   .hero .lead { font-size: 18px; max-width: 46ch; }
@@ -1106,6 +1103,7 @@ main { padding: 0 22px 30px; }
 }
 
 @media (min-width: 1120px) {
+  .site-header .wordmark { height: 56px; }
   /* ---- Desktop ---- */
   main { padding: 0 48px 40px; }
   .site-header { padding: 26px 48px 0; }
