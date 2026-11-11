@@ -277,9 +277,17 @@ export function NextBox({ level, onNext }: { level: Level; onNext: () => void })
   return (
     <section className="ember next-box">
       <span className="eyebrow">{fill(ui.reading.next.eyebrow, { level: copy.levels[next].name })}</span>
-      <h2 className="next-box__heading">{copy.levels[next].description}</h2>
+      <h2 className="next-box__heading">{level === "deep" ? ui.reading.next.full.heading : copy.levels[next].description}</h2>
+      {level === "deep" && <p className="next-box__body">{ui.reading.next.full.body}</p>}
       <button type="button" className="button button--important" onClick={onNext}>
-        {level === "quick" ? ui.reading.next.buttons.deep : ui.reading.next.buttons.full} <span aria-hidden="true">→</span>
+        {/* Full Cast is closed for now: its button says "coming soon" and opens the sign-up. */}
+        {level === "quick" ? (
+          <>
+            {ui.reading.next.buttons.deep} <span aria-hidden="true">→</span>
+          </>
+        ) : (
+          ui.landing.levelSoon
+        )}
       </button>
     </section>
   );

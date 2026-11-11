@@ -72,6 +72,12 @@ Quick and Deep Cast need no server, keys or `.env.local`.
     cast no longer forced) or "cast again myself" (the guided cast). Copy: `gate.deepChoice`, draft.
   - The guided cast asks for the total as a typed number, and asks again until it's right.
     Copy: `cast.typedTotal`, draft.
+- **Owner, 11 Nov 2026 (second round):**
+  - "reveal this cast" is offered only when the cast has changing lines; otherwise Deep Cast is
+    the guided cast, after the sign-up if needed.
+  - Deep Cast's next box: "Make It Yours" / "Learn to interpret by asking specific questions."
+  - While Full Cast is closed, its buttons in the reading say "coming soon" (no arrow) and open
+    the Full Cast sign-up.
 
 - **Full Cast is closed for now (owner, 11 Nov 2026).** Payment is decided later. Every Full Cast
   button opens a sign-up modal instead ("Make It Yours"), with one email for the shared anyma

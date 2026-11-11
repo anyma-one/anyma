@@ -122,6 +122,11 @@
       "buttons": {
         "deep": "deep cast",
         "full": "full cast"
+      },
+      "full": {
+        "_status": "Approved by the owner, 11 Nov 2026 (Deep Cast's next box).",
+        "heading": "Make It Yours",
+        "body": "Learn to interpret by asking specific questions."
       }
     },
     "fullBox": {

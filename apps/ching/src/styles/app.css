@@ -2704,3 +2704,8 @@ a.button--ghost:hover {
   position: static;
   opacity: 1;
 }
+.next-box__body {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--bone-200);
+}

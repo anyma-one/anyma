@@ -82,9 +82,12 @@ export function Reading() {
     startUpgrade();
     navigate("cast");
   };
-  // Signed up or not, the person then chooses: reveal this cast at Deep Cast, or cast again.
+  // With changing lines, the person chooses: reveal this cast at Deep Cast, or cast again.
+  // Without, Deep Cast is a new guided cast, after the sign-up if it's still needed.
+  const canReveal = r.changingLines.length > 0;
   const toDeep = () => {
     track("upgrade_clicked", { to: "deep" });
+    if (!canReveal && isSignedUp()) return startDeep();
     setDeepChoiceOnly(isSignedUp());
     setGate("deep");
   };
@@ -153,7 +156,13 @@ export function Reading() {
         </h2>
         <p>{ui.reading.final.body}</p>
         <button type="button" className="button button--important button--large" onClick={level === "full" ? toDialogue : toFull}>
-          {ui.reading.final.button} <span aria-hidden="true">→</span>
+          {level === "full" ? (
+            <>
+              {ui.reading.final.button} <span aria-hidden="true">→</span>
+            </>
+          ) : (
+            ui.landing.levelSoon
+          )}
         </button>
       </section>
 
@@ -163,7 +172,7 @@ export function Reading() {
           onClose={closeGate}
           startAtChoice={gate === "deep" && deepChoiceOnly}
           onReveal={
-            gate === "deep"
+            gate === "deep" && canReveal
               ? () => {
                   setGate(null);
                   revealDeep(); // the same cast, now read at Deep Cast
@@ -248,7 +257,7 @@ function ReadingDropdowns({ r, onFull }: { r: ReadingT; onFull: () => void }) {
               </p>
               <Redacted />
               <button type="button" className="button button--important" onClick={onFull}>
-                {d.secondTeaser.cta} <span aria-hidden="true">→</span>
+                {ui.landing.levelSoon}
               </button>
             </>
           ) : (
