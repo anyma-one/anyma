@@ -6,7 +6,7 @@ The start screen and the games it opens, served as one site at **anyma.one**.
 /            apps/hub     the start screen — brand, three tiles, sign-up, suggestions
 /soul/       apps/soul    Spirit Animal (Vite + React)
 /dosha/      apps/dosha   Ayurvedic constitution reading (plain static)
-/ching/      —            not built; its tile is locked
+/ching/      apps/ching   learn to cast and read the I Ching (Vite + React)
 /api/*       api/         shared serverless functions (all three apps call these)
 ```
 

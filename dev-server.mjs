@@ -55,6 +55,18 @@ createServer(async (req, res) => {
     }
   }
 
+  // Mirror vercel.json's rewrite: ching's screens are client-side routes under /ching/.
+  if (path.startsWith("/ching/") && !extname(path)) {
+    try {
+      const data = await readFile(join(ROOT, "ching/index.html"));
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
+      res.end(data);
+      return;
+    } catch {
+      /* fall through */
+    }
+  }
+
   res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
 }).listen(PORT, () => {
   console.log(`anyma hub → http://localhost:${PORT}/`);

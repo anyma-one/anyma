@@ -7,6 +7,9 @@
   "crons": [
     { "path": "/api/keepalive", "schedule": "0 6 * * *" }
   ],
+  "rewrites": [
+    { "source": "/ching/:path*", "destination": "/ching/index.html" }
+  ],
   "redirects": [
     { "source": "/og-image.png", "destination": "/soul/og-image.png", "permanent": true },
     { "source": "/anyma-logo.png", "destination": "/soul/anyma-logo.png", "permanent": true },

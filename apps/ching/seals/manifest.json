@@ -1,0 +1,1018 @@
+{
+ "1": {
+  "file": "svg/01.svg",
+  "shape": "square",
+  "chars": "乾",
+  "sources": [
+   {
+    "char": "乾",
+    "method": "commons",
+    "files": [
+     "ACC-s10941.svg"
+    ]
+   }
+  ]
+ },
+ "2": {
+  "file": "svg/02.svg",
+  "shape": "square",
+  "chars": "坤",
+  "sources": [
+   {
+    "char": "坤",
+    "method": "composed",
+    "files": [
+     "土-seal.svg",
+     "申-seal.svg"
+    ]
+   }
+  ]
+ },
+ "3": {
+  "file": "svg/03.svg",
+  "shape": "square",
+  "chars": "屯",
+  "sources": [
+   {
+    "char": "屯",
+    "method": "commons",
+    "files": [
+     "屯-seal.svg"
+    ]
+   }
+  ]
+ },
+ "4": {
+  "file": "svg/04.svg",
+  "shape": "square",
+  "chars": "蒙",
+  "sources": [
+   {
+    "char": "蒙",
+    "method": "commons",
+    "files": [
+     "蒙-seal.svg"
+    ]
+   }
+  ]
+ },
+ "5": {
+  "file": "svg/05.svg",
+  "shape": "square",
+  "chars": "需",
+  "sources": [
+   {
+    "char": "需",
+    "method": "commons",
+    "files": [
+     "需-seal.svg"
+    ]
+   }
+  ]
+ },
+ "6": {
+  "file": "svg/06.svg",
+  "shape": "square",
+  "chars": "訟",
+  "sources": [
+   {
+    "char": "訟",
+    "method": "composed",
+    "files": [
+     "言-seal.svg",
+     "公-seal.svg"
+    ]
+   }
+  ]
+ },
+ "7": {
+  "file": "svg/07.svg",
+  "shape": "square",
+  "chars": "師",
+  "sources": [
+   {
+    "char": "師",
+    "method": "commons",
+    "files": [
+     "師-seal.svg"
+    ]
+   }
+  ]
+ },
+ "8": {
+  "file": "svg/08.svg",
+  "shape": "square",
+  "chars": "比",
+  "sources": [
+   {
+    "char": "比",
+    "method": "commons",
+    "files": [
+     "比-seal.svg"
+    ]
+   }
+  ]
+ },
+ "9": {
+  "file": "svg/09.svg",
+  "shape": "tall",
+  "chars": "小畜",
+  "sources": [
+   {
+    "char": "小",
+    "method": "commons",
+    "files": [
+     "小-seal.svg"
+    ]
+   },
+   {
+    "char": "畜",
+    "method": "commons",
+    "files": [
+     "畜-seal.svg"
+    ]
+   }
+  ]
+ },
+ "10": {
+  "file": "svg/10.svg",
+  "shape": "square",
+  "chars": "履",
+  "sources": [
+   {
+    "char": "履",
+    "method": "commons",
+    "files": [
+     "履-seal.svg"
+    ]
+   }
+  ]
+ },
+ "11": {
+  "file": "svg/11.svg",
+  "shape": "square",
+  "chars": "泰",
+  "sources": [
+   {
+    "char": "泰",
+    "method": "commons",
+    "files": [
+     "泰-seal.svg"
+    ]
+   }
+  ]
+ },
+ "12": {
+  "file": "svg/12.svg",
+  "shape": "square",
+  "chars": "否",
+  "sources": [
+   {
+    "char": "否",
+    "method": "commons",
+    "files": [
+     "否-seal.svg"
+    ]
+   }
+  ]
+ },
+ "13": {
+  "file": "svg/13.svg",
+  "shape": "tall",
+  "chars": "同人",
+  "sources": [
+   {
+    "char": "同",
+    "method": "commons",
+    "files": [
+     "同-seal.svg"
+    ]
+   },
+   {
+    "char": "人",
+    "method": "commons",
+    "files": [
+     "人-seal.svg"
+    ]
+   }
+  ]
+ },
+ "14": {
+  "file": "svg/14.svg",
+  "shape": "tall",
+  "chars": "大有",
+  "sources": [
+   {
+    "char": "大",
+    "method": "commons",
+    "files": [
+     "大-seal.svg"
+    ]
+   },
+   {
+    "char": "有",
+    "method": "commons",
+    "files": [
+     "有-seal.svg"
+    ]
+   }
+  ]
+ },
+ "15": {
+  "file": "svg/15.svg",
+  "shape": "square",
+  "chars": "謙",
+  "sources": [
+   {
+    "char": "謙",
+    "method": "commons",
+    "files": [
+     "謙-seal.svg"
+    ]
+   }
+  ]
+ },
+ "16": {
+  "file": "svg/16.svg",
+  "shape": "square",
+  "chars": "豫",
+  "sources": [
+   {
+    "char": "豫",
+    "method": "commons",
+    "files": [
+     "豫-seal.svg"
+    ]
+   }
+  ]
+ },
+ "17": {
+  "file": "svg/17.svg",
+  "shape": "square",
+  "chars": "隨",
+  "sources": [
+   {
+    "char": "隨",
+    "method": "commons",
+    "files": [
+     "隨-seal.svg"
+    ]
+   }
+  ]
+ },
+ "18": {
+  "file": "svg/18.svg",
+  "shape": "square",
+  "chars": "蠱",
+  "sources": [
+   {
+    "char": "蠱",
+    "method": "commons",
+    "files": [
+     "蠱-seal.svg"
+    ]
+   }
+  ]
+ },
+ "19": {
+  "file": "svg/19.svg",
+  "shape": "square",
+  "chars": "臨",
+  "sources": [
+   {
+    "char": "臨",
+    "method": "commons",
+    "files": [
+     "臨-seal.svg"
+    ]
+   }
+  ]
+ },
+ "20": {
+  "file": "svg/20.svg",
+  "shape": "square",
+  "chars": "觀",
+  "sources": [
+   {
+    "char": "觀",
+    "method": "commons",
+    "files": [
+     "觀-seal.svg"
+    ]
+   }
+  ]
+ },
+ "21": {
+  "file": "svg/21.svg",
+  "shape": "tall",
+  "chars": "噬嗑",
+  "sources": [
+   {
+    "char": "噬",
+    "method": "composed",
+    "files": [
+     "口-seal.svg",
+     "筮-seal.svg"
+    ]
+   },
+   {
+    "char": "嗑",
+    "method": "commons",
+    "files": [
+     "嗑-seal.svg"
+    ]
+   }
+  ]
+ },
+ "22": {
+  "file": "svg/22.svg",
+  "shape": "square",
+  "chars": "賁",
+  "sources": [
+   {
+    "char": "賁",
+    "method": "commons",
+    "files": [
+     "賁-seal.svg"
+    ]
+   }
+  ]
+ },
+ "23": {
+  "file": "svg/23.svg",
+  "shape": "square",
+  "chars": "剝",
+  "sources": [
+   {
+    "char": "剝",
+    "method": "composed",
+    "files": [
+     "彔-seal.svg",
+     "刀-seal.svg"
+    ]
+   }
+  ]
+ },
+ "24": {
+  "file": "svg/24.svg",
+  "shape": "square",
+  "chars": "復",
+  "sources": [
+   {
+    "char": "復",
+    "method": "commons",
+    "files": [
+     "復-seal.svg"
+    ]
+   }
+  ]
+ },
+ "25": {
+  "file": "svg/25.svg",
+  "shape": "tall",
+  "chars": "無妄",
+  "sources": [
+   {
+    "char": "無",
+    "method": "commons",
+    "files": [
+     "無-seal.svg"
+    ]
+   },
+   {
+    "char": "妄",
+    "method": "commons",
+    "files": [
+     "妄-seal.svg"
+    ]
+   }
+  ]
+ },
+ "26": {
+  "file": "svg/26.svg",
+  "shape": "tall",
+  "chars": "大畜",
+  "sources": [
+   {
+    "char": "大",
+    "method": "commons",
+    "files": [
+     "大-seal.svg"
+    ]
+   },
+   {
+    "char": "畜",
+    "method": "commons",
+    "files": [
+     "畜-seal.svg"
+    ]
+   }
+  ]
+ },
+ "27": {
+  "file": "svg/27.svg",
+  "shape": "square",
+  "chars": "頤",
+  "sources": [
+   {
+    "char": "頤",
+    "method": "commons",
+    "files": [
+     "頤-seal.svg"
+    ]
+   }
+  ]
+ },
+ "28": {
+  "file": "svg/28.svg",
+  "shape": "tall",
+  "chars": "大過",
+  "sources": [
+   {
+    "char": "大",
+    "method": "commons",
+    "files": [
+     "大-seal.svg"
+    ]
+   },
+   {
+    "char": "過",
+    "method": "commons",
+    "files": [
+     "過-seal.svg"
+    ]
+   }
+  ]
+ },
+ "29": {
+  "file": "svg/29.svg",
+  "shape": "square",
+  "chars": "坎",
+  "sources": [
+   {
+    "char": "坎",
+    "method": "commons",
+    "files": [
+     "坎-seal.svg"
+    ]
+   }
+  ]
+ },
+ "30": {
+  "file": "svg/30.svg",
+  "shape": "square",
+  "chars": "離",
+  "sources": [
+   {
+    "char": "離",
+    "method": "commons",
+    "files": [
+     "離-seal.svg"
+    ]
+   }
+  ]
+ },
+ "31": {
+  "file": "svg/31.svg",
+  "shape": "square",
+  "chars": "咸",
+  "sources": [
+   {
+    "char": "咸",
+    "method": "commons",
+    "files": [
+     "咸-seal.svg"
+    ]
+   }
+  ]
+ },
+ "32": {
+  "file": "svg/32.svg",
+  "shape": "square",
+  "chars": "恆",
+  "sources": [
+   {
+    "char": "恆",
+    "method": "commons",
+    "files": [
+     "恆-seal.svg"
+    ]
+   }
+  ]
+ },
+ "33": {
+  "file": "svg/33.svg",
+  "shape": "square",
+  "chars": "遯",
+  "sources": [
+   {
+    "char": "遯",
+    "method": "composed",
+    "files": [
+     "辵-seal.svg",
+     "豚-seal.svg"
+    ]
+   }
+  ]
+ },
+ "34": {
+  "file": "svg/34.svg",
+  "shape": "tall",
+  "chars": "大壯",
+  "sources": [
+   {
+    "char": "大",
+    "method": "commons",
+    "files": [
+     "大-seal.svg"
+    ]
+   },
+   {
+    "char": "壯",
+    "method": "composed",
+    "files": [
+     "爿-seal.svg",
+     "士-seal.svg"
+    ]
+   }
+  ]
+ },
+ "35": {
+  "file": "svg/35.svg",
+  "shape": "square",
+  "chars": "晉",
+  "sources": [
+   {
+    "char": "晉",
+    "method": "composed",
+    "files": [
+     "至-seal.svg",
+     "日-seal.svg"
+    ]
+   }
+  ]
+ },
+ "36": {
+  "file": "svg/36.svg",
+  "shape": "tall",
+  "chars": "明夷",
+  "sources": [
+   {
+    "char": "明",
+    "method": "commons",
+    "files": [
+     "明-seal.svg"
+    ]
+   },
+   {
+    "char": "夷",
+    "method": "commons",
+    "files": [
+     "夷-seal.svg"
+    ]
+   }
+  ]
+ },
+ "37": {
+  "file": "svg/37.svg",
+  "shape": "tall",
+  "chars": "家人",
+  "sources": [
+   {
+    "char": "家",
+    "method": "commons",
+    "files": [
+     "家-seal.svg"
+    ]
+   },
+   {
+    "char": "人",
+    "method": "commons",
+    "files": [
+     "人-seal.svg"
+    ]
+   }
+  ]
+ },
+ "38": {
+  "file": "svg/38.svg",
+  "shape": "square",
+  "chars": "睽",
+  "sources": [
+   {
+    "char": "睽",
+    "method": "composed",
+    "files": [
+     "目-seal.svg",
+     "癸-seal.svg"
+    ]
+   }
+  ]
+ },
+ "39": {
+  "file": "svg/39.svg",
+  "shape": "square",
+  "chars": "蹇",
+  "sources": [
+   {
+    "char": "蹇",
+    "method": "commons",
+    "files": [
+     "蹇-seal.svg"
+    ]
+   }
+  ]
+ },
+ "40": {
+  "file": "svg/40.svg",
+  "shape": "square",
+  "chars": "解",
+  "sources": [
+   {
+    "char": "解",
+    "method": "commons",
+    "files": [
+     "解-seal.svg"
+    ]
+   }
+  ]
+ },
+ "41": {
+  "file": "svg/41.svg",
+  "shape": "square",
+  "chars": "損",
+  "sources": [
+   {
+    "char": "損",
+    "method": "composed",
+    "files": [
+     "手-seal.svg",
+     "員-seal.svg"
+    ]
+   }
+  ]
+ },
+ "42": {
+  "file": "svg/42.svg",
+  "shape": "square",
+  "chars": "益",
+  "sources": [
+   {
+    "char": "益",
+    "method": "composed",
+    "files": [
+     "水-seal.svg",
+     "皿-seal.svg"
+    ]
+   }
+  ]
+ },
+ "43": {
+  "file": "svg/43.svg",
+  "shape": "square",
+  "chars": "夬",
+  "sources": [
+   {
+    "char": "夬",
+    "method": "commons",
+    "files": [
+     "夬-seal.svg"
+    ]
+   }
+  ]
+ },
+ "44": {
+  "file": "svg/44.svg",
+  "shape": "square",
+  "chars": "姤",
+  "sources": [
+   {
+    "char": "姤",
+    "method": "composed",
+    "files": [
+     "女-seal.svg",
+     "后-seal.svg"
+    ]
+   }
+  ]
+ },
+ "45": {
+  "file": "svg/45.svg",
+  "shape": "square",
+  "chars": "萃",
+  "sources": [
+   {
+    "char": "萃",
+    "method": "commons",
+    "files": [
+     "萃-seal.svg"
+    ]
+   }
+  ]
+ },
+ "46": {
+  "file": "svg/46.svg",
+  "shape": "square",
+  "chars": "升",
+  "sources": [
+   {
+    "char": "升",
+    "method": "commons",
+    "files": [
+     "升-seal.svg"
+    ]
+   }
+  ]
+ },
+ "47": {
+  "file": "svg/47.svg",
+  "shape": "square",
+  "chars": "困",
+  "sources": [
+   {
+    "char": "困",
+    "method": "commons",
+    "files": [
+     "困-seal.svg"
+    ]
+   }
+  ]
+ },
+ "48": {
+  "file": "svg/48.svg",
+  "shape": "square",
+  "chars": "井",
+  "sources": [
+   {
+    "char": "井",
+    "method": "commons",
+    "files": [
+     "井-seal.svg"
+    ]
+   }
+  ]
+ },
+ "49": {
+  "file": "svg/49.svg",
+  "shape": "square",
+  "chars": "革",
+  "sources": [
+   {
+    "char": "革",
+    "method": "commons",
+    "files": [
+     "革-seal.svg"
+    ]
+   }
+  ]
+ },
+ "50": {
+  "file": "svg/50.svg",
+  "shape": "square",
+  "chars": "鼎",
+  "sources": [
+   {
+    "char": "鼎",
+    "method": "commons",
+    "files": [
+     "鼎-seal.svg"
+    ]
+   }
+  ]
+ },
+ "51": {
+  "file": "svg/51.svg",
+  "shape": "square",
+  "chars": "震",
+  "sources": [
+   {
+    "char": "震",
+    "method": "commons",
+    "files": [
+     "震-seal.svg"
+    ]
+   }
+  ]
+ },
+ "52": {
+  "file": "svg/52.svg",
+  "shape": "square",
+  "chars": "艮",
+  "sources": [
+   {
+    "char": "艮",
+    "method": "commons",
+    "files": [
+     "艮-seal.svg"
+    ]
+   }
+  ]
+ },
+ "53": {
+  "file": "svg/53.svg",
+  "shape": "square",
+  "chars": "漸",
+  "sources": [
+   {
+    "char": "漸",
+    "method": "commons",
+    "files": [
+     "漸-seal.svg"
+    ]
+   }
+  ]
+ },
+ "54": {
+  "file": "svg/54.svg",
+  "shape": "tall",
+  "chars": "歸妹",
+  "sources": [
+   {
+    "char": "歸",
+    "method": "commons",
+    "files": [
+     "歸-seal.svg"
+    ]
+   },
+   {
+    "char": "妹",
+    "method": "commons",
+    "files": [
+     "妹-seal.svg"
+    ]
+   }
+  ]
+ },
+ "55": {
+  "file": "svg/55.svg",
+  "shape": "square",
+  "chars": "豐",
+  "sources": [
+   {
+    "char": "豐",
+    "method": "commons",
+    "files": [
+     "豐-seal.svg"
+    ]
+   }
+  ]
+ },
+ "56": {
+  "file": "svg/56.svg",
+  "shape": "square",
+  "chars": "旅",
+  "sources": [
+   {
+    "char": "旅",
+    "method": "commons",
+    "files": [
+     "旅-seal.svg"
+    ]
+   }
+  ]
+ },
+ "57": {
+  "file": "svg/57.svg",
+  "shape": "square",
+  "chars": "巽",
+  "sources": [
+   {
+    "char": "巽",
+    "method": "commons",
+    "files": [
+     "巽-seal.svg"
+    ]
+   }
+  ]
+ },
+ "58": {
+  "file": "svg/58.svg",
+  "shape": "square",
+  "chars": "兌",
+  "sources": [
+   {
+    "char": "兌",
+    "method": "commons",
+    "files": [
+     "兌-seal.svg"
+    ]
+   }
+  ]
+ },
+ "59": {
+  "file": "svg/59.svg",
+  "shape": "square",
+  "chars": "渙",
+  "sources": [
+   {
+    "char": "渙",
+    "method": "composed",
+    "files": [
+     "水-seal.svg",
+     "喚-seal.svg"
+    ]
+   }
+  ]
+ },
+ "60": {
+  "file": "svg/60.svg",
+  "shape": "square",
+  "chars": "節",
+  "sources": [
+   {
+    "char": "節",
+    "method": "commons",
+    "files": [
+     "節-seal.svg"
+    ]
+   }
+  ]
+ },
+ "61": {
+  "file": "svg/61.svg",
+  "shape": "tall",
+  "chars": "中孚",
+  "sources": [
+   {
+    "char": "中",
+    "method": "commons",
+    "files": [
+     "中-seal.svg"
+    ]
+   },
+   {
+    "char": "孚",
+    "method": "commons",
+    "files": [
+     "孚-seal.svg"
+    ]
+   }
+  ]
+ },
+ "62": {
+  "file": "svg/62.svg",
+  "shape": "tall",
+  "chars": "小過",
+  "sources": [
+   {
+    "char": "小",
+    "method": "commons",
+    "files": [
+     "小-seal.svg"
+    ]
+   },
+   {
+    "char": "過",
+    "method": "commons",
+    "files": [
+     "過-seal.svg"
+    ]
+   }
+  ]
+ },
+ "63": {
+  "file": "svg/63.svg",
+  "shape": "tall",
+  "chars": "既濟",
+  "sources": [
+   {
+    "char": "既",
+    "method": "composed",
+    "files": [
+     "皀-seal.svg",
+     "旡-seal.svg"
+    ]
+   },
+   {
+    "char": "濟",
+    "method": "composed",
+    "files": [
+     "水-seal.svg",
+     "齊-seal.svg"
+    ]
+   }
+  ]
+ },
+ "64": {
+  "file": "svg/64.svg",
+  "shape": "tall",
+  "chars": "未濟",
+  "sources": [
+   {
+    "char": "未",
+    "method": "commons",
+    "files": [
+     "未-seal.svg"
+    ]
+   },
+   {
+    "char": "濟",
+    "method": "composed",
+    "files": [
+     "水-seal.svg",
+     "齊-seal.svg"
+    ]
+   }
+  ]
+ }
+}

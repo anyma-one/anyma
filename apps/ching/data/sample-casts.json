@@ -1,0 +1,795 @@
+{
+  "_note": "Real content from hexagrams.json and copy.json, assembled per level. Questions are examples for mockups. Rebuild with handoff/make_samples.py.",
+  "casts": [
+    {
+      "case": "No changing lines (about 1 cast in 6)",
+      "question": "What should I understand about taking on this new role?",
+      "questionNote": "Example question for mockups only.",
+      "tosses": [
+        {
+          "line": 1,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 2,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 3,
+          "coins": [
+            3,
+            2,
+            2
+          ],
+          "total": 7,
+          "type": "young yang",
+          "changing": false
+        },
+        {
+          "line": 4,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 5,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 6,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        }
+      ],
+      "changingLines": [],
+      "primary": {
+        "number": 15,
+        "glyph": "䷎",
+        "name": "Humbleness",
+        "wilhelm": "Modesty",
+        "pinyin": "Qiān",
+        "chinese": "謙",
+        "seal": {
+          "file": "seals/svg/15.svg",
+          "shape": "square",
+          "composed": false
+        },
+        "trigrams": {
+          "upper": "☷ Earth (Kūn 坤)",
+          "lower": "☶ Mountain (Gèn 艮)"
+        },
+        "label": "Earth over Mountain",
+        "lines": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "second": null,
+      "quickCast": {
+        "judgment": "True modesty, the mountain content to sit below the earth though it towers within it. There's real success in this, and it lasts. The person who has much and still doesn't need to display it carries things through to a good end. Not smallness, but strength that feels no need to announce itself.",
+        "image": "The mountain holds itself low, hidden inside the earth though it is vast. Take after it: draw down from where there's too much and add where there's too little, evening things out quietly, measuring fairly without making a show of it.",
+        "honestFrame": "These are the hexagram's traditional texts, the Judgment and the Image, in a modern rendering: evocative, a little cryptic, and the same for everyone who receives this hexagram. Learning to read them for your own question is what Deep Cast is for.",
+        "cta": "Continue with Deep Cast"
+      },
+      "deepCast": {
+        "changingFraming": "No lines are changing in your cast. That makes this a still hexagram: one settled picture rather than a situation in motion. There's no second hexagram this time, so the whole message lives here. The Meaning below is your reading.",
+        "meaning": "Modesty, the real kind. Not false humility or putting yourself down, but strength that doesn't need to be seen. Picture a mountain hidden inside the earth: vast, but content to stay low. Tradition notes that every one of this hexagram's six lines is favorable, which is rare, and says a lot about what modesty brings. When you don't need to announce your worth, people trust you, and things flow toward you naturally. Modesty also has a balancing quality: it takes from where there's too much and gives where there's too little. Ask yourself where you might be inflating yourself, or where you're holding back from giving. Carry what you have lightly, and you can carry it far.",
+        "beneficial": "Quiet strength without display earns trust and carries things to a good end.",
+        "beware": "Watch for hidden pride, or for false humility that holds back giving.",
+        "reflections": [
+          "What could you do well without needing credit?",
+          "Where is there too much, or too little?",
+          "How would it feel to carry this success lightly?"
+        ],
+        "changingLineTexts": [],
+        "allChangingText": null,
+        "secondTeaser": null,
+        "secondCta": null
+      },
+      "fullCast": {
+        "changingFraming": "Nothing is changing, so there's no second hexagram to move toward. Read all six lines anyway, from the bottom up, as the full arc of this hexagram's story. None is highlighted, because none is transforming; the value here is watching the theme build from its first stage to its last.",
+        "allLines": [
+          {
+            "line": 1,
+            "text": "Modest about your modesty, so quiet about it that even humility isn't worn as a badge. You simply do what needs doing without fuss. With this, even crossing the great water, taking on something difficult and important, becomes possible. Good fortune.",
+            "changing": false
+          },
+          {
+            "line": 2,
+            "text": "Modesty that has come to expression. People notice it in how you speak and act without your ever announcing it. It's become part of who you are. Staying steady and true with that, good fortune follows naturally.",
+            "changing": false
+          },
+          {
+            "line": 3,
+            "text": "Modest even in your accomplishments. You've done real work and earned real merit, and you don't make a show of it. People respect that, and they'll support you to the end. Carrying achievement lightly brings things to a good conclusion. Good fortune.",
+            "changing": false
+          },
+          {
+            "line": 4,
+            "text": "Modesty in action, everywhere you move. Nothing is unfavorable here. Don't let humility become a hiding place, an excuse to hold back; let it shape what you actually do. Keep stirring it into your conduct, not just your view of yourself.",
+            "changing": false
+          },
+          {
+            "line": 5,
+            "text": "You don't boast of your wealth to your neighbors, and though you're not rich, people follow your lead. Modesty isn't weakness, though. Sometimes force is needed to set things right, and when it is, use it without hesitation. Everything turns out favorably.",
+            "changing": false
+          },
+          {
+            "line": 6,
+            "text": "Modesty so well known it's recognized everywhere. Now you have the standing to act with real force. Turn that strength first to setting your own house in order, the old image of disciplining one's own city rather than attacking others.",
+            "changing": false
+          }
+        ],
+        "second": null,
+        "dialogueStarters": [
+          "What does a still hexagram mean for my question?",
+          "Which part of the reading speaks most to my situation?",
+          "What am I not seeing here?"
+        ]
+      }
+    },
+    {
+      "case": "One changing line (about 1 cast in 3)",
+      "question": "How can I approach starting my own studio?",
+      "questionNote": "Example question for mockups only.",
+      "tosses": [
+        {
+          "line": 1,
+          "coins": [
+            3,
+            2,
+            2
+          ],
+          "total": 7,
+          "type": "young yang",
+          "changing": false
+        },
+        {
+          "line": 2,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 3,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 4,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        },
+        {
+          "line": 5,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        },
+        {
+          "line": 6,
+          "coins": [
+            3,
+            3,
+            2
+          ],
+          "total": 8,
+          "type": "young yin",
+          "changing": false
+        }
+      ],
+      "changingLines": [
+        5
+      ],
+      "primary": {
+        "number": 3,
+        "glyph": "䷂",
+        "name": "Beginning",
+        "wilhelm": "Difficulty at the Beginning",
+        "pinyin": "Zhūn",
+        "chinese": "屯",
+        "seal": {
+          "file": "seals/svg/03.svg",
+          "shape": "square",
+          "composed": false
+        },
+        "trigrams": {
+          "upper": "☵ Water (Kǎn 坎)",
+          "lower": "☳ Thunder (Zhèn 震)"
+        },
+        "label": "Water over Thunder",
+        "lines": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "second": {
+        "number": 24,
+        "glyph": "䷗",
+        "name": "Turning Back",
+        "wilhelm": "Return",
+        "pinyin": "Fù",
+        "chinese": "復",
+        "seal": {
+          "file": "seals/svg/24.svg",
+          "shape": "square",
+          "composed": false
+        },
+        "trigrams": {
+          "upper": "☷ Earth (Kūn 坤)",
+          "lower": "☳ Thunder (Zhèn 震)"
+        },
+        "label": "Earth over Thunder",
+        "lines": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "quickCast": {
+        "judgment": "A time of real promise, but the promise is still buried in difficulty, and only patience brings it through. Don't strike out toward some far-off goal yet. What helps now isn't bold action, it's the right support around you. Find the people who can steady the work, and stay the course instead of chasing a quick resolution.",
+        "image": "Thunder stirs below and clouds gather above: energy and confusion in the same sky, not yet broken into rain. Meet a tangled beginning by bringing order to it patiently, sorting the threads and giving the chaos a shape, rather than waiting for it to clear on its own.",
+        "honestFrame": "These are the hexagram's traditional texts, the Judgment and the Image, in a modern rendering: evocative, a little cryptic, and the same for everyone who receives this hexagram. Learning to read them for your own question is what Deep Cast is for.",
+        "cta": "Continue with Deep Cast"
+      },
+      "deepCast": {
+        "changingFraming": "One line in your cast is changing. That single line is the most specific note in your reading, and it's enough on its own to turn this cast into a second hexagram, a glimpse of where things are heading. Read the changing line below.",
+        "meaning": "Something new is genuinely beginning, and it's hard in the way that only real beginnings are. Picture a seed that has cracked open underground but hasn't yet broken the surface. There's life in it, real momentum, but it's pushing through dense, tangled ground, and from the outside nothing looks finished or even certain. That's the moment you're in. The difficulty you feel isn't a sign you've chosen wrong; it's the friction of growth itself. The mistake here is impatience, forcing the shoot up before it's ready, or reading the struggle as failure and pulling back. What this asks of you instead is steadiness. Don't try to do it alone, and don't rush to lock in a direction. Gather people who can support you, hold to your sense of purpose, and let the first true shape of the thing emerge before you commit to where it's going.",
+        "beneficial": "Something real is taking root; the difficulty is a sign of genuine growth.",
+        "beware": "Rushing can snap the shoot before it's strong.",
+        "reflections": [
+          "What are you rushing that needs more time?",
+          "Who could help you through this start?",
+          "What if the struggle is a sign of growth?"
+        ],
+        "changingLineTexts": [
+          {
+            "line": 5,
+            "text": "You have real good to give, but it isn't flowing freely to others yet. In small, steady measures your efforts land and do good. Trying to force large change all at once will go badly. Work at the scale the moment allows."
+          }
+        ],
+        "allChangingText": null,
+        "secondTeaser": "Your cast is moving toward ䷗ Turning Back. Where this change is taking you, and what it means for your question, opens in Full Cast.",
+        "secondCta": "Sign up for Full Cast"
+      },
+      "fullCast": {
+        "changingFraming": "One line is changing, highlighted below. Read all six lines, but let the highlighted one carry the weight. It's the crucial element that turns this cast into the second hexagram shown here.",
+        "allLines": [
+          {
+            "line": 1,
+            "text": "You meet an obstacle almost at once and feel the pull to force your way past it. Hold still instead and stay true to your purpose. This is the moment to set solid foundations and bring in people who can help, not to charge ahead alone.",
+            "changing": false
+          },
+          {
+            "line": 2,
+            "text": "The difficulties stack up and progress stalls; the horses seem to pull the cart backward. The old image is a young woman who turns down a suitor who isn't right, and waits ten years for the right union. Don't accept a commitment that isn't right yet. What isn't ready now can still come right in its own time.",
+            "changing": false
+          },
+          {
+            "line": 3,
+            "text": "Chasing the goal without a guide is like hunting deer in the forest with no forester to show the way; you'll only lose yourself among the trees. Read the moment honestly. Knowing when to stop isn't weakness here; it's wisdom. Pushing on now leads to regret.",
+            "changing": false
+          },
+          {
+            "line": 4,
+            "text": "Again the horses pull back and the way looks blocked, but this time reaching out is right. Set aside pride and move toward the help or the connection you need, from someone who genuinely wants to join with you. Taking that step now brings good fortune.",
+            "changing": false
+          },
+          {
+            "line": 5,
+            "text": "You have real good to give, but it isn't flowing freely to others yet. In small, steady measures your efforts land and do good. Trying to force large change all at once will go badly. Work at the scale the moment allows.",
+            "changing": true
+          },
+          {
+            "line": 6,
+            "text": "The horses turn back, and tears of blood flow. Here the struggle reaches its hardest point, where the effort collapses and grief follows. It names the real cost of pushing a beginning past what it can bear. Grieve, stop, and let yourself begin again differently.",
+            "changing": false
+          }
+        ],
+        "second": {
+          "judgment": "The turning point. After a time of decline the light begins to return, as surely as the days lengthen after the winter solstice. It brings success. The movement is natural and unforced, so there's no need to hurry it. Old friends come back, energy returns in its own rhythm, and it's good now to have somewhere to go.",
+          "image": "Thunder stirs deep inside the earth, the first faint movement of returning life, still hidden. Protect that new beginning the way the ancients rested at midwinter: keep things quiet, don't scatter your energy, and let the return gather strength before you test it.",
+          "meaning": "After a long darkness, the light returns. This is the winter solstice among the hexagrams: the moment when the days stop shortening and begin, slowly, to lengthen. Something that had been lost or dormant is coming back: energy, hope, a relationship, a sense of direction. It isn't dramatic. It's quiet and natural, and the first stirrings are fragile. Don't rush it or test it too soon. Give it rest and protection so it can gather strength. This is also a hexagram of returning to yourself, coming back to the right path after straying. The way back is open. Take it gently, and let the return grow in its own time."
+        },
+        "dialogueStarters": [
+          "What does the changing line mean for my question?",
+          "How do the two hexagrams relate?",
+          "What am I not seeing here?"
+        ]
+      }
+    },
+    {
+      "case": "Two changing lines (the most common multi-line case)",
+      "question": "What do I need to see about leaving my current city?",
+      "questionNote": "Example question for mockups only.",
+      "tosses": [
+        {
+          "line": 1,
+          "coins": [
+            3,
+            2,
+            2
+          ],
+          "total": 7,
+          "type": "young yang",
+          "changing": false
+        },
+        {
+          "line": 2,
+          "coins": [
+            2,
+            2,
+            2
+          ],
+          "total": 6,
+          "type": "old yin",
+          "changing": true
+        },
+        {
+          "line": 3,
+          "coins": [
+            3,
+            2,
+            2
+          ],
+          "total": 7,
+          "type": "young yang",
+          "changing": false
+        },
+        {
+          "line": 4,
+          "coins": [
+            3,
+            2,
+            2
+          ],
+          "total": 7,
+          "type": "young yang",
+          "changing": false
+        },
+        {
+          "line": 5,
+          "coins": [
+            3,
+            2,
+            2
+          ],
+          "total": 7,
+          "type": "young yang",
+          "changing": false
+        },
+        {
+          "line": 6,
+          "coins": [
+            2,
+            2,
+            2
+          ],
+          "total": 6,
+          "type": "old yin",
+          "changing": true
+        }
+      ],
+      "changingLines": [
+        2,
+        6
+      ],
+      "primary": {
+        "number": 49,
+        "glyph": "䷰",
+        "name": "Abolishing the Old",
+        "wilhelm": "Revolution",
+        "pinyin": "Gé",
+        "chinese": "革",
+        "seal": {
+          "file": "seals/svg/49.svg",
+          "shape": "square",
+          "composed": false
+        },
+        "trigrams": {
+          "upper": "☱ Lake (Duì 兌)",
+          "lower": "☲ Fire (Lí 離)"
+        },
+        "label": "Lake over Fire",
+        "lines": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "second": {
+        "number": 1,
+        "glyph": "䷀",
+        "name": "Initiating",
+        "wilhelm": "The Creative",
+        "pinyin": "Qián",
+        "chinese": "乾",
+        "seal": {
+          "file": "seals/svg/01.svg",
+          "shape": "square",
+          "composed": false
+        },
+        "trigrams": {
+          "upper": "☰ Heaven (Qián 乾)",
+          "lower": "☰ Heaven (Qián 乾)"
+        },
+        "label": "Heaven over Heaven",
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "quickCast": {
+        "judgment": "The old falls away and something new must take its place. A change this deep is only trusted once its moment has truly arrived. When it has, act with conviction, and keep your purpose clean. Then the change succeeds and regret disappears.",
+        "image": "Fire in the lake, two forces that cannot stay as they are. When transformation comes, give it a clear rhythm, the way a calendar marks the seasons, so people can understand the change they're living through.",
+        "honestFrame": "These are the hexagram's traditional texts, the Judgment and the Image, in a modern rendering: evocative, a little cryptic, and the same for everyone who receives this hexagram. Learning to read them for your own question is what Deep Cast is for.",
+        "cta": "Continue with Deep Cast"
+      },
+      "deepCast": {
+        "changingFraming": "Your cast has two changing lines. Together they tell a fuller story, and they reveal a second hexagram: where this situation is heading as it transforms. Read the changing lines below, from the bottom up.",
+        "meaning": "Deep change is coming, the turning of an era, the shedding of an old skin. Something in your life has run its course and needs to be replaced. Change of this size can't be rushed. It needs the right timing, and it needs the trust of those it affects. When the moment truly arrives, act with conviction and clear purpose. Explain the change and make the new order understandable, the way a calendar makes the seasons clear. Done this way, regret disappears and the transformation succeeds. Change for its own sake, or change forced too early, only causes chaos. Ask whether the time is really ripe.",
+        "beneficial": "The time for real change has come; act with conviction and clarity.",
+        "beware": "Change forced too early, or without trust, only causes chaos.",
+        "reflections": [
+          "What has run its course?",
+          "How will you know the time is right?",
+          "How could you help others understand the change?"
+        ],
+        "changingLineTexts": [
+          {
+            "line": 2,
+            "text": "Now the time has come. You've waited, watched the situation ripen, and the change you've been considering is ready to be made. Act. Moving now brings good fortune, and there's nothing to reproach in it. Change made after due patience carries a weight that hasty change never has."
+          },
+          {
+            "line": 6,
+            "text": "The change is done. The old image is the leopard changing its spots, a finer and subtler shift, while those who resisted now change their faces and go along. Don't push for more. Further upheaval would bring misfortune. Settle into the new order, steady and true, and let it take root."
+          }
+        ],
+        "allChangingText": null,
+        "secondTeaser": "Your cast is moving toward ䷀ Initiating. Where this change is taking you, and what it means for your question, opens in Full Cast.",
+        "secondCta": "Sign up for Full Cast"
+      },
+      "fullCast": {
+        "changingFraming": "Your cast has two changing lines, highlighted below. Read all six as one arc and watch the highlighted ones: they're the moving parts carrying this hexagram into the second. The first hexagram is where you are; the second is where the change is taking you.",
+        "allLines": [
+          {
+            "line": 1,
+            "text": "Too early to change anything yet. The old image is being bound in the hide of a yellow ox, held firm by something tough and steady. Stay put and stay grounded for now. The case for change is still forming, and acting before it's ready would only cut you loose from the support you'll need later.",
+            "changing": false
+          },
+          {
+            "line": 2,
+            "text": "Now the time has come. You've waited, watched the situation ripen, and the change you've been considering is ready to be made. Act. Moving now brings good fortune, and there's nothing to reproach in it. Change made after due patience carries a weight that hasty change never has.",
+            "changing": true
+          },
+          {
+            "line": 3,
+            "text": "Pushing ahead blindly here leads to trouble, even if your cause is right. The position is precarious. Talk the change through, carefully and more than once, until people genuinely understand it. When it has been weighed three times over, you'll be believed, and only then can it go forward.",
+            "changing": false
+          },
+          {
+            "line": 4,
+            "text": "Doubt and regret fall away. People trust you now, and that trust is what makes deep change possible. Even reshaping long-standing rules brings good fortune when it rests on real confidence. The change isn't imposed from outside; it's carried by belief in what you're doing.",
+            "changing": false
+          },
+          {
+            "line": 5,
+            "text": "The old image is the tiger changing its stripes: a transformation so clear and striking that everyone can see it. You don't need to consult anyone or ask for signs. People already trust you, before you've even begun. When change comes from someone this grounded, it is bold, visible and right.",
+            "changing": false
+          },
+          {
+            "line": 6,
+            "text": "The change is done. The old image is the leopard changing its spots, a finer and subtler shift, while those who resisted now change their faces and go along. Don't push for more. Further upheaval would bring misfortune. Settle into the new order, steady and true, and let it take root.",
+            "changing": true
+          }
+        ],
+        "second": {
+          "judgment": "Pure creative force, the origin everything else moves out from. This is power at its most complete, and it works through you when you meet it with persistence rather than force. Stay with it, keep going, and it carries all the way to success. The energy is already here; the discipline to sustain it is what the moment asks.",
+          "image": "Heaven moves, and never stops moving, day into night into day without tiring. Meet your own work the same way: keep yourself strong, renew your effort, and don't mistake rest for arrival.",
+          "meaning": "Something wants to begin, and you have the power to begin it. This hexagram is made entirely of solid lines, pure creative energy with nothing holding it back, like the sky moving through its endless cycle of days. It's rare to feel this much momentum, and it's a real gift. But energy alone isn't the point. What turns raw power into something lasting is persistence: showing up again and again, staying aligned with what's right, not burning out in one bright flare. The risk here is arrogance, mistaking strength for permission to push everyone aside, or charging so far ahead that you lose touch with the ground. Use this time to start what matters, set a direction you can sustain, and keep renewing your effort. Strength that keeps going is worth far more than strength that shows off."
+        },
+        "dialogueStarters": [
+          "What do the changing lines say together?",
+          "How do the two hexagrams relate?",
+          "What am I not seeing here?"
+        ]
+      }
+    },
+    {
+      "case": "All six lines changing (about 1 cast in 4,000)",
+      "question": "What should I understand about this turning point in my life?",
+      "questionNote": "Example question for mockups only.",
+      "tosses": [
+        {
+          "line": 1,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        },
+        {
+          "line": 2,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        },
+        {
+          "line": 3,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        },
+        {
+          "line": 4,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        },
+        {
+          "line": 5,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        },
+        {
+          "line": 6,
+          "coins": [
+            3,
+            3,
+            3
+          ],
+          "total": 9,
+          "type": "old yang",
+          "changing": true
+        }
+      ],
+      "changingLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "primary": {
+        "number": 1,
+        "glyph": "䷀",
+        "name": "Initiating",
+        "wilhelm": "The Creative",
+        "pinyin": "Qián",
+        "chinese": "乾",
+        "seal": {
+          "file": "seals/svg/01.svg",
+          "shape": "square",
+          "composed": false
+        },
+        "trigrams": {
+          "upper": "☰ Heaven (Qián 乾)",
+          "lower": "☰ Heaven (Qián 乾)"
+        },
+        "label": "Heaven over Heaven",
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "second": {
+        "number": 2,
+        "glyph": "䷁",
+        "name": "Responding",
+        "wilhelm": "The Receptive",
+        "pinyin": "Kūn",
+        "chinese": "坤",
+        "seal": {
+          "file": "seals/svg/02.svg",
+          "shape": "square",
+          "composed": true
+        },
+        "trigrams": {
+          "upper": "☷ Earth (Kūn 坤)",
+          "lower": "☷ Earth (Kūn 坤)"
+        },
+        "label": "Earth over Earth",
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "quickCast": {
+        "judgment": "Pure creative force, the origin everything else moves out from. This is power at its most complete, and it works through you when you meet it with persistence rather than force. Stay with it, keep going, and it carries all the way to success. The energy is already here; the discipline to sustain it is what the moment asks.",
+        "image": "Heaven moves, and never stops moving, day into night into day without tiring. Meet your own work the same way: keep yourself strong, renew your effort, and don't mistake rest for arrival.",
+        "honestFrame": "These are the hexagram's traditional texts, the Judgment and the Image, in a modern rendering: evocative, a little cryptic, and the same for everyone who receives this hexagram. Learning to read them for your own question is what Deep Cast is for.",
+        "cta": "Continue with Deep Cast"
+      },
+      "deepCast": {
+        "changingFraming": "All six lines are changing. This is rare, about one cast in four thousand. Hexagrams 1 and 2 are the only ones with a special text for this case, and yours is one of them. Read it below.",
+        "meaning": "Something wants to begin, and you have the power to begin it. This hexagram is made entirely of solid lines, pure creative energy with nothing holding it back, like the sky moving through its endless cycle of days. It's rare to feel this much momentum, and it's a real gift. But energy alone isn't the point. What turns raw power into something lasting is persistence: showing up again and again, staying aligned with what's right, not burning out in one bright flare. The risk here is arrogance, mistaking strength for permission to push everyone aside, or charging so far ahead that you lose touch with the ground. Use this time to start what matters, set a direction you can sustain, and keep renewing your effort. Strength that keeps going is worth far more than strength that shows off.",
+        "beneficial": "Strong creative momentum; a good time to begin what truly matters.",
+        "beware": "Power without persistence burns out; don't let strength turn into arrogance.",
+        "reflections": [
+          "What is yours to start here?",
+          "How could you keep going, not just start strong?",
+          "Where might your strength push others aside?"
+        ],
+        "changingLineTexts": [
+          {
+            "line": 1,
+            "text": "The dragon lies hidden in the deep water. The power is real, but this isn't its moment yet. Don't act on it now. Let your strength gather out of sight, and trust that staying hidden at this stage is part of the work, not a failure to begin."
+          },
+          {
+            "line": 2,
+            "text": "The dragon appears in the field, out in the open for the first time. Your ability is starting to show, and it's a good moment to seek out someone wiser or more established who can recognize it and help it grow. Being seen early is a gift; use it to learn."
+          },
+          {
+            "line": 3,
+            "text": "You're active all day and still watchful in the evening, working hard and never quite at ease. The position is genuinely risky, and that alertness is exactly what keeps you safe. Stay careful and steady, and no mistake will follow."
+          },
+          {
+            "line": 4,
+            "text": "The dragon seems ready to leap, yet it still rests in the deep. You're at a threshold: free to rise or to hold back, with no one forcing the choice. Weigh it honestly. Whichever you choose, if you choose with clear eyes, there's no blame in it."
+          },
+          {
+            "line": 5,
+            "text": "The dragon flies in the open sky, at the height of its power and fully in its element. This is the moment of greatest influence, and it's good to connect with others of real stature. Use the height well: what you do from here reaches far."
+          },
+          {
+            "line": 6,
+            "text": "The dragon has flown too high, past its proper limits. Strength that never rests turns into arrogance, and arrogance loses touch with everyone below. There will be regret here. Notice where you've pushed too far, and come back down before the fall does it for you."
+          }
+        ],
+        "allChangingText": "When every line changes, you see a whole host of dragons, none of them taking the lead. Pure strength has learned to yield: no one insists on being the head, and power moves without arrogance. That's good fortune. The creative force is at its best when it no longer needs to dominate.",
+        "secondTeaser": "Your cast is moving toward ䷁ Responding. Where this change is taking you, and what it means for your question, opens in Full Cast.",
+        "secondCta": "Sign up for Full Cast"
+      },
+      "fullCast": {
+        "changingFraming": "All six lines are changing. For this hexagram, tradition adds a seventh text for exactly this case. Read it alongside the second hexagram, which carries the weight of the reading.",
+        "allLines": [
+          {
+            "line": 1,
+            "text": "The dragon lies hidden in the deep water. The power is real, but this isn't its moment yet. Don't act on it now. Let your strength gather out of sight, and trust that staying hidden at this stage is part of the work, not a failure to begin.",
+            "changing": true
+          },
+          {
+            "line": 2,
+            "text": "The dragon appears in the field, out in the open for the first time. Your ability is starting to show, and it's a good moment to seek out someone wiser or more established who can recognize it and help it grow. Being seen early is a gift; use it to learn.",
+            "changing": true
+          },
+          {
+            "line": 3,
+            "text": "You're active all day and still watchful in the evening, working hard and never quite at ease. The position is genuinely risky, and that alertness is exactly what keeps you safe. Stay careful and steady, and no mistake will follow.",
+            "changing": true
+          },
+          {
+            "line": 4,
+            "text": "The dragon seems ready to leap, yet it still rests in the deep. You're at a threshold: free to rise or to hold back, with no one forcing the choice. Weigh it honestly. Whichever you choose, if you choose with clear eyes, there's no blame in it.",
+            "changing": true
+          },
+          {
+            "line": 5,
+            "text": "The dragon flies in the open sky, at the height of its power and fully in its element. This is the moment of greatest influence, and it's good to connect with others of real stature. Use the height well: what you do from here reaches far.",
+            "changing": true
+          },
+          {
+            "line": 6,
+            "text": "The dragon has flown too high, past its proper limits. Strength that never rests turns into arrogance, and arrogance loses touch with everyone below. There will be regret here. Notice where you've pushed too far, and come back down before the fall does it for you.",
+            "changing": true
+          }
+        ],
+        "second": {
+          "judgment": "A different kind of strength: the power to yield, receive, and carry. Success here doesn't come from leading the way but from following it, letting the ground of the situation guide you instead of forcing your own direction. Be steady and devoted, strong the way a good horse is strong, willing rather than driven, and you'll find your footing. Try to lead from the front now and you lose your way.",
+          "image": "The earth takes whatever is laid on it and holds it all without complaint. Let your character have that kind of breadth: carry people and circumstances with a generous, unforced strength.",
+          "meaning": "This is a time to receive rather than to lead. Every line in this hexagram is open, like the earth: wide, patient, ready to carry whatever is placed on it. That's not weakness. It takes real strength to support, follow, and let something grow through you instead of from you. The situation already has a direction; your task is to sense it and work with it. If you try to take the lead, set the agenda, or force an outcome, you'll lose your way. If you listen, follow good guidance, and give steady, devoted effort, you'll find yourself exactly where you need to be. Look for the people and conditions that can carry you forward. Being receptive now isn't passivity. It's trusting the ground under your feet."
+        },
+        "dialogueStarters": [
+          "What do the changing lines say together?",
+          "How do the two hexagrams relate?",
+          "What am I not seeing here?"
+        ]
+      }
+    }
+  ]
+}

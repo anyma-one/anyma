@@ -1,0 +1,246 @@
+{
+  "_placeholders": {
+    "{count}": "Number of changing lines, written as a word (two, three...).",
+    "{name}": "Huang name of the second hexagram.",
+    "{glyph}": "Unicode glyph of the second hexagram.",
+    "{price}": "Full Cast price. Not decided yet.",
+    "{n}": "Line or toss number, 1 to 6.",
+    "{total}": "Coin total for a toss: 6, 7, 8 or 9.",
+    "{type}": "Line type name in lowercase, from LINE_TYPES[total].name in cast.js (e.g. young yang).",
+    "{number}": "Hexagram number.",
+    "{max}": "Maximum question length (500).",
+    "{wilhelm}": "Wilhelm's name for the hexagram being shown."
+  },
+  "levels": [
+    {
+      "tier": 1,
+      "name": "Quick Cast",
+      "description": "A first glimpse of your hexagram."
+    },
+    {
+      "tier": 2,
+      "name": "Deep Cast",
+      "description": "Cast it yourself and learn to read."
+    },
+    {
+      "tier": 3,
+      "name": "Full Cast",
+      "description": "The whole story of your cast, read with you."
+    }
+  ],
+  "question": {
+    "heading": "What would you like to understand?",
+    "threshold": "Traditionally, the I Ching was consulted rarely, and for things that mattered. Take a moment with your question before you cast.",
+    "placeholder": "Describe your situation and what you'd like to understand about it",
+    "guidance": [
+      "Ask about something that genuinely matters to you right now.",
+      "Open questions work best: \"What should I understand about...\" or \"How can I approach...\"",
+      "Name the situation, not just the outcome you hope for.",
+      "One question per cast. If you have two, cast twice."
+    ],
+    "yesNoNotice": {
+      "trigger": "The question starts with a yes/no opener (Will, Should, Is, Are, Can, Do, Does).",
+      "text": "The I Ching doesn't answer yes or no. It describes the situation you're in and the stance it asks of you: to move, to wait, to yield, to persist. You can keep your question as it is, or open it up a little.",
+      "example": "Instead of \"Should I take the job?\", try \"What should I understand about taking this job?\"",
+      "keep": "Keep my question",
+      "rephrase": "Rephrase it"
+    },
+    "tooLong": "Please keep your question under {max} characters. A focused question works best."
+  },
+  "recast": {
+    "trigger": "The user casts the same (or a near-identical) question again within the re-cast window (BUILD.md §4).",
+    "text": "You've asked this before. Tradition holds that asking again because you didn't like the answer means you've stopped listening; Hexagram 4 says so plainly. But if you're practicing the method, cast as often as you like: that's how the skill is learned. If you're hoping for a different answer, try staying with the first one a little longer.",
+    "castAnyway": "Cast again",
+    "goBack": "Return to my first reading"
+  },
+  "tier1": {
+    "honestFrame": "These are the hexagram's traditional texts, the Judgment and the Image, in a modern rendering: evocative, a little cryptic, and the same for everyone who receives this hexagram. Learning to read them for your own question is what Deep Cast is for.",
+    "cta": "Continue with Deep Cast"
+  },
+  "tier2": {
+    "secondHexagramTeaser": "Your cast is moving toward {glyph} {name}. Where this change is taking you, and what it means for your question, opens in Full Cast.",
+    "secondHexagramCta": "Sign up for Full Cast",
+    "reflectionsHeading": "Read it against your question",
+    "selfReadingNote": "If the reading suddenly seems to fit your situation, notice that: you just made the connection. That's your mind doing the reading, which is the skill this practice builds."
+  },
+  "changingLines": {
+    "zero": {
+      "tier2": "No lines are changing in your cast. That makes this a still hexagram: one settled picture rather than a situation in motion. There's no second hexagram this time, so the whole message lives here. The Meaning below is your reading.",
+      "tier3": "Nothing is changing, so there's no second hexagram to move toward. Read all six lines anyway, from the bottom up, as the full arc of this hexagram's story. None is highlighted, because none is transforming; the value here is watching the theme build from its first stage to its last."
+    },
+    "one": {
+      "tier2": "One line in your cast is changing. That single line is the most specific note in your reading, and it's enough on its own to turn this cast into a second hexagram, a glimpse of where things are heading. Read the changing line below.",
+      "tier3": "One line is changing, highlighted below. Read all six lines, but let the highlighted one carry the weight. It's the crucial element that turns this cast into the second hexagram shown here."
+    },
+    "several": {
+      "tier2": "Your cast has {count} changing lines. Together they tell a fuller story, and they reveal a second hexagram: where this situation is heading as it transforms. Read the changing lines below, from the bottom up.",
+      "tier3": "Your cast has {count} changing lines, highlighted below. Read all six as one arc and watch the highlighted ones: they're the moving parts carrying this hexagram into the second. The first hexagram is where you are; the second is where the change is taking you."
+    },
+    "all": {
+      "tier2": "All six lines are changing. This is rare, about one cast in four thousand, and it means the whole situation is in motion: everything about it is turning into something else. Tradition reads a cast like this mostly through the second hexagram.",
+      "tier2_hex1_2": "All six lines are changing. This is rare, about one cast in four thousand. Hexagrams 1 and 2 are the only ones with a special text for this case, and yours is one of them. Read it below.",
+      "tier3": "All six lines are changing, so the reading passes almost entirely to the second hexagram. Read your first hexagram as where you're coming from and the second as where you're going; the second carries the weight.",
+      "tier3_hex1_2": "All six lines are changing. For this hexagram, tradition adds a seventh text for exactly this case. Read it alongside the second hexagram, which carries the weight of the reading."
+    }
+  },
+  "lineTypes": {
+    "intro": "Each toss of three coins gives one line. Heads count 3, tails count 2. The total is always 6, 7, 8 or 9, and each number is a different kind of line.",
+    "convention": "Some traditions count heads as 2 and tails as 3. Either works, as long as you stay with one convention.",
+    "6": {
+      "name": "Old yin",
+      "coins": "Three tails (2 + 2 + 2)",
+      "draw": "Broken line, marked as changing",
+      "text": "A yielding line at its limit. It's about to turn into its opposite, so it changes into a solid line in the second hexagram.",
+      "odds": "1 in 8"
+    },
+    "7": {
+      "name": "Young yang",
+      "coins": "Two tails, one head (2 + 2 + 3)",
+      "draw": "Solid line",
+      "text": "A firm line that's stable for now. It stays as it is.",
+      "odds": "3 in 8"
+    },
+    "8": {
+      "name": "Young yin",
+      "coins": "Two heads, one tail (3 + 3 + 2)",
+      "draw": "Broken line",
+      "text": "A yielding line that's stable for now. It stays as it is.",
+      "odds": "3 in 8"
+    },
+    "9": {
+      "name": "Old yang",
+      "coins": "Three heads (3 + 3 + 3)",
+      "draw": "Solid line, marked as changing",
+      "text": "A firm line at its limit. It's about to turn into its opposite, so it changes into a broken line in the second hexagram.",
+      "odds": "1 in 8"
+    },
+    "whyUneven": "Only one combination of coins gives three tails, and only one gives three heads, but three different combinations give each of the mixed results. That's why changing lines are rarer: each line has a 1 in 4 chance of changing, so most casts have one or two."
+  },
+  "landing": {
+    "eyebrow": "anyma · ching",
+    "headline": "Learn to cast and read the I Ching",
+    "subhead": "A three-thousand-year-old book about change, taught one real question at a time. No belief required: just curiosity, and a question that matters to you.",
+    "levelsHeading": "How deep do you want to go?",
+    "learnLink": "New to the I Ching? Start with a short history."
+  },
+  "cast": {
+    "progress": "Line {n} of 6",
+    "buildNote": "A hexagram is built from the bottom up, one line per toss.",
+    "beforeReveal": "Your hexagram",
+    "skip": "Skip to my reading",
+    "changingMark": "This line is changing."
+  },
+  "guide": {
+    "intro": "You'll toss three coins six times. Each toss gives one line, and you'll work out which line it is. By the end, you'll have cast a hexagram yourself.",
+    "toss": "Toss the coins",
+    "tossAgain": "Toss for line {n}",
+    "askTotal": "What do these coins add up to?",
+    "firstHint": "Heads count 3, tails count 2. Add up all three coins.",
+    "hintButton": "Show me how",
+    "correct": "That's right.",
+    "incorrect": "Not quite. Heads count 3 and tails count 2, so these coins add up to {total}.",
+    "lineIs": "A total of {total} is {type}.",
+    "firstChanging": "This is a changing line. It's at its limit and will turn into its opposite. Changing lines are the most specific part of your reading.",
+    "complete": "Six lines, six tosses. You've cast a hexagram.",
+    "findIntro": "Every hexagram is two trigrams stacked. Can you find yours?",
+    "findLower": "Which trigram is formed by your bottom three lines?",
+    "findUpper": "And the top three?",
+    "findSkip": "Skip this step",
+    "found": "Together they make hexagram {number}."
+  },
+  "gate": {
+    "heading": "See the whole story of your cast",
+    "body": "Full Cast reveals where your cast is heading: the second hexagram and its Meaning, all six lines with your changing lines marked, and a conversation that helps you apply the reading to your own question.",
+    "payment": "A one-time payment of {price} keeps the server running.",
+    "cta": "Unlock Full Cast",
+    "keep": "Your reading stays right here.",
+    "noSecond": "Your cast has no changing lines, so there's no second hexagram. Full Cast still gives you all six lines as one story, and a conversation about your reading."
+  },
+  "dialogue": {
+    "heading": "Make It Yours",
+    "intro": "Ask about your reading, or tell me more about your situation. I'll stay close to the texts and won't simply tell you what you want to hear.",
+    "placeholder": "Ask about your reading",
+    "privacy": "To reply, your question and your reading are sent to Anthropic, the company that makes the AI model behind this conversation.",
+    "startersByCount": {
+      "zero": [
+        "What does a still hexagram mean for my question?",
+        "Which part of the reading speaks most to my situation?",
+        "What am I not seeing here?"
+      ],
+      "one": [
+        "What does the changing line mean for my question?",
+        "How do the two hexagrams relate?",
+        "What am I not seeing here?"
+      ],
+      "several": [
+        "What do the changing lines say together?",
+        "How do the two hexagrams relate?",
+        "What am I not seeing here?"
+      ]
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Your reading is safe; please try again.",
+    "dialogueUnavailable": "The conversation isn't available right now. Your reading is still here, and you can come back to it.",
+    "limitReached": "You've reached the end of this conversation for now. Your reading stays here, and you can return to it any time.",
+    "messageTooLong": "That message is a little long. Try to keep it under 2,000 characters.",
+    "unlockFailed": "We couldn't confirm your unlock. Please try again in a moment. Your reading is still here.",
+    "paymentCancelled": "No payment was made. Your reading is still here.",
+    "noReading": "There's no reading here yet. Ask a question to begin.",
+    "storageRequired": "To unlock Full Cast, this site needs to save your reading for a moment, and your browser is blocking that. Please allow site storage and try again."
+  },
+  "resources": {
+    "heading": "Learn",
+    "pages": [
+      {
+        "file": "01-history.md",
+        "title": "A brief history"
+      },
+      {
+        "file": "02-gua-table.md",
+        "title": "The 64 hexagrams"
+      },
+      {
+        "file": "03-finding-a-hexagram.md",
+        "title": "Finding a Hexagram from Its Trigrams"
+      },
+      {
+        "file": "04-trigrams.md",
+        "title": "The eight trigrams"
+      },
+      {
+        "file": "05-how-to-cast.md",
+        "title": "How to cast"
+      },
+      {
+        "file": "06-how-to-read.md",
+        "title": "How to read"
+      },
+      {
+        "file": "07-on-translation.md",
+        "title": "On translation"
+      },
+      {
+        "file": "08-why-divination.md",
+        "title": "Why divination can help"
+      }
+    ]
+  },
+  "labels": {
+    "judgment": "Judgment",
+    "image": "Image",
+    "meaning": "Meaning",
+    "beneficial": "Beneficial",
+    "beware": "Beware",
+    "changingLines": "Changing lines",
+    "allLines": "The six lines",
+    "secondHexagram": "Second hexagram",
+    "transformation": "Where your cast is heading",
+    "line": "Line {n}",
+    "wilhelm": "Wilhelm: {wilhelm}",
+    "yourQuestion": "Your question",
+    "send": "Send",
+    "clearHistory": "Clear my past questions",
+    "learn": "Learn"
+  }
+}

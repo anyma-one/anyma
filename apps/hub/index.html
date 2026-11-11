@@ -71,19 +71,18 @@
         </a>
       </li>
       <li>
-        <button class="tile tile--soon" type="button" data-open="ching" aria-label="ching, coming soon: get notified">
+        <a class="tile" href="/ching">
           <span class="tile__media">
             <img class="tile__img" src="./assets/thumb-ching-800.avif"
                  srcset="./assets/thumb-ching-400.avif 400w, ./assets/thumb-ching-800.avif 800w"
                  sizes="(max-width: 600px) 100vw, 33vw"
                  alt="" width="800" height="500" loading="lazy" />
-            <span class="tile__soon" aria-hidden="true">coming soon</span>
           </span>
           <span class="tile__text">
             <span class="tile__title">ching</span>
             <span class="tile__desc">Learn to interpret and cast one of the oldest divination methods of the world.</span>
           </span>
-        </button>
+        </a>
       </li>
     </ul>
 
@@ -110,38 +109,6 @@
         <button class="card__close" type="button" data-close aria-label="Close">&times;</button>
       </div>
       <p class="card__body">anyma designs educational games to explore foreign, ancient, and mystic knowledge. anyma's goal is to make the true value of these sources available through play and exploration.</p>
-    </div>
-  </div>
-
-  <!-- ching sign-up pop-up -->
-  <div class="overlay" id="ching" role="dialog" aria-modal="true" aria-labelledby="ching-title" hidden>
-    <div class="card">
-      <div data-form>
-        <div class="card__head">
-          <h2 class="card__title" id="ching-title">ching is coming</h2>
-          <button class="card__close" type="button" data-close aria-label="Close">&times;</button>
-        </div>
-      </div>
-      <p class="card__body" data-form>Learn to interpret and cast the iChing — one of the oldest books and divination methods of the world. This game is still in development. Get notified, once it's ready.</p>
-
-      <form class="form" id="ching-form" data-form novalidate>
-        <div class="field">
-          <label for="c-email">Email</label>
-          <input id="c-email" name="email" type="email" maxlength="254" required autocomplete="email" placeholder="you@example.com" />
-        </div>
-        <p class="form__fine">We send one confirmation email now, and one more when ching opens — nothing else. Unsubscribe any time. See <a href="/privacy">Data &amp; Privacy</a>.</p>
-        <p class="form__status" id="c-status" role="status" aria-live="polite"></p>
-        <button class="btn" type="submit" id="c-submit" disabled>Notify me</button>
-      </form>
-
-      <div data-success hidden>
-        <div class="card__head">
-          <h2 class="card__title">thank you</h2>
-          <button class="card__close" type="button" data-close aria-label="Close">&times;</button>
-        </div>
-        <p class="card__body" data-message></p>
-        <button class="btn" type="button" data-close>Close</button>
-      </div>
     </div>
   </div>
 

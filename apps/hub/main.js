@@ -172,23 +172,6 @@ wireForm({
     "Your idea has reached us. If it grows into a project, you will be among the first to hear about it.",
 });
 
-wireForm({
-  formId: "ching-form",
-  statusId: "c-status",
-  submitId: "c-submit",
-  required: "email",
-  endpoint: "/api/waitlist",
-  collect: (form) => {
-    const email = val(form, "email");
-    if (!EMAIL_RE.test(email)) return "That email address doesn't look right.";
-    return { email, interest: "ching" };
-  },
-  done: (data) =>
-    data.status === "already_verified"
-      ? "You're already on the list. We'll write to you when ching opens."
-      : "We sent you one email. Click the link in it to confirm, and we'll write again when ching opens.",
-});
-
 /* ---------- hand old deep links back to soul ---------- */
 
 // soul lived at this origin until the start screen took it, and its screens were hashes:

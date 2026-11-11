@@ -1,0 +1,114 @@
+[
+  {
+    "key": "qian",
+    "english": "Heaven",
+    "symbol": "☰",
+    "bits": [
+      1,
+      1,
+      1
+    ],
+    "pinyin": "Qián",
+    "chinese": "乾",
+    "quality": "Strong, creative",
+    "family": "Father"
+  },
+  {
+    "key": "kun",
+    "english": "Earth",
+    "symbol": "☷",
+    "bits": [
+      0,
+      0,
+      0
+    ],
+    "pinyin": "Kūn",
+    "chinese": "坤",
+    "quality": "Yielding, receptive",
+    "family": "Mother"
+  },
+  {
+    "key": "zhen",
+    "english": "Thunder",
+    "symbol": "☳",
+    "bits": [
+      1,
+      0,
+      0
+    ],
+    "pinyin": "Zhèn",
+    "chinese": "震",
+    "quality": "Arousing, moving",
+    "family": "Eldest son"
+  },
+  {
+    "key": "kan",
+    "english": "Water",
+    "symbol": "☵",
+    "bits": [
+      0,
+      1,
+      0
+    ],
+    "pinyin": "Kǎn",
+    "chinese": "坎",
+    "quality": "Deep, dangerous",
+    "family": "Middle son"
+  },
+  {
+    "key": "gen",
+    "english": "Mountain",
+    "symbol": "☶",
+    "bits": [
+      0,
+      0,
+      1
+    ],
+    "pinyin": "Gèn",
+    "chinese": "艮",
+    "quality": "Still, resting",
+    "family": "Youngest son"
+  },
+  {
+    "key": "xun",
+    "english": "Wind",
+    "symbol": "☴",
+    "bits": [
+      0,
+      1,
+      1
+    ],
+    "pinyin": "Xùn",
+    "chinese": "巽",
+    "quality": "Gentle, penetrating",
+    "family": "Eldest daughter"
+  },
+  {
+    "key": "li",
+    "english": "Fire",
+    "symbol": "☲",
+    "bits": [
+      1,
+      0,
+      1
+    ],
+    "pinyin": "Lí",
+    "chinese": "離",
+    "quality": "Clinging, bright",
+    "family": "Middle daughter"
+  },
+  {
+    "key": "dui",
+    "english": "Lake",
+    "symbol": "☱",
+    "bits": [
+      1,
+      1,
+      0
+    ],
+    "pinyin": "Duì",
+    "chinese": "兌",
+    "quality": "Joyous, open",
+    "family": "Youngest daughter"
+  }
+]

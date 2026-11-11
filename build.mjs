@@ -3,6 +3,7 @@
 //   dist/            <- apps/hub          (the start screen, owns the root)
 //   dist/soul/       <- apps/soul, built  (Vite React app, base /soul/)
 //   dist/dosha/      <- apps/dosha        (plain static, no build step)
+//   dist/ching/      <- apps/ching, built (Vite React app, base /ching/)
 //
 // Serverless functions are NOT handled here: Vercel picks up /api at the repo root on its
 // own, independently of the output directory.
@@ -71,6 +72,15 @@ if (await exists(join(ROOT, "apps/soul/package.json"))) {
   console.log("built  /soul/       <- apps/soul");
 } else {
   console.log("SKIP   /soul/       (apps/soul not present — see README, 'Folding SOUL in')");
+}
+
+/* ---- ching: Vite build, forced to the /ching/ base ---- */
+if (await exists(join(ROOT, "apps/ching/package.json"))) {
+  await run("npm", ["run", "build", "--workspace", "apps/ching", "--", "--base=/ching/"], ROOT);
+  await cp(join(ROOT, "apps/ching/dist"), join(DIST, "ching"), { recursive: true });
+  console.log("built  /ching/      <- apps/ching");
+} else {
+  console.log("SKIP   /ching/      (apps/ching not present)");
 }
 
 console.log("\ndist/ ready");

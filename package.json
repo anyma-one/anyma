@@ -5,15 +5,16 @@
   "type": "module",
   "description": "anyma — the start screen and the games it opens, served as one site at www.anyma.one.",
   "workspaces": [
-    "apps/soul"
+    "apps/soul",
+    "apps/ching"
   ],
   "scripts": {
     "build": "node build.mjs",
     "dev": "node build.mjs && node dev-server.mjs 8100",
     "serve": "node dev-server.mjs 8100",
     "review": "node build-review.mjs",
-    "typecheck": "npm run typecheck --workspace apps/soul",
-    "test": "npm run test --workspace apps/soul"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
   },
   "dependencies": {
     "@sparticuz/chromium": "^147.0.0",

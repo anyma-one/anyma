@@ -1,0 +1,208 @@
+{
+  "_about": "Copy changes approved on the design canvas, 9 to 11 November 2026, against the handoff data files (ching-design-handoff/data). Apply each 'set' at its JSON path. Headline title case is a rendering rule (see CLAUDE.md), not stored here, except where a string was rewritten.",
+  "data/copy.json": [
+    {
+      "op": "note",
+      "path": [
+        "_placeholders"
+      ],
+      "note": "Level names are decided: Quick Cast, Deep Cast, Full Cast. Remove those three entries from _placeholders; keep any others."
+    },
+    {
+      "op": "set",
+      "path": [
+        "changingLines",
+        "one",
+        "tier3"
+      ],
+      "from": "One line is changing, highlighted below. Read all six as the hexagram's arc, but let the highlighted one carry the weight. It's the pivot that turns this cast into the second hexagram shown here.",
+      "to": "One line is changing, highlighted below. Read all six lines, but let the highlighted one carry the weight. It's the crucial element that turns this cast into the second hexagram shown here."
+    },
+    {
+      "op": "set",
+      "path": [
+        "dialogue",
+        "heading"
+      ],
+      "from": "Talk it through",
+      "to": "Make It Yours"
+    },
+    {
+      "op": "set",
+      "path": [
+        "levels",
+        1,
+        "description"
+      ],
+      "from": "Cast it yourself and learn to read it.",
+      "to": "Cast it yourself and learn to read."
+    }
+  ],
+  "data/sample-casts.json": [
+    {
+      "op": "set",
+      "path": [
+        "casts",
+        1,
+        "fullCast",
+        "changingFraming"
+      ],
+      "from": "One line is changing, highlighted below. Read all six as the hexagram's arc, but let the highlighted one carry the weight. It's the pivot that turns this cast into the second hexagram shown here.",
+      "to": "One line is changing, highlighted below. Read all six lines, but let the highlighted one carry the weight. It's the crucial element that turns this cast into the second hexagram shown here."
+    },
+    {
+      "op": "set",
+      "path": [
+        "casts",
+        1,
+        "deepCast",
+        "beware"
+      ],
+      "from": "Rushing, or going it alone, can snap the shoot before it's strong.",
+      "to": "Rushing can snap the shoot before it's strong."
+    }
+  ],
+  "data/hexagrams.json": [
+    {
+      "op": "set",
+      "path": [
+        2,
+        "beware"
+      ],
+      "from": "Rushing, or going it alone, can snap the shoot before it's strong.",
+      "to": "Rushing can snap the shoot before it's strong."
+    }
+  ],
+  "ui-strings": [
+    {
+      "where": "Landing tile eyebrow",
+      "to": "Level I / Level II / Level III",
+      "replaces": "Level 01 / 02 / 03"
+    },
+    {
+      "where": "Question headline",
+      "to": "What Is Your Question?"
+    },
+    {
+      "where": "Question placeholder",
+      "to": "Type Your Question Here.",
+      "note": "field starts empty, no prefilled example"
+    },
+    {
+      "where": "Question button",
+      "to": "begin the cast"
+    },
+    {
+      "where": "Yes/no note headline",
+      "to": "Are You Sure?"
+    },
+    {
+      "where": "Yes/no note body",
+      "to": "The I Ching doesn't answer yes or no. It describes the situation you're in and the stance it asks of you: to move, to wait, to yield, to persist. You can keep your question as it is, or open it up a little.",
+      "note": "first sentence bold"
+    },
+    {
+      "where": "Yes/no note example",
+      "to": "Instead of \"Should I take the job?\", try \"What should I understand about taking this job?\""
+    },
+    {
+      "where": "Yes/no buttons",
+      "to": "keep · rephrase · learn more",
+      "note": "learn more is a ghost button; its Learn target is still open"
+    },
+    {
+      "where": "Translation label",
+      "to": "Classic Translation by Wilhelm: {wilhelm}",
+      "note": "every place the Wilhelm name appears"
+    },
+    {
+      "where": "Reading section titles",
+      "to": [
+        "Traditional Meaning",
+        "Image",
+        "In Few Words",
+        "Modern Meaning",
+        "Reflection",
+        "Changing Lines | All Six Lines | The Six Lines",
+        "Second Hexagram"
+      ]
+    },
+    {
+      "where": "In Few Words sub-labels",
+      "to": [
+        "Beneficial",
+        "Beware"
+      ]
+    },
+    {
+      "where": "Deep Cast note (Quick Cast, under Image)",
+      "to": "This is the traditional text: evocative, a little cryptic, and the same for everyone. Learn more about the modern interpretations in Deep Cast.",
+      "replaces": "copy.json tier1.honestFrame"
+    },
+    {
+      "where": "Deep Cast note button",
+      "to": "Continue with Deep Cast",
+      "note": "rendered lowercase"
+    },
+    {
+      "where": "Next box eyebrow",
+      "to": "Next · {level}"
+    },
+    {
+      "where": "Full Cast margin box",
+      "to": {
+        "eyebrow": "Full Cast",
+        "heading": "Make It Yours",
+        "button": "Begin Level III"
+      },
+      "note": "button rendered 'begin level III', numeral kept in capitals"
+    },
+    {
+      "where": "Closing section (all levels)",
+      "to": {
+        "heading": "The Final Stage",
+        "body": "Make it yours and learn to interpret the results through asking specific questions about a specific situation.",
+        "button": "begin"
+      }
+    },
+    {
+      "where": "Gate modal button",
+      "to": "continue",
+      "replaces": "gate.cta / tier1.cta inside the modal"
+    },
+    {
+      "where": "Toss progress",
+      "to": "Line {n} of 6",
+      "legend": "Heads 3 · Tails 2"
+    },
+    {
+      "where": "Coin label",
+      "to": "Heads · 3 / Tails · 2"
+    },
+    {
+      "where": "Footer",
+      "to": [
+        "About",
+        "Imprint → https://www.anyma.one/imprint",
+        "Data & Privacy → https://www.anyma.one/privacy"
+      ]
+    },
+    {
+      "where": "Logo accessible name",
+      "to": "anyma CHING, home"
+    }
+  ],
+  "resources": [
+    {
+      "op": "split",
+      "file": "resources/02-gua-table.md",
+      "at_heading": "Finding a hexagram from its trigrams",
+      "new_section": {
+        "position": 3,
+        "title": "Finding a Hexagram from Its Trigrams",
+        "content": "that heading's intro line and lookup table, moved out of 02"
+      },
+      "note": "Learn now has 8 sections; later sections renumber 04 to 08. Section titles and h2s render in title case."
+    }
+  ]
+}

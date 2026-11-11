@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your question</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/anyma-ching/styles.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/fonts.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/colors.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/typography.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/spacing.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/radius.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/elevation.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/motion.css">
+<link rel="stylesheet" href="ds/anyma-ching/tokens/base.css">
+<script src="ds/anyma-ching/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Kaisei+Tokumin:wght@400;500&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+body{margin:0;background:#161210;background-image:radial-gradient(52% 40% at 8% 0%,rgba(216,178,122,.22),transparent 70%),radial-gradient(44% 32% at 96% 24%,rgba(197,90,76,.20),transparent 72%),repeating-linear-gradient(96deg,rgba(255,236,206,.022) 0 1px,transparent 1px 7px);background-attachment:fixed}
+a{color:#B7884D;border-bottom:0}a:hover{color:#D8B27A;border-bottom:0}
+button{font:inherit}
+:focus-visible{outline:2px solid #B7884D;outline-offset:3px}
+@keyframes chToss{0%{transform:translateY(0) rotateX(0)}48%{transform:translateY(-118px) rotateX(560deg)}100%{transform:translateY(0) rotateX(1080deg)}}
+@keyframes chShadow{0%{transform:scale(1);opacity:.55}48%{transform:scale(.45);opacity:.18}100%{transform:scale(1);opacity:.55}}
+@keyframes chSettle{0%{transform:translateY(0)}40%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+@keyframes chDraw{from{transform:scaleX(0);opacity:.15}to{transform:scaleX(1);opacity:1}}
+@keyframes chFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes chRise{from{opacity:0;transform:translateY(56px)}to{opacity:1;transform:none}}
+.ch-rise{animation:chRise 1100ms cubic-bezier(.22,.61,.36,1) both}
+.ch-rm .ch-rise{animation-duration:1ms!important}
+@keyframes chAppear{from{opacity:0}to{opacity:1}}
+@keyframes chPulse{0%,100%{opacity:.25}50%{opacity:.9}}
+.ch-coin{transform-style:preserve-3d}
+.ch-coin.tossing{animation:chToss 1000ms cubic-bezier(.22,.61,.36,1) both}
+.ch-coin.settle{animation:chSettle 400ms cubic-bezier(.22,.61,.36,1) both}
+.ch-coin.appear{animation:chAppear 240ms linear both}
+.ch-shadow.tossing{animation:chShadow 1000ms cubic-bezier(.22,.61,.36,1) both}
+.ch-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.ch-back{transform:rotateX(180deg)}
+.ch-ln.draw{animation:chSettleIn 520ms cubic-bezier(.22,.61,.36,1) both}
+@keyframes chSettleIn{0%{opacity:0;transform:translateY(-16px)}62%{opacity:1;transform:translateY(2px)}100%{opacity:1;transform:none}}
+.ch-ln{position:relative}
+.ch-ln.ln-empty>span{box-shadow:none!important;background:transparent!important}
+.ch-ln.ln-empty{box-shadow:inset 0 0 0 1px #5D4A3C;border-radius:1px}
+.ch-ln.ln-yang>span:first-child,.ch-ln.draw>span:first-child{margin-right:-1px;border-top-right-radius:0!important;border-bottom-right-radius:0!important}
+.ch-ln.ln-yang>span:last-child,.ch-ln.draw>span:last-child{border-top-left-radius:0!important;border-bottom-left-radius:0!important}
+.ch-ln.ln-ch::after{content:"";position:absolute;inset:-5px -6px;border-radius:3px;pointer-events:none;animation:chLnPulse 1100ms cubic-bezier(.4,0,.2,1) 380ms both}
+@keyframes chLnPulse{0%{box-shadow:0 0 0 1px rgba(197,90,76,0),0 0 18px rgba(153,22,19,0)}35%{box-shadow:0 0 0 1px rgba(197,90,76,.75),0 0 22px rgba(153,22,19,.55)}100%{box-shadow:0 0 0 1px rgba(197,90,76,0),0 0 18px rgba(153,22,19,0)}}
+.ch-rm .ch-ln.ln-ch::after{animation:none}
+.ch-in{animation:chFade 600ms cubic-bezier(.22,.61,.36,1) both}
+.ch-in-slow{animation:chFade 1200ms cubic-bezier(.22,.61,.36,1) both}
+.ch-pulse{animation:chPulse 1400ms ease-in-out infinite}
+.ch-rm .ch-coin,.ch-rm .ch-shadow,.ch-rm .ch-ln,.ch-rm .ch-in,.ch-rm .ch-in-slow{animation-duration:1ms!important}
+.ch-rm .ch-coin.appear{animation:chAppear 200ms linear both!important}
+@media (prefers-reduced-motion: reduce){.ch-coin,.ch-shadow,.ch-ln,.ch-in,.ch-in-slow{animation-duration:1ms!important}.ch-coin.appear{animation:chAppear 200ms linear both!important}*{transition-duration:1ms!important}}
+.ch-dd>summary{cursor:pointer}.ch-dd .ch-chev{transition:transform 200ms cubic-bezier(.22,.61,.36,1)}.ch-dd[open]>summary .ch-chev{transform:rotate(180deg)}.ch-dd>summary:hover span:first-child{color:#991613}
+.ch-recx,.ch-recx *{color:#FFFFFF!important}.ch-recx{cursor:pointer}.ch-recx:hover{background:#B8201B!important}.ch-recx:focus-visible{outline:2px solid #B7884D;outline-offset:2px}
+.ch-tile{position:relative;overflow:hidden;isolation:isolate;border-color:rgba(246,237,219,.5)!important}.ch-tile::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,#991613,#6E0F0D 50%,#241310);z-index:-1}.ch-tile p{border-left-color:#F6EDDB!important}.ch-tile .chb-h{background:transparent!important;box-shadow:inset 0 0 0 1px #F6EDDB}.ch-tile .chb-h:hover,.ch-tile .chb-h:focus-visible{background:rgba(246,237,219,.14)!important}
+details>summary{list-style:none;cursor:pointer}details>summary::-webkit-details-marker{display:none}
+textarea::placeholder{color:#8B7F6B;opacity:1}
+input::placeholder{color:#8B7F6B;opacity:1}
+.chb{transition:background-color 180ms cubic-bezier(.22,.61,.36,1),color 180ms cubic-bezier(.22,.61,.36,1),border-color 180ms cubic-bezier(.22,.61,.36,1)}
+.chb span[aria-hidden="true"]{display:inline-block;transition:transform 180ms cubic-bezier(.22,.61,.36,1)}
+.chb:not([aria-disabled="true"]):hover span[aria-hidden="true"],.chb:focus-visible span[aria-hidden="true"]{transform:translateX(3px)}
+.chb-b:not([aria-disabled="true"]):hover,.chb-b:focus-visible{background:#D8B27A!important;color:#191411!important}
+.chb-b:not([aria-disabled="true"]):active{background:#9C7140!important;color:#191411!important}
+.chb-h:not([aria-disabled="true"]):hover,.chb-h:focus-visible{background:#B8201B!important}
+.chb-h:not([aria-disabled="true"]):active{background:#7A110F!important}
+.chb-d:not([aria-disabled="true"]):hover,.chb-d:focus-visible{background:#2E241F!important;color:#D8B27A!important}
+.chb-d:not([aria-disabled="true"]):active{background:#0E0B09!important;color:#B7884D!important}
+.chb-w:not([aria-disabled="true"]):hover,.chb-w:focus-visible{background:rgba(246,237,219,.14)!important;color:#FFFFFF!important;border-color:#FFFFFF!important}
+.chb-w:not([aria-disabled="true"]):active{background:rgba(246,237,219,.24)!important}
+.chb-g:not([aria-disabled="true"]):hover,.chb-g:focus-visible{background:transparent!important;color:#F0D3A4!important;border-color:#F0D3A4!important}
+.chb-g:not([aria-disabled="true"]):active{background:transparent!important;color:#9C7140!important;border-color:#9C7140!important}
+/* ---- Responsive layer (mobile 390, tablet 768). Desktop layout is the inline styles; these rules only re-flow it via ch-r-* hooks added at build. ---- */
+.ch-mob{display:none!important}
+@media (max-width:960px){
+.ch-logo{height:56px!important}
+.ch-r-paper{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+.ch-r-aside{position:static!important;padding-left:0!important;border-left:0!important;border-top:1px solid #C7B694;padding-top:28px!important;display:flex!important;flex-direction:column;gap:28px!important;width:100%}
+.ch-r-aside>*{width:100%;box-sizing:border-box}
+.ch-r-head .ch-r-wil{display:none!important}
+.ch-r-wilm{display:block!important}
+.ch-r-revbar{width:160px!important;height:12px!important}
+.ch-r-revfig{gap:2px!important}
+.ch-r-revrow{padding-top:3px!important;padding-bottom:3px!important}
+.ch-r-row{grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+.ch-r-rev>:last-child{order:-1}
+.ch-r-rev2>*{order:0!important}
+/* Cast on tablet: same arrangement as the phone, at a larger scale */
+.ch-r-castmain{display:flex!important;flex-direction:column;gap:18px!important}
+.ch-r-fig{gap:10px!important;align-items:center!important;width:100%}
+.ch-r-fig>[role="img"]{gap:4px!important;margin-left:0!important}
+.ch-r-figrow{padding:3px 6px!important;gap:10px!important}
+.ch-r-figbar{width:240px!important;height:13px!important}
+.ch-r-fighint{display:none!important}
+.ch-r-toss{width:100%;min-height:0!important;gap:14px!important}
+.ch-r-toss>div>div{gap:14px!important}
+.ch-r-stage{width:100%;box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 268px;column-gap:32px;row-gap:14px!important;align-items:end}
+.ch-r-stage>*{grid-column:1 / -1}
+.ch-r-stage::after{content:"";grid-column:2;grid-row:2;align-self:end;height:220px;margin-bottom:26px;border-left:1px solid #413229;pointer-events:none}
+.ch-r-prog{flex-wrap:nowrap!important;width:100%}
+.ch-r-prog>*{white-space:nowrap}
+.ch-r-prog>:last-child{margin-left:auto;text-align:right}
+.ch-r-coins{zoom:.8;padding-top:170px!important;padding-bottom:0!important;gap:20px!important;grid-column:1!important;grid-row:2}
+.ch-r-stage>.ch-r-total,.ch-r-stage>.ch-r-wait{grid-column:2!important;grid-row:2;align-self:end;padding:0 0 26px 28px;height:220px;box-sizing:content-box;display:flex;flex-direction:column;justify-content:flex-end}
+.ch-r-total{min-height:0!important;gap:3px!important}
+.ch-r-total>div:first-child{gap:2px 10px!important;align-items:baseline}
+.ch-r-total>div:first-child>span:first-child{font-size:52px!important;line-height:1!important}
+.ch-r-total>div:first-child>span:nth-child(2){font-size:11px!important;letter-spacing:.08em!important}
+.ch-r-total h2{font-size:24px!important;line-height:1.15!important;margin:6px 0 0!important}
+.ch-r-total p{font-size:16px!important;line-height:1.45!important}
+.ch-r-wait{min-height:0!important}
+.ch-r-deep{min-height:0!important;gap:14px!important}
+.ch-r-deep h2{font-size:26px!important}
+}
+@media (min-width:721px) and (max-width:960px){
+/* Tablet: seal, headline and hexagram share the top row */
+.ch-r-maincol{display:grid!important;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;row-gap:32px!important;align-items:center}
+.ch-r-maincol>*{grid-column:1 / -1}
+.ch-r-maincol>.ch-r-head{grid-column:1;grid-row:1}
+.ch-r-maincol>.ch-r-row:not(.ch-r-rev){display:contents!important}
+.ch-r-maincol>.ch-r-row:not(.ch-r-rev)>:first-child{grid-column:2;grid-row:1;justify-self:end}
+.ch-r-maincol>.ch-r-row:not(.ch-r-rev)>:not(:first-child){grid-column:1 / -1}
+.ch-r-maincol .ch-r-seal{height:96px!important}
+.ch-r-maincol .ch-r-sealph{width:96px!important;height:96px!important}
+.ch-r-maincol>.ch-r-head{gap:18px!important}
+}
+@media (max-width:720px){
+.ch-logo{height:44px!important}
+.ch-mob{display:flex!important}
+.ch-desk{display:none!important}
+.ch-r-row{grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+.ch-r-rev>:last-child{order:-1}
+.ch-r-rev2>*{order:0!important}
+.ch-r-line{grid-template-columns:minmax(0,1fr)!important;gap:6px!important}
+.ch-r-seal{height:96px!important}
+.ch-r-sealph{width:96px!important;height:96px!important}
+.ch-r-head{display:grid!important;grid-template-columns:auto minmax(0,1fr);column-gap:18px!important;row-gap:0!important;align-items:center}
+.ch-r-head>.ch-r-headtx{display:contents!important}
+.ch-r-head>.ch-r-headtx>*{grid-column:2}
+.ch-r-head>:first-child,.ch-r-head>sc-if:first-child>*{grid-row:1 / span 3;align-self:center}
+.ch-r-bagua{width:min(260px,72vw)!important}
+.ch-dd>summary{min-height:56px}
+/* Cast on a phone: coins on top, hexagram below, compact count, all on one screen */
+.ch-r-castmain{display:flex!important;flex-direction:column;gap:18px!important}
+.ch-r-fig{gap:10px!important;align-items:center!important;width:100%}
+.ch-r-fig>[role="img"]{gap:4px!important;margin-left:0!important}
+.ch-r-figrow{padding:3px 6px!important;gap:10px!important}
+.ch-r-figbar{width:min(210px,calc(100vw - 170px))!important;height:11px!important}
+.ch-r-revbar{width:min(210px,calc(100vw - 170px))!important;height:15px!important}
+.ch-r-revfig{gap:9px!important}
+.ch-r-revrow{padding-top:5px!important;padding-bottom:5px!important}
+.ch-r-fighint{display:none!important}
+.ch-r-toss{width:100%;min-height:0!important;gap:14px!important}
+.ch-r-toss>div>div{gap:14px!important}
+.ch-r-stage{width:100%;box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 214px;column-gap:20px;row-gap:14px!important;align-items:end}
+.ch-r-stage>*{grid-column:1 / -1}
+.ch-r-stage::after{content:"";grid-column:2;grid-row:2;align-self:end;height:184px;margin-bottom:22px;border-left:1px solid #413229;pointer-events:none}
+.ch-r-prog{flex-wrap:nowrap!important;width:100%}
+.ch-r-prog>*{white-space:nowrap}
+.ch-r-prog>:last-child{margin-left:auto;text-align:right}
+.ch-r-coins{zoom:.58;padding-top:170px!important;padding-bottom:0!important;gap:20px!important;grid-column:1!important;grid-row:2}
+.ch-r-stage>.ch-r-total,.ch-r-stage>.ch-r-wait{grid-column:2!important;grid-row:2;align-self:end;padding:0 0 22px 18px;height:184px;box-sizing:content-box;display:flex;flex-direction:column;justify-content:flex-end}
+.ch-r-total{min-height:0!important;gap:3px!important}
+.ch-r-total>div:first-child{gap:2px 10px!important;align-items:baseline}
+.ch-r-total>div:first-child>span:first-child{font-size:38px!important;line-height:1!important}
+.ch-r-total>div:first-child>span:nth-child(2){font-size:10px!important;letter-spacing:.08em!important}
+.ch-r-total h2{font-size:19px!important;line-height:1.15!important;margin:6px 0 0!important}
+.ch-r-total p{font-size:14px!important;line-height:1.36!important}
+.ch-r-wait{min-height:0!important}
+.ch-r-deep{min-height:0!important;gap:14px!important}
+.ch-r-deep h2{font-size:22px!important}
+.ch-r-pause{padding-top:40px!important}
+.ch-mcta{position:sticky;bottom:0;z-index:5;margin:6px -20px 0!important;padding:14px 20px 18px!important;background:linear-gradient(180deg,rgba(22,18,16,0),#161210 38%)}
+.ch-mcta>.chb{flex:1;justify-content:center;padding:15px 22px!important}
+#yesno{position:fixed;left:0;right:0;bottom:0;z-index:30;border-radius:12px 12px 0 0!important;border-bottom:0!important;box-shadow:0 -24px 60px rgba(0,0,0,.6);max-height:85vh;overflow:auto}
+#yesno .chb{flex:1 1 auto;justify-content:center;min-height:44px}
+.ch-msend{position:sticky;bottom:0;z-index:5;background:#161210;padding-bottom:14px!important}
+.ch-dtop{order:-1}
+.ch-chips{flex-direction:row!important;flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:0 16px 6px;scrollbar-width:none}
+.ch-chips>button{flex:none;max-width:78vw}
+.ch-lnav{display:none!important}
+.ch-lnav.open{display:flex!important}
+.ch-devctl{right:12px!important;bottom:12px!important;transform:scale(.86);transform-origin:100% 100%}
+}
+</style>
+</helmet>
+<div style="min-height:100vh;box-sizing:border-box;padding:40px clamp(20px,5vw,56px) 90px;max-width:1240px;margin:0 auto;font-family:'Crimson Pro',Georgia,serif;color:#EBDFC7">
+<header style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+<a href="Main.dc.html" aria-label="anyma CHING, home" style="display:flex;align-items:center;text-decoration:none;line-height:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="112.5 71.5 823.0 948.0" role="img" aria-label="anyma CHING" class="ch-logo" style="display:block;height:64px;width:auto"><title>anyma CHING</title><path fill="#B7884D" fill-rule="evenodd" d="M581.5,1012.8C585.8,1012.4 590.4,1011.7 591.8,1011.5C593.1,1011.2 596.7,1010.6 599.8,1010.2C602.8,1009.9 605.8,1009.4 606.5,1009.2C607.7,1008.9 611.2,1008.5 623.0,1007.5C627.7,1007.1 648.0,1007.0 670.5,1007.1C676.7,1007.2 688.0,1006.5 692.8,1005.7C695.2,1005.4 699.3,1004.8 701.8,1004.5C704.2,1004.2 707.9,1003.6 710.0,1003.2C715.0,1002.3 729.4,1000.1 750.8,997.0C790.2,991.3 811.6,987.9 817.8,986.5C836.2,982.2 871.6,972.9 881.8,969.7C905.0,962.4 905.4,962.2 909.5,958.1C916.5,951.1 917.8,941.6 913.2,932.1C909.9,925.3 904.3,920.6 897.8,919.0C895.2,918.5 880.7,918.9 863.5,920.0C859.5,920.3 845.9,920.5 833.3,920.4C820.6,920.4 809.0,920.4 807.5,920.4C805.1,920.4 799.8,921.3 779.8,925.0C773.0,926.2 756.3,928.2 746.0,929.0C738.2,929.6 712.6,932.6 707.5,933.5C702.4,934.4 690.3,936.0 683.8,936.5C673.6,937.3 654.3,938.4 653.9,938.2C653.8,938.1 648.5,938.2 642.2,938.5C635.9,938.8 621.2,939.2 609.5,939.5C597.8,939.8 582.8,940.3 576.2,940.7C566.7,941.2 555.7,941.3 525.2,940.9C503.8,940.7 483.7,940.3 480.5,940.0C468.2,939.1 457.7,938.0 455.5,937.5C454.3,937.2 449.9,936.6 445.8,936.2C441.6,935.8 436.2,935.2 433.8,934.9C428.0,934.3 406.3,934.3 397.5,935.0C378.6,936.4 374.1,936.6 364.2,936.3C358.5,936.1 352.6,935.8 351.2,935.5C349.9,935.3 346.8,934.7 344.5,934.3C342.2,933.9 338.7,933.2 336.8,932.8C334.8,932.3 332.1,931.8 330.8,931.5C329.4,931.3 326.3,930.6 324.0,930.1C314.9,927.9 298.9,925.6 285.2,924.5C273.0,923.5 264.2,922.4 251.4,920.2C241.4,918.5 235.5,918.6 210.0,920.7C181.4,923.1 176.4,923.5 172.8,923.5C167.2,923.5 160.2,925.1 156.4,927.1C151.8,929.5 147.4,934.1 145.1,938.8C143.3,942.6 143.2,943.0 143.2,948.0C143.2,953.1 143.3,953.4 145.1,957.1C147.4,961.7 151.3,965.5 155.8,967.6C159.1,969.1 168.9,971.9 182.9,975.3C196.6,978.6 206.8,981.6 224.6,987.4C232.8,990.1 233.6,990.2 255.0,992.8C260.6,993.4 266.9,994.2 269.0,994.5C271.1,994.8 275.0,995.4 277.8,995.8C284.9,996.8 289.3,997.5 292.5,998.0C305.1,1000.1 316.4,1001.0 337.2,1001.5C348.2,1001.8 357.7,1002.1 358.2,1002.2C360.7,1002.9 403.4,1006.6 404.0,1006.3C404.1,1006.2 409.9,1006.5 416.8,1007.0C423.6,1007.5 438.0,1008.4 448.8,1009.0C459.5,1009.6 470.1,1010.2 472.2,1010.5C474.4,1010.7 482.3,1011.3 489.8,1011.7C497.2,1012.2 505.3,1012.6 507.8,1012.8C514.5,1013.2 548.6,1013.8 562.0,1013.7C569.2,1013.7 576.7,1013.3 581.5,1012.8ZM909.7,831.2C914.6,830.0 918.0,828.1 921.3,824.6C925.4,820.5 927.3,817.2 928.6,811.9C929.6,807.9 929.6,807.4 929.0,794.5C927.3,756.5 927.4,738.3 929.5,723.2C930.1,718.9 930.1,681.9 929.5,673.8C928.9,666.3 928.3,660.1 927.2,652.0C926.4,645.5 925.9,640.8 925.1,629.9C924.8,626.4 924.2,621.6 923.8,619.2C923.4,616.7 922.6,611.3 922.0,607.0C921.5,602.7 920.8,598.1 920.5,596.8C920.2,595.4 919.3,590.6 918.4,586.2C917.6,581.9 916.7,577.4 916.5,576.2C913.4,560.2 911.9,546.9 910.0,517.5C908.9,500.6 908.7,478.6 909.5,461.9C910.4,445.5 910.4,444.3 910.8,425.0C911.1,415.2 911.5,406.9 911.7,406.5C912.0,406.1 912.1,388.3 912.0,361.5C911.7,283.8 911.8,269.1 912.4,255.2C913.4,236.2 913.5,210.0 912.7,196.5C911.8,181.4 911.8,181.3 910.6,173.0C909.3,163.7 908.6,157.0 908.0,145.2C907.7,140.0 906.8,129.0 906.0,120.8C904.6,107.5 904.2,105.2 902.7,100.5C900.2,92.6 896.6,87.7 890.1,83.5C884.3,79.6 874.5,77.0 868.6,77.7C856.2,79.2 846.9,85.7 841.7,96.8C838.5,103.4 834.5,121.2 829.5,150.5C828.2,158.7 826.8,166.3 826.5,167.5C825.6,171.5 824.6,192.3 824.8,203.2C825.5,236.1 825.5,236.2 824.2,246.5C823.6,251.8 822.7,258.3 822.3,260.8C821.8,263.2 821.2,267.3 820.8,269.8C820.4,272.2 819.8,275.7 819.6,277.5C818.7,283.1 818.4,298.7 818.9,312.7C819.5,326.5 819.3,330.9 817.7,353.2C816.1,374.0 816.2,394.1 818.1,437.2C818.6,448.5 818.8,451.9 819.9,466.2C820.2,470.1 820.7,478.9 821.0,485.8C821.5,497.6 823.2,521.8 823.7,524.5C824.5,528.5 825.1,546.9 825.3,568.5C825.4,586.8 825.6,595.7 826.3,602.5C826.7,607.6 827.2,613.1 827.3,614.8L827.6,617.8 823.9,622.8C821.8,625.5 815.7,634.4 810.3,642.5C797.7,661.1 794.5,665.8 790.8,670.7C789.1,672.9 787.1,675.6 786.2,676.7C784.2,679.4 776.2,687.0 771.7,690.6C760.6,699.5 743.8,708.4 731.3,712.3C725.4,714.1 716.9,716.4 711.5,717.7C708.3,718.5 701.9,720.1 697.2,721.3C684.2,724.7 672.7,727.5 667.5,728.5C656.0,730.7 641.7,731.6 620.5,731.4C611.3,731.2 593.7,731.3 581.5,731.5C557.9,731.9 513.8,731.3 508.8,730.5C507.1,730.2 501.2,729.7 495.8,729.3C490.2,728.8 482.9,728.2 479.5,727.9C475.1,727.5 466.5,727.5 451.0,727.8C419.3,728.3 390.7,728.2 380.2,727.5C375.3,727.2 368.7,726.7 365.5,726.5C362.3,726.3 355.0,725.8 349.2,725.3C331.0,723.9 323.6,723.6 309.2,723.6C282.6,723.4 265.4,721.6 250.1,717.0C240.9,714.3 234.2,711.3 232.1,709.1C229.5,706.3 225.2,695.6 223.4,687.8C222.6,683.8 222.4,680.4 222.0,661.8C221.7,648.0 221.3,637.5 220.7,632.8C217.4,602.3 216.9,591.8 217.2,562.0C217.4,545.5 217.4,533.9 217.0,528.5C216.7,524.0 216.2,517.3 216.0,513.8C215.8,510.2 215.3,503.3 215.0,498.6C214.7,493.8 214.4,489.7 214.3,489.5C213.7,488.5 214.2,452.9 214.8,451.9C215.4,450.9 215.6,416.8 215.1,408.8C214.7,404.1 214.2,385.1 214.0,366.5C213.7,347.9 213.3,327.8 213.0,321.8C212.4,309.0 213.1,295.5 215.0,284.5C215.2,283.0 215.7,280.2 216.0,278.2C219.0,258.8 220.9,250.4 223.6,244.3C224.4,242.4 227.4,236.5 230.1,231.3C232.8,226.2 235.0,221.8 235.0,221.6C235.0,221.5 235.9,219.9 237.0,218.2C239.2,214.9 241.0,213.4 245.8,211.3C253.2,208.0 260.5,206.8 278.0,206.0C305.3,204.8 319.6,204.0 323.2,203.5C325.4,203.3 330.4,202.8 334.2,202.5C338.1,202.1 342.9,201.7 345.0,201.5C347.1,201.2 350.7,200.8 353.0,200.6C355.3,200.3 360.2,199.7 363.8,199.3C383.6,196.8 400.4,195.3 417.0,194.5C422.6,194.2 431.1,193.8 435.8,193.5C446.8,192.7 482.3,192.1 488.8,192.6C491.5,192.7 498.9,193.1 505.2,193.4C511.6,193.7 518.1,194.2 519.8,194.5C521.5,194.8 524.7,195.0 527.0,195.0C529.2,195.0 533.1,195.2 535.7,195.5C538.2,195.7 543.5,196.2 547.5,196.5C551.5,196.8 557.3,197.2 560.5,197.5C563.7,197.8 569.2,198.3 572.8,198.5C576.3,198.8 581.5,199.2 584.2,199.5C587.0,199.8 591.7,200.1 594.8,200.2C597.8,200.4 602.4,200.7 605.0,201.0C607.6,201.2 611.7,201.6 614.1,201.8C616.5,201.9 618.8,202.3 619.2,202.7C620.0,203.3 622.8,211.8 625.0,220.2C627.0,228.0 628.7,239.0 631.5,264.0C632.0,268.8 632.7,274.6 633.0,276.8C633.5,280.7 634.2,288.1 634.9,298.8C635.2,301.8 635.4,313.2 635.5,324.2C635.6,351.4 636.8,378.9 637.9,384.0C638.2,385.3 638.8,390.8 639.2,396.2C639.7,401.8 640.3,408.1 640.5,410.2C641.4,417.1 641.7,435.5 641.1,444.7C640.3,456.0 639.4,485.7 639.4,500.8C639.4,516.7 638.0,527.2 635.6,529.6C634.5,530.7 626.0,533.6 620.0,534.9C615.0,536.0 605.5,537.1 594.0,538.0C585.3,538.7 573.5,539.9 570.0,540.5C568.4,540.8 566.0,541.0 564.5,541.0C563.0,541.0 560.4,541.2 558.8,541.5C557.1,541.8 545.6,542.1 533.2,542.3C520.9,542.4 507.2,542.7 502.9,543.0C498.5,543.3 491.4,543.7 487.0,544.0C481.4,544.4 474.8,544.4 464.9,544.0C418.3,542.2 415.0,542.0 404.8,539.4C399.1,538.0 396.9,536.8 393.7,533.1C389.8,528.8 389.5,527.7 387.5,510.5C386.9,505.5 386.1,495.7 385.7,489.2C385.5,484.9 383.1,465.5 381.0,449.8C379.6,439.3 379.1,435.6 378.5,428.8C378.2,425.4 377.7,421.0 377.4,418.9C376.6,412.7 377.7,390.6 379.3,382.9C380.4,377.6 382.0,374.6 385.1,372.0C391.1,367.2 411.9,356.1 419.0,353.9C421.3,353.2 426.5,351.9 430.5,351.0C437.6,349.4 443.4,348.0 463.2,343.0C468.8,341.7 478.0,339.4 483.8,338.0C499.5,334.2 505.0,331.6 510.5,325.7C515.5,320.1 517.9,314.4 518.3,306.5C519.2,292.0 510.2,276.6 498.2,271.8C492.1,269.4 489.9,269.3 472.7,271.0C464.2,271.8 452.6,272.8 447.0,273.3C441.4,273.7 435.9,274.1 434.8,274.3C433.6,274.4 428.6,274.9 423.5,275.3C402.7,276.9 394.9,279.2 377.2,288.6C374.5,290.1 368.0,293.5 362.8,296.2C336.0,310.1 326.3,316.8 317.0,327.6C305.9,340.6 297.3,362.6 292.2,390.7C289.7,404.6 289.0,412.4 288.8,429.2C288.5,447.6 289.6,470.3 292.0,490.8C292.7,497.3 293.9,509.9 294.2,514.2C294.4,516.5 294.6,520.0 294.8,522.2C296.2,543.1 298.8,553.6 306.0,567.3C311.2,577.2 313.2,580.0 327.3,598.4C334.1,607.2 345.3,616.8 355.2,622.3C368.1,629.5 379.8,633.2 400.1,636.5C405.1,637.3 410.6,638.2 412.2,638.5C415.0,638.9 422.7,640.1 431.8,641.5C433.7,641.8 436.5,642.3 438.0,642.5C444.6,643.7 459.5,645.0 465.6,645.0C472.3,645.0 482.7,644.2 496.8,642.6C503.0,641.9 509.9,641.8 537.5,641.7C559.0,641.7 572.0,641.5 574.2,641.1C576.2,640.8 580.7,640.4 584.2,640.3C603.0,639.4 623.3,637.0 633.8,634.5C647.9,631.0 669.1,622.2 684.5,613.4C694.0,607.9 701.9,601.4 709.9,592.4C728.8,571.0 737.2,551.7 740.5,522.0C743.0,498.8 743.1,479.4 740.7,458.5C739.3,446.3 739.3,446.1 739.2,407.2C739.0,371.8 738.6,351.0 737.7,339.5C737.6,337.2 737.2,332.7 737.0,329.5C736.5,321.9 735.6,314.0 735.0,310.2C734.4,306.6 733.6,300.1 732.9,293.0C732.2,286.2 732.1,270.6 732.8,259.5C733.4,248.2 733.3,233.6 732.5,227.5C730.5,210.9 726.0,194.6 717.3,171.5C716.7,169.7 715.6,165.8 715.0,162.8C711.4,145.1 702.1,133.1 685.6,124.8C671.6,117.8 651.6,111.2 636.0,108.5C632.8,108.0 628.5,107.2 626.2,106.8C622.3,106.0 615.2,104.9 609.2,103.9C605.8,103.4 603.1,103.0 596.8,101.8C594.3,101.3 590.9,100.7 589.2,100.5C587.6,100.2 585.9,99.9 585.5,99.7C584.8,99.4 580.7,98.8 569.8,97.2C567.0,96.8 562.4,96.2 559.5,96.0C556.6,95.7 553.1,95.2 551.8,94.9C546.4,93.9 533.5,93.3 516.8,93.3C500.7,93.3 498.0,93.5 484.2,94.9C476.0,95.8 467.6,96.8 465.5,97.1C460.5,98.0 434.6,98.0 424.8,97.1C420.6,96.8 414.6,96.2 411.2,96.0C402.5,95.2 381.3,95.0 373.5,95.6C357.5,96.8 347.4,97.6 342.0,98.3C340.8,98.4 337.7,98.7 335.2,99.0C330.5,99.5 319.7,100.7 313.8,101.5C297.5,103.6 284.3,104.8 273.0,105.2C239.6,106.4 230.3,107.8 215.1,113.7C187.2,124.6 166.2,143.2 147.8,173.5C143.8,180.0 132.6,202.5 129.8,209.5C124.2,223.6 121.7,235.6 119.7,257.0C119.0,264.8 118.8,272.7 118.8,306.2C118.7,328.2 118.9,357.4 119.2,371.0C119.4,384.6 119.6,399.5 119.6,404.0C119.4,445.1 119.5,448.3 122.0,469.2C122.3,471.7 122.7,475.3 123.0,477.2C123.2,479.2 123.6,482.8 123.9,485.2C124.9,493.1 125.5,498.1 126.0,503.0C127.0,511.5 127.4,515.6 128.3,522.2C130.9,544.0 131.4,553.1 131.5,580.0C131.5,602.9 132.4,625.2 133.5,631.5C133.8,633.0 134.1,636.5 134.2,639.2C134.4,642.0 134.7,645.6 135.0,647.2C135.3,648.9 135.8,654.8 136.3,660.2C138.2,685.1 142.0,702.2 150.8,725.2C156.5,740.2 161.1,748.8 167.8,757.8C179.9,773.9 193.4,783.4 215.8,791.6C238.5,800.0 254.4,803.7 277.0,805.8C285.7,806.6 288.4,806.7 308.2,807.2C326.1,807.7 346.0,808.5 352.2,809.0C355.6,809.3 361.3,809.8 365.0,810.0C368.7,810.3 374.7,810.9 378.2,811.3C381.8,811.7 387.4,812.2 390.8,812.5C394.1,812.8 397.1,813.1 397.6,813.3C398.5,813.6 406.9,814.1 422.5,815.0C427.6,815.3 439.6,815.3 451.0,815.1C477.1,814.6 501.9,814.8 506.2,815.5C521.5,817.8 543.4,818.4 559.8,816.8C573.4,815.5 584.1,815.3 594.5,816.0C599.6,816.3 605.5,816.7 607.8,816.8C610.0,816.8 615.7,817.2 620.5,817.7C630.3,818.5 646.3,818.5 656.8,817.5C660.3,817.2 668.5,816.1 674.9,815.0C681.3,813.9 691.4,812.3 697.4,811.5C724.1,807.8 730.5,806.0 751.0,797.0C753.6,795.8 759.5,793.4 764.0,791.5C785.8,782.5 793.2,778.3 807.2,767.1C814.2,761.5 829.0,747.9 836.9,739.8C841.1,735.4 844.8,732.1 845.0,732.3C845.2,732.6 846.7,735.9 848.2,739.8C849.7,743.6 852.9,751.1 855.2,756.5C857.6,761.9 861.0,769.7 862.7,774.0C866.8,784.0 874.0,800.0 879.1,810.4C882.9,818.3 883.2,818.8 887.7,823.2C892.6,828.2 895.5,830.0 900.4,831.2C904.2,832.1 906.2,832.2 909.7,831.2Z"/></svg></a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8B7F6B">{{ levelName }}</span>
+</header>
+
+<main style="display:flex;flex-wrap:wrap;gap:48px 72px;padding-top:clamp(40px,7vw,72px)">
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:22px;max-width:820px">
+<h1 style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:clamp(36px,5vw,52px);line-height:1.06;margin:0;text-wrap:balance"><label for="q">What Is Your Question?</label></h1>
+<p style="font-size:19px;line-height:1.62;color:#B3A78E;max-width:56ch;margin:0">Traditionally, the I Ching was consulted rarely, and for things that mattered. Take a moment with your question before you cast.</p>
+
+<div style="border-bottom:1px solid {{ lineColor }};transition:border-color 320ms cubic-bezier(.22,.61,.36,1);margin-top:10px">
+<textarea id="q" ref="{{ taRef }}" rows="3" value="{{ q }}" onChange="{{ onInput }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="Type Your Question Here." aria-describedby="{{ describedBy }}" style="width:100%;box-sizing:border-box;resize:vertical;background:transparent;border:0;outline:none;padding:12px 2px;font-family:'Young Serif',Georgia,serif;font-size:clamp(20px,2.6vw,26px);line-height:1.35;color:#EBDFC7;min-height:110px"></textarea>
+</div>
+
+<sc-if value="{{ showBegin }}" hint-placeholder-val="{{ true }}">
+<div class="ch-mcta" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:6px">
+<a class="chb chb-h" href="CastFinal.dc.html" aria-disabled="{{ emptyStr }}" style="display:inline-flex;align-items:center;gap:10px;border-radius:2px;cursor:pointer;text-decoration:none;font-family:'Young Serif',Georgia,serif;letter-spacing:0;text-transform:lowercase;padding:12px 22px;font-size:17px;background:#991613;color:#F4DACB;border:0;opacity:{{ beginOp }};transition:opacity 180ms">Begin the cast <span aria-hidden="true">→</span></a>
+</div>
+</sc-if>
+
+<sc-if value="{{ showYesNo }}" hint-placeholder-val="{{ false }}">
+<div id="yesno" class="ch-in" role="note" style="background:#211A17;border:1px solid #413229;border-radius:3px;padding:26px 28px;display:flex;flex-direction:column;gap:12px">
+<h2 style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:28px;line-height:1.15;margin:0 0 2px;color:#EBDFC7">Are You Sure?</h2>
+<p style="font-size:17px;line-height:1.6;color:#EBDFC7;margin:0;max-width:60ch"><strong style="font-weight:700">The I Ching doesn't answer yes or no.</strong> It describes the situation you're in and the stance it asks of you: to move, to wait, to yield, to persist. You can keep your question as it is, or open it up a little.</p>
+<p style="font-size:17px;line-height:1.6;color:#B3A78E;margin:0;font-style:italic">Instead of "Should I take the job?", try "What should I understand about taking this job?"</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+<button class="chb chb-b" type="button" onClick="{{ keep }}" style="display:inline-flex;align-items:center;gap:10px;border-radius:2px;cursor:pointer;text-decoration:none;font-family:'Young Serif',Georgia,serif;letter-spacing:0;text-transform:lowercase;padding:9px 16px 11px;font-size:16px;background:#B7884D;color:#191411;border:0;">Keep my question</button>
+<button class="chb chb-b" type="button" onClick="{{ rephrase }}" style="display:inline-flex;align-items:center;gap:10px;border-radius:2px;cursor:pointer;text-decoration:none;font-family:'Young Serif',Georgia,serif;letter-spacing:0;text-transform:lowercase;padding:9px 16px 11px;font-size:16px;background:#B7884D;color:#191411;border:0;">Rephrase it</button>
+<a class="chb chb-g" href="Resources.dc.html" style="display:inline-flex;align-items:center;gap:10px;border-radius:2px;cursor:pointer;text-decoration:none;font-family:'Young Serif',Georgia,serif;letter-spacing:0;text-transform:lowercase;padding:8px 15px 10px;font-size:16px;background:transparent;color:#B7884D;border:1px solid #B7884D;">Learn more <span aria-hidden="true">→</span></a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showRecast }}" hint-placeholder-val="{{ false }}">
+<div class="ch-in" role="note" style="border:1px solid #5D4A3C;border-radius:3px;padding:22px 24px;display:flex;flex-direction:column;gap:14px">
+<p style="font-size:17px;line-height:1.62;color:#EBDFC7;margin:0;max-width:62ch">You've asked this before. Tradition holds that asking again because you didn't like the answer means you've stopped listening; Hexagram 4 says so plainly. But if you're practicing the method, cast as often as you like: that's how the skill is learned. If you're hoping for a different answer, try staying with the first one a little longer.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<a class="chb chb-h" href="CastFinal.dc.html" style="display:inline-flex;align-items:center;gap:10px;border-radius:2px;cursor:pointer;text-decoration:none;font-family:'Young Serif',Georgia,serif;letter-spacing:0;text-transform:lowercase;padding:12px 22px;font-size:17px;background:#991613;color:#F4DACB;border:0;">Cast again</a>
+<a class="chb chb-b" href="CastFull.dc.html" style="display:inline-flex;align-items:center;gap:10px;border-radius:2px;cursor:pointer;text-decoration:none;font-family:'Young Serif',Georgia,serif;letter-spacing:0;text-transform:lowercase;padding:12px 22px;font-size:17px;background:#B7884D;color:#191411;border:0;">Return to my first reading</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+
+<aside aria-labelledby="g-h" style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px;padding-top:8px">
+<span id="g-h" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#B7884D">A good question</span>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+<sc-for list="{{ guidance }}" as="g" hint-placeholder-count="4">
+<li style="display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:14px 0;border-top:1px solid #413229"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8B7F6B;padding-top:4px">{{ g.n }}</span><span style="font-size:17px;line-height:1.55;color:#B3A78E">{{ g.t }}</span></li>
+</sc-for>
+</ol>
+</aside>
+</main>
+<footer style="margin-top:clamp(72px,10vw,120px);border-top:1px solid #3A2E26;padding-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:10px 0;color:#8B7F6B">About</span>
+<a href="https://www.anyma.one/imprint" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:10px 0;color:#B3A78E">Imprint</a>
+<a href="https://www.anyma.one/privacy" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:10px 0;color:#B3A78E">Data &amp; Privacy</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900},"level":{"editor":"enum","options":["quick","deep"],"default":"quick","section":"States"},"prefill":{"editor":"enum","options":["empty","open question","yes/no question"],"default":"empty","section":"States"},"recast":{"editor":"boolean","default":false,"section":"States"}}'>
+const D = {"COPY":{"levels":[{"tier":1,"name":"Quick Cast","description":"A first glimpse of your hexagram."},{"tier":2,"name":"Deep Cast","description":"Cast it yourself and learn to read."},{"tier":3,"name":"Full Cast","description":"The whole story of your cast, read with you."}],"question":{"heading":"What would you like to understand?","threshold":"Traditionally, the I Ching was consulted rarely, and for things that mattered. Take a moment with your question before you cast.","placeholder":"Describe your situation and what you'd like to understand about it","guidance":["Ask about something that genuinely matters to you right now.","Open questions work best: \"What should I understand about...\" or \"How can I approach...\"","Name the situation, not just the outcome you hope for.","One question per cast. If you have two, cast twice."],"yesNoNotice":{"trigger":"The question starts with a yes/no opener (Will, Should, Is, Are, Can, Do, Does).","text":"The I Ching doesn't answer yes or no. It describes the situation you're in and the stance it asks of you: to move, to wait, to yield, to persist. You can keep your question as it is, or open it up a little.","example":"Instead of \"Should I take the job?\", try \"What should I understand about taking this job?\"","keep":"Keep my question","rephrase":"Rephrase it"}},"recast":{"trigger":"The user casts the same (or a near-identical) question again in the same session.","text":"You've asked this before. Tradition holds that asking again because you didn't like the answer means you've stopped listening; Hexagram 4 says so plainly. But if you're practicing the method, cast as often as you like: that's how the skill is learned. If you're hoping for a different answer, try staying with the first one a little longer.","castAnyway":"Cast again","goBack":"Return to my first reading"},"tier1":{"honestFrame":"This is the traditional text: evocative, a little cryptic, and the same for everyone who receives this hexagram. Learning to read it for your own question is what Deep Cast is for.","cta":"Continue with Deep Cast"},"tier2":{"secondHexagramTeaser":"Your cast is moving toward {glyph} {name}. Where this change is taking you, and what it means for your question, opens in Full Cast.","secondHexagramCta":"Sign up for Full Cast","reflectionsHeading":"Read it against your question","selfReadingNote":"If the reading suddenly seems to fit your situation, notice that: you just made the connection. That's your mind doing the reading, which is the skill this practice builds."},"changingLines":{"zero":{"tier2":"No lines are changing in your cast. That makes this a still hexagram: one settled picture rather than a situation in motion. There's no second hexagram this time, so the whole message lives here. The Meaning below is your reading.","tier3":"Nothing is changing, so there's no second hexagram to move toward. Read all six lines anyway, from the bottom up, as the full arc of this hexagram's story. None is highlighted, because none is transforming; the value here is watching the theme build from its first stage to its last."},"one":{"tier2":"One line in your cast is changing. That single line is the most specific note in your reading, and it's enough on its own to turn this cast into a second hexagram, a glimpse of where things are heading. Read the changing line below.","tier3":"One line is changing, highlighted below. Read all six lines, but let the highlighted one carry the weight. It's the crucial element that turns this cast into the second hexagram shown here."},"several":{"tier2":"Your cast has {count} changing lines. Together they tell a fuller story, and they reveal a second hexagram: where this situation is heading as it transforms. Read the changing lines below, from the bottom up.","tier3":"Your cast has {count} changing lines, highlighted below. Read all six as one arc and watch the highlighted ones: they're the moving parts carrying this hexagram into the second. The first hexagram is where you are; the second is where the change is taking you."},"all":{"tier2":"All six lines are changing. This is rare, about one cast in four thousand, and it means the whole situation is in motion: everything about it is turning into something else. Tradition reads a cast like this mostly through the second hexagram.","tier2_hex1_2":"All six lines are changing. This is rare, about one cast in four thousand. Hexagrams 1 and 2 are the only ones with a special text for this case, and yours is one of them. Read it below.","tier3":"All six lines are changing, so the reading passes almost entirely to the second hexagram. Read your first hexagram as where you're coming from and the second as where you're going; the second carries the weight.","tier3_hex1_2":"All six lines are changing. For this hexagram, tradition adds a seventh text for exactly this case. Read it alongside the second hexagram, which carries the weight of the reading."}},"lineTypes":{"intro":"Each toss of three coins gives one line. Heads count 3, tails count 2. The total is always 6, 7, 8 or 9, and each number is a different kind of line.","convention":"Some traditions count heads as 2 and tails as 3. Either works, as long as you stay with one convention.","6":{"name":"Old yin","coins":"Three tails (2 + 2 + 2)","draw":"Broken line, marked as changing","text":"A yielding line at its limit. It's about to turn into its opposite, so it changes into a solid line in the second hexagram.","odds":"1 in 8"},"7":{"name":"Young yang","coins":"Two tails, one head (2 + 2 + 3)","draw":"Solid line","text":"A firm line that's stable for now. It stays as it is.","odds":"3 in 8"},"8":{"name":"Young yin","coins":"Two heads, one tail (3 + 3 + 2)","draw":"Broken line","text":"A yielding line that's stable for now. It stays as it is.","odds":"3 in 8"},"9":{"name":"Old yang","coins":"Three heads (3 + 3 + 3)","draw":"Solid line, marked as changing","text":"A firm line at its limit. It's about to turn into its opposite, so it changes into a broken line in the second hexagram.","odds":"1 in 8"},"whyUneven":"Only one combination of coins gives three tails, and only one gives three heads, but three different combinations give each of the mixed results. That's why changing lines are rarer: each line has a 1 in 4 chance of changing, so most casts have one or two."},"landing":{"eyebrow":"anyma · ching","headline":"Learn to cast and read the I Ching","subhead":"A three-thousand-year-old book about change, taught one real question at a time. No belief required: just curiosity, and a question that matters to you.","levelsHeading":"How deep do you want to go?","learnLink":"New to the I Ching? Start with a short history."},"cast":{"progress":"Line {n} of 6","buildNote":"A hexagram is built from the bottom up, one line per toss.","beforeReveal":"Your hexagram","skip":"Skip to my reading","changingMark":"This line is changing."},"guide":{"intro":"You'll toss three coins six times. Each toss gives one line, and you'll work out which line it is. By the end, you'll have cast a hexagram yourself.","toss":"Toss the coins","tossAgain":"Toss for line {n}","askTotal":"What do these coins add up to?","firstHint":"Heads count 3, tails count 2. Add up all three coins.","hintButton":"Show me how","correct":"That's right.","incorrect":"Not quite. Heads count 3 and tails count 2, so these coins add up to {total}.","lineIs":"A total of {total} is {type}.","firstChanging":"This is a changing line. It's at its limit and will turn into its opposite. Changing lines are the most specific part of your reading.","complete":"Six lines, six tosses. You've cast a hexagram.","findIntro":"Every hexagram is two trigrams stacked. Can you find yours?","findLower":"Which trigram is formed by your bottom three lines?","findUpper":"And the top three?","findSkip":"Skip this step","found":"Together they make hexagram {number}."},"gate":{"heading":"See The Whole Story of Your Cast","body":"Full Cast reveals where your cast is heading: the second hexagram and its Meaning, all six lines with your changing lines marked, and a conversation that helps you apply the reading to your own question.","payment":"A one-time payment of {price} keeps the server running.","cta":"Unlock Full Cast","keep":"Your reading stays right here.","noSecond":"Your cast has no changing lines, so there's no second hexagram. Full Cast still gives you all six lines as one story, and a conversation about your reading."},"dialogue":{"heading":"Make It Yours","intro":"Ask about your reading, or tell me more about your situation. I'll stay close to the texts and won't simply tell you what you want to hear.","placeholder":"Ask about your reading","starters":["What does the changing line mean for my question?","How do the two hexagrams relate?","What am I not seeing here?"]},"errors":{"generic":"Something went wrong. Your reading is safe; please try again.","dialogueUnavailable":"The conversation isn't available right now. Your reading is still here, and you can come back to it."},"resources":{"heading":"Learn","pages":[{"file":"01-history.md","title":"A brief history"},{"file":"02-gua-table.md","title":"The 64 hexagrams"},{"file":"03-trigrams.md","title":"The eight trigrams"},{"file":"04-how-to-cast.md","title":"How to cast"},{"file":"05-how-to-read.md","title":"How to read"},{"file":"06-on-translation.md","title":"On translation"},{"file":"07-why-divination.md","title":"Why divination can help"}]}}};
+
+const C = D.COPY;
+const WORDS = ['zero','one','two','three','four','five','six'];
+const pad = (n) => String(n).padStart(2, '0');
+const fill = (s, o) => String(s).replace(/\{(\w+)\}/g, (m, k) => (o[k] !== undefined ? o[k] : m));
+const hexByBin = (b) => Object.values(D.HEX).find((h) => h.bin === b);
+function ident(h) {
+  if (!h) return null;
+  const triRows = (tr) => Object.assign({}, tr, { rows: tr.bits.slice().reverse().map((x) => ({ gap: x ? 0 : 16 })) });
+  const up = triRows(D.TRI[h.upper]), lo = triRows(D.TRI[h.lower]);
+  const tall = h.shape === 'tall';
+  return Object.assign({}, h, {
+    num: pad(h.n), hasSeal: !!h.seal, noSeal: !h.seal, tall,
+    sealW: 64, sealH: tall ? 119 : 64,
+    sealAlt: 'Seal: ' + h.zh,
+    up, lo, triLine: up.sym + ' ' + up.en + ' over ' + lo.sym + ' ' + lo.en,
+  });
+}
+function figRows(lines, o) {
+  o = Object.assign({ tone: 'dark' }, o || {});
+  const col = o.tone === 'paper'
+    ? { line: '#191411', ch: '#991613', empty: '#C7B694', hi: 'rgba(153,22,19,.10)', faint: '#857761' }
+    : { line: '#B7884D', ch: '#991613', empty: '#5D4A3C', hi: 'rgba(153,22,19,.16)', faint: '#8B7F6B' };
+  const brk = o.brk || 18;
+  return lines.map((l, i) => Object.assign({ idx: i + 1 }, l)).reverse().map((l) => {
+    const empty = l.state === 'empty';
+    const color = l.changing && !empty ? col.ch : col.line;
+    return Object.assign({}, l, {
+      bar: empty ? 'background:transparent;box-shadow:inset 0 0 0 1px ' + col.empty : 'background:' + color,
+      gap: empty || l.state === 'drawing' ? 0 : (l.yang ? 0 : brk),
+      mark: !empty && l.changing ? (l.sum === 6 ? '×' : l.sum === 9 ? '○' : (l.yang ? '○' : '×')) : '',
+      markColor: col.ch, faint: col.faint,
+      opacity: l.dim ? 0.26 : 1,
+      cls: (l.state === 'drawing' ? 'draw' : '') + (empty ? ' ln-empty' : (l.yang ? ' ln-yang' : ' ln-yin') + (l.changing ? ' ln-ch' : '')),
+      totalTxt: l.total && !empty ? String(l.total) : '',
+      hiBg: l.hi ? col.hi : 'transparent',
+    });
+  });
+}
+function figLabel(lines) {
+  return 'Hexagram figure, bottom to top: ' + lines.map((l, i) => l.state === 'empty' ? ('line ' + (i + 1) + ' not cast yet') :
+    ('line ' + (i + 1) + ' ' + (l.yang ? 'solid' : 'broken') + (l.changing ? ', changing' : ''))).join('; ');
+}
+
+const OPENER = /^\s*(will|should|is|are|can|do|does)\b/i;
+class Component extends DCLogic {
+  constructor(p) { super(p); this.taEl = null; this.setTa = (el) => { this.taEl = el; }; this.state = { q: this.pre(p.prefill), kept: false, focus: false }; }
+  pre(v) {
+    v = v ?? 'empty';
+    if (v === 'open question') return 'How can I approach starting my own studio?';
+    if (v === 'yes/no question') return 'Should I take the job?';
+    return '';
+  }
+  componentDidUpdate(prev) { if (prev.prefill !== this.props.prefill) this.setState({ q: this.pre(this.props.prefill), kept: false }); }
+  renderVals() {
+    const q = this.state.q;
+    const yesNo = OPENER.test(q) && !this.state.kept;
+    const recast = this.props.recast ?? false;
+    return {
+      levelName: (this.props.level ?? 'quick') === 'deep' ? 'Deep Cast' : 'Quick Cast',
+      q, taRef: this.setTa,
+      onInput: (e) => this.setState({ q: e.target.value, kept: OPENER.test(e.target.value) ? this.state.kept : false }),
+      onFocus: () => this.setState({ focus: true }), onBlur: () => this.setState({ focus: false }),
+      lineColor: this.state.focus ? '#B7884D' : '#5D4A3C',
+      showYesNo: yesNo, describedBy: yesNo ? 'yesno' : '',
+      keep: () => this.setState({ kept: true }),
+      rephrase: () => { this.setState({ kept: true }); const el = this.taEl; if (el) { el.focus(); el.setSelectionRange(0, el.value.length); } },
+      showRecast: recast, showBegin: !recast,
+      beginOp: q.trim() ? 1 : 0.4, emptyStr: q.trim() ? 'false' : 'true',
+      guidance: C.question.guidance.map((t, i) => ({ t, n: pad(i + 1) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+/* anyma CHING Design System, update of 11 November 2026.
+   Responsive behaviour as plain CSS. Class names are suggestions for the product build;
+   the canvas prototypes reach the same result with build-time hooks that should not be copied.
+   Desktop (above 960px) is the default; these rules only re-flow it. */
+
+/* ---------- Header ---------- */
+.header-logo { height: var(--logo-h-desktop); width: auto; display: block; }
+
+/* ---------- Reading ---------- */
+.reading-sheet   { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,280px); gap: 40px 52px; }
+.reading-margin  { position: sticky; top: 24px; padding-left: 24px; border-left: 1px solid #C7B694; display: flex; flex-direction: column; gap: 28px; }
+.reading-pair    { display: grid; grid-template-columns: minmax(240px,300px) minmax(0,1fr); gap: 28px 48px; align-items: center; } /* figure | text */
+.reading-pair--reverse { grid-template-columns: minmax(0,1fr) minmax(240px,300px); } /* text | trigrams */
+.wilhelm--in-section { display: none; }
+.seal { height: 152px; width: auto; }
+
+/* ---------- Toss ---------- */
+.toss            { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px,100%),1fr)); gap: 56px; }
+.toss-stage      { display: flex; flex-direction: column; gap: 28px; }
+.toss-coins      { display: flex; gap: 34px; padding-top: 128px; }     /* 128px = headroom for the toss arc */
+.coin            { width: 88px; height: 88px; }
+
+/* ---------- Learn ---------- */
+.learn-selector  { display: none; }
+
+@media (max-width: 960px) {
+  .header-logo { height: var(--logo-h-tablet); }
+
+  /* Reading: one column, margin notes below, each box full width */
+  .reading-sheet  { grid-template-columns: minmax(0,1fr); gap: 32px; }
+  .reading-margin { position: static; padding: 28px 0 0; border-left: 0; border-top: 1px solid #C7B694; }
+  .reading-margin > * { width: 100%; }
+  .reading-pair, .reading-pair--reverse { grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .reading-pair--reverse > :last-child { order: -1; }          /* trigrams above Image */
+  .wilhelm--in-header { display: none; }
+  .wilhelm--in-section { display: block; }                      /* under "Traditional Meaning" */
+
+  /* Toss: coins left, count right behind a fixed rule, hexagram below */
+  .toss        { display: flex; flex-direction: column; gap: 18px; }
+  .toss-stage  { display: grid; grid-template-columns: auto minmax(0,1fr); grid-template-rows: auto 268px; column-gap: 32px; align-items: end; }
+  .toss-stage > * { grid-column: 1 / -1; }
+  .toss-progress  { display: flex; flex-wrap: nowrap; }         /* "Line 3 of 6" left, "Heads 3 · Tails 2" pinned right */
+  .toss-progress > :last-child { margin-left: auto; white-space: nowrap; }
+  .toss-coins  { grid-column: 1; grid-row: 2; gap: 27px; padding-top: 136px; }
+  .coin        { width: 70px; height: 70px; }                   /* 0.8 of desktop */
+  .toss-count  { grid-column: 2; grid-row: 2; height: 220px; padding: 0 0 26px 28px; border-left: 1px solid var(--divider-count);
+                 display: flex; flex-direction: column; justify-content: flex-end; }
+  .toss-count__total { font-size: 52px; }
+  .toss-count__name  { font-size: 24px; }
+  .toss-count__desc  { font-size: 16px; }
+  .toss-figure .hex-bar { width: 240px; height: 13px; }
+}
+
+/* Tablet only: seal, headline and hexagram share the top row of the sheet */
+@media (min-width: 721px) and (max-width: 960px) {
+  .reading-top { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 28px; align-items: center; }
+  .seal { height: 96px; }
+  .reading-top .hex-bar  { width: 160px; height: 12px; }
+  .reading-top .hex-rows { gap: 2px; }
+  .reading-top .hex-row  { padding-block: 3px; }
+}
+
+@media (max-width: 720px) {
+  .header-logo { height: var(--logo-h-mobile); }
+  .seal { height: 96px; }
+  .reading-figure .hex-bar { width: min(210px, calc(100vw - 170px)); height: 15px; }
+  .line-item { grid-template-columns: minmax(0,1fr); gap: 6px; }  /* line label above its text */
+  details > summary { min-height: var(--summary-min-mobile); }
+
+  .toss-stage  { grid-template-rows: auto 214px; column-gap: 20px; }
+  .toss-coins  { gap: 20px; padding-top: 99px; }
+  .coin        { width: 51px; height: 51px; }                   /* 0.58 of desktop */
+  .toss-count  { height: 184px; padding: 0 0 22px 18px; }
+  .toss-count__total { font-size: 38px; }
+  .toss-count__name  { font-size: 19px; }
+  .toss-count__desc  { font-size: 14px; }
+  .toss-figure .hex-bar { width: min(210px, calc(100vw - 170px)); height: 11px; }
+
+  /* Question: Begin pinned to the bottom, warning as a bottom sheet */
+  .question-cta { position: sticky; bottom: 0; padding: 14px 20px 18px; margin-inline: -20px;
+                  background: linear-gradient(180deg, rgba(22,18,16,0), #161210 38%); }
+  .question-cta > .button { flex: 1; justify-content: center; }
+  .yes-no-sheet { position: fixed; inset: auto 0 0 0; border-radius: 12px 12px 0 0; max-height: 85vh; overflow: auto; }
+
+  /* Make It Yours: summary on top and collapsed, starters scroll sideways, input pinned */
+  .dialogue-summary { order: -1; }
+  .dialogue-starters { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; }
+  .dialogue-input { position: sticky; bottom: 0; background: #161210; }
+
+  /* Learn: section list becomes a selector */
+  .learn-list { display: none; }
+  .learn-list.is-open { display: flex; }
+  .learn-selector { display: flex; }   /* "Section 02 of 08 · <title> ▾", hidden above 720px */
+}

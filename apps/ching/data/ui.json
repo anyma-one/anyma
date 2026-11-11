@@ -1,0 +1,181 @@
+{
+  "_about": "Interface labels from the approved design update (9 to 11 November 2026): design/copy-overrides.json 'ui-strings', design/screens.md, design/components/*.md, and labels used verbatim in the design prototypes. Square brackets mark open decisions the design leaves as placeholders. Headline title case and lowercase buttons are applied in CSS or at render, not stored.",
+  "header": {
+    "home": "anyma CHING, home",
+    "learn": "Learn"
+  },
+  "footer": {
+    "about": "About",
+    "imprint": {
+      "label": "Imprint",
+      "href": "https://www.anyma.one/imprint"
+    },
+    "privacy": {
+      "label": "Data & Privacy",
+      "href": "https://www.anyma.one/privacy"
+    }
+  },
+  "landing": {
+    "headline": "Learn to Cast and Read The I Ching",
+    "levelsHeading": "Choose Your Level of Depth",
+    "levelEyebrows": [
+      "Level I",
+      "Level II",
+      "Level III"
+    ],
+    "levelPrices": [
+      "free",
+      "sign-up",
+      "one-time payment"
+    ],
+    "levelHover": "begin",
+    "what": {
+      "eyebrow": "What is the I Ching?",
+      "heading": "One of The Oldest Books and Divination Methods in The World",
+      "body": "Its Chinese name, Yìjīng 易經, means \"the Classic of Changes.\" At its core are 64 figures of six lines, each with a short text, compiled in China close to three thousand years ago. For most of its life it has been two things at once: a way to consult on decisions that mattered, and a book of philosophy about how change moves through nature and through a life.",
+      "cta": "learn more"
+    }
+  },
+  "question": {
+    "heading": "What Is Your Question?",
+    "placeholder": "Type Your Question Here.",
+    "begin": "begin the cast",
+    "guidanceHeading": "A good question",
+    "yesNo": {
+      "heading": "Are You Sure?",
+      "lead": "The I Ching doesn't answer yes or no.",
+      "body": "It describes the situation you're in and the stance it asks of you: to move, to wait, to yield, to persist. You can keep your question as it is, or open it up a little.",
+      "example": "Instead of \"Should I take the job?\", try \"What should I understand about taking this job?\"",
+      "keep": "keep",
+      "rephrase": "rephrase",
+      "learnMore": "learn more"
+    }
+  },
+  "cast": {
+    "eyebrowBuilding": "Your cast · bottom line first",
+    "eyebrowDone": "Your cast · {label}",
+    "legend": "Heads 3 · Tails 2",
+    "coinHeads": "Heads · 3",
+    "coinTails": "Tails · 2",
+    "coinHeadsAria": "Heads, counts 3",
+    "coinTailsAria": "Tails, counts 2",
+    "coinTossingAria": "Coin in the air",
+    "coinIdleAria": "Coin, not tossed yet",
+    "findLowerEyebrow": "Lines 1 to 3 · lower trigram",
+    "findUpperEyebrow": "Lines 4 to 6 · upper trigram",
+    "figureLabel": "Hexagram figure, bottom to top: {lines}",
+    "figureLine": "line {n} {kind}",
+    "figureSolid": "solid",
+    "figureBroken": "broken",
+    "figureChanging": ", changing",
+    "figureEmpty": "line {n} not cast yet"
+  },
+  "reading": {
+    "eyebrow": "Your hexagram · {number}",
+    "wilhelm": "Classic Translation by Wilhelm: {wilhelm}",
+    "sealLabel": "Seal: {name}",
+    "traditionalMeaning": "Traditional Meaning",
+    "image": "Image",
+    "inFewWords": "In Few Words",
+    "modernMeaning": "Modern Meaning",
+    "reflection": "Reflection",
+    "changingLines": "Changing Lines",
+    "allSixLines": "All Six Lines",
+    "theSixLines": "The Six Lines",
+    "secondHexagram": "Second Hexagram",
+    "upperTrigram": "Upper trigram",
+    "lowerTrigram": "Lower trigram",
+    "bottomToTop": "Bottom to top",
+    "linePositions": [
+      "Beginning",
+      "Inner center",
+      "Threshold",
+      "Minister",
+      "Ruler",
+      "Top"
+    ],
+    "lineHeading": "Line {n}",
+    "changingTag": "Changing",
+    "lockedLine": "Line {n} text, locked until {tier}",
+    "secondEyebrow": "Hexagram {number}",
+    "deepNote": {
+      "text": "This is the traditional text: evocative, a little cryptic, and the same for everyone. Learn more about the modern interpretations in Deep Cast.",
+      "button": "Continue with Deep Cast"
+    },
+    "record": {
+      "eyebrow": "Your cast · {count}",
+      "counts": {
+        "zero": "no changing lines",
+        "one": "one changing line",
+        "several": "{count} changing lines"
+      },
+      "line": "Line {n}"
+    },
+    "next": {
+      "eyebrow": "Next · {level}",
+      "buttons": {
+        "deep": "deep cast",
+        "full": "full cast"
+      }
+    },
+    "fullBox": {
+      "eyebrow": "Full Cast",
+      "heading": "Make It Yours",
+      "button": "Begin Level",
+      "numeral": "III"
+    },
+    "final": {
+      "heading": "The Final Stage",
+      "body": "Make it yours and learn to interpret the results through asking specific questions about a specific situation.",
+      "button": "begin"
+    }
+  },
+  "gate": {
+    "signupEyebrow": "Sign up · {level}",
+    "unlockEyebrow": "Unlock · {level}",
+    "signup": {
+      "_status": "Approved by the owner, 11 Nov 2026.",
+      "heading": "Learn to Cast",
+      "body": "Sign up with your email to access Deep Cast and learn how to calculate and read the I Ching.",
+      "label": "Your email",
+      "placeholder": "you@example.com",
+      "busy": "Signing up…",
+      "fine": "We'll email you once to confirm your address. Unsubscribe or ask us to delete your email anytime at hello@anyma.one. By signing up, you consent to us storing your email for this purpose.",
+      "errors": {
+        "invalid": "Please enter a valid email address.",
+        "notLive": "Sign-up isn't live yet. Please try again soon.",
+        "network": "Network error. Please check your connection and try again.",
+        "generic": "Something went wrong. Please try again."
+      }
+    },
+    "waitlist": {
+      "_status": "Approved by the owner, 11 Nov 2026. Full Cast is closed until payment is decided.",
+      "eyebrow": "Full Cast · Coming soon",
+      "heading": "Make It Yours",
+      "body": "Learning to cast and read the I Ching is one thing, but it takes practice to see the bigger picture and make sense of the divination in the face of a particular situation. That's what the Full Cast is for. Sign up for an interactive dialogue to sharpen your sense for divination.",
+      "lead": "Full Cast isn't open yet. Leave your email and we'll let you know when it opens.",
+      "busy": "Signing up…",
+      "fine": "We'll email you once to confirm your address and when Full Cast opens. Unsubscribe or ask us to delete your email anytime at hello@anyma.one. By signing up, you consent to us storing your email for this purpose.",
+      "doneHeading": "You're on the list",
+      "doneText": "We'll email you when Full Cast opens."
+    },
+    "paymentPlaceholder": "[Payment mechanism]",
+    "price": "[PRICE]",
+    "button": "continue",
+    "close": "Close"
+  },
+  "dialogue": {
+    "startWith": "Start with",
+    "summary": "Your reading",
+    "hexagrams": "Hexagram {from} → {to}",
+    "hexagram": "Hexagram {from}",
+    "toward": "toward {name}",
+    "changingLine": "Line {n} · changing",
+    "openReading": "[Open the full reading]",
+    "send": "Send"
+  },
+  "learn": {
+    "eyebrow": "Learn · {n}",
+    "selector": "Section {n} of {total} · {title}"
+  }
+}

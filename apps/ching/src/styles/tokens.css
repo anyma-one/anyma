@@ -1,0 +1,283 @@
+/* anyma CHING design tokens, from design/tokens.css (design update of 11 November 2026).
+   Change: fonts are self-hosted through @fontsource (imported in src/main.tsx) instead of the
+   Google Fonts @import, so visitors' browsers never contact Google (GDPR). Everything else is verbatim. */
+
+/* anyma CHING design tokens: the current design system (tokens/*.css) plus the 11 November 2026 update.
+   One file, no imports except the font CSS. Generated for the build; edit the design system, then regenerate. */
+
+/* ===== fonts ===== */
+/* anyma CHING webfonts.
+   NOTE: no font binaries were supplied with the brand assets, so the four faces
+   are loaded from Google Fonts. If anyma holds licensed versions of these (or of
+   the wordmark's own display cut), drop the files into assets/fonts/ and replace
+   this import with local @font-face rules. */
+
+/* ===== colors ===== */
+:root{
+/* ============ NEUTRALS ============ */
+/* lacquer — the dark ground (Palette D) */
+--ink-900:#161210;      /* page ground */
+--ink-800:#211A17;      /* panel */
+--ink-700:#2E241F;      /* raised panel */
+--ink-600:#413229;      /* hairline border */
+--ink-500:#5D4A3C;      /* strong border / rule */
+
+/* paper — the reading sheet */
+--paper-050:#F6EDDB;    /* sheet ivory */
+--paper-100:#E6D8BC;    /* aged paper — foot of the gradient, and hover */
+--paper-300:#C7B694;    /* border on paper */
+
+/* bone — type on dark */
+--bone-050:#EBDFC7;     /* primary */
+--bone-200:#B3A78E;     /* secondary */
+--bone-400:#8B7F6B;     /* faint, disabled, locked */
+
+/* ink — type on paper */
+--ink-on-paper:#191411;
+--ink-on-paper-soft:#3D3226;
+--ink-on-paper-mute:#857761;
+
+/* ============ ACCENTS — two hues, nothing else ============ */
+/* bronze-gold — structure: rules, hexagram lines, labels, selection (B1.5) */
+--bronze-300:#D8B27A;
+--bronze-500:#B7884D;
+--bronze-600:#9A6F39;
+
+/* cinnabar — brand, seal, changing lines, and (light) error (D1-S) */
+--cinnabar-200:#E39A8E;  /* light red — error on dark */
+--cinnabar-300:#C55A4C;  /* cinnabar on dark */
+--cinnabar-500:#991613;  /* the seal */
+--cinnabar-600:#7E100E;  /* pressed, and labels on paper */
+
+/* ============ SEMANTIC ============ */
+/* surfaces */
+--surface-ground:var(--ink-900);
+--surface-panel:var(--ink-800);
+--surface-panel-raised:var(--ink-700);
+--surface-sheet:linear-gradient(172deg,var(--paper-050),var(--paper-100));
+--surface-sheet-flat:var(--paper-050);
+--surface-seal:var(--cinnabar-500);
+
+/* text */
+--text-on-dark:var(--bone-050);
+--text-on-dark-muted:var(--bone-200);
+--text-on-dark-faint:var(--bone-400);
+--text-on-paper:var(--ink-on-paper);
+--text-on-paper-soft:var(--ink-on-paper-soft);
+--text-on-paper-muted:var(--ink-on-paper-mute);
+--text-label-paper:var(--cinnabar-600);   /* eyebrows on a sheet — 8.6:1 */
+--text-label-dark:var(--bronze-500);      /* eyebrows on lacquer — 5.9:1 */
+--text-on-seal:#F4DACB;
+--text-link:var(--bronze-500);
+--text-link-hover:var(--bronze-300);
+
+/* borders & rules */
+--border-dark:var(--ink-600);
+--border-dark-strong:var(--ink-500);
+--border-paper:var(--paper-300);
+--rule-bronze:var(--bronze-500);            /* the 2px structural rule */
+--focus-ring:var(--bronze-500);
+
+/* the six lines */
+--line-on-paper:var(--ink-on-paper);
+--line-on-dark:var(--bronze-500);
+--line-on-seal:var(--text-on-seal);
+--line-changing:var(--cinnabar-500);
+--line-changing-on-dark:var(--cinnabar-300);
+--line-changing-on-seal:var(--bronze-300);
+
+/* state */
+--state-selected:var(--bronze-500);       /* chosen, current */
+--state-settled:var(--bone-050);          /* confirmed / correct — neutral, not a hue */
+--state-locked-bg:var(--ink-700);
+--state-locked-text:var(--bone-400);
+--state-locked-bar:#453629;               /* redacted bars in a locked block */
+--state-error:var(--cinnabar-500);        /* error on paper */
+--state-error-on-dark:var(--cinnabar-200);/* light red — error on lacquer */
+
+/* atmosphere — the three washes that keep the ground non-uniform.
+   tinted with the HIGHLIGHT values; the base accents are too dark to lift the ground */
+--wash-bronze:radial-gradient(52% 40% at 8% 0%,rgba(216,178,122,.22),transparent 70%); /* @kind other */
+--wash-cinnabar:radial-gradient(44% 32% at 96% 24%,rgba(197,90,76,.20),transparent 72%); /* @kind other */
+--wash-grain:repeating-linear-gradient(96deg,rgba(255,236,206,.022) 0 1px,transparent 1px 7px); /* @kind other */
+--wash-lacquer:var(--wash-bronze),var(--wash-cinnabar),var(--wash-grain);
+}
+
+/* ===== typography ===== */
+:root{
+/* ---- families ---- */
+--font-display:"Young Serif",Georgia,serif;      /* Latin display only */
+--font-cjk:"Kaisei Tokumin",serif;               /* hanzi, and Latin beside hanzi */
+--font-body:"Crimson Pro",Georgia,serif;
+--font-label:"IBM Plex Mono",ui-monospace,monospace;
+
+/* ---- display (Young Serif, weight 400 only) ---- */
+--text-display-1:4.25rem;   /* 68px — landing headline */
+--text-display-2:3.25rem;   /* 52px — screen title */
+--text-display-3:2.75rem;   /* 44px — hexagram name */
+--text-display-4:1.875rem;  /* 30px — panel heading */
+--leading-display:1.06;
+--tracking-display:0;
+
+/* ---- body (Crimson Pro) ---- */
+--text-body-lg:1.25rem;     /* 20px — lede */
+--text-body:1.125rem;       /* 18px — Meaning, Judgment, Image */
+--text-body-sm:1rem;        /* 16px — secondary prose */
+--leading-body:1.66;
+--leading-body-tight:1.5;
+
+/* ---- label (IBM Plex Mono, uppercase, letterspaced) ---- */
+--text-label:0.75rem;       /* 12px — eyebrow */
+--text-label-sm:0.6875rem;  /* 11px — meta, kv lists */
+--text-label-xs:0.625rem;   /* 10px — swatch/footnote */
+--tracking-label:0.28em;
+--tracking-label-tight:0.18em;
+--leading-label:2;
+
+/* ---- CJK ---- */
+--text-han-hero:6.5rem;     /* 104px — decorative 易 */
+--text-han-seal:1.75rem;    /* 28px — seal block glyph */
+--text-han-inline:1em;      /* inline in a Latin line */
+}
+
+/* ===== spacing ===== */
+:root{
+--space-1:2px;
+--space-2:4px;
+--space-3:8px;
+--space-4:12px;
+--space-5:16px;
+--space-6:20px;
+--space-7:24px;
+--space-8:32px;
+--space-9:40px;
+--space-10:56px;
+--space-11:72px;
+--space-12:96px;
+
+/* semantic */
+--gap-line:9px;             /* between the six lines of a hexagram */
+--gap-line-break:11px;      /* the gap inside a broken (yin) line */
+--pad-sheet:40px 44px;      /* inside a paper sheet */
+--pad-panel:22px 24px;      /* inside a dark panel */
+--pad-seal:40px 38px;       /* inside the vermilion gate */
+--page-gutter:72px;
+--measure-read:62ch;        /* max line length for Meaning / Judgment */
+}
+
+/* ===== radius ===== */
+:root{
+--radius-xs:2px;    /* buttons */
+--radius-sm:3px;    /* sheets, panels, cards — the house radius */
+--radius-md:6px;
+--radius-pill:999px;
+--radius-arch:320px 320px 6px 6px;  /* lantern arch, reserved */
+}
+
+/* ===== elevation ===== */
+:root{
+--shadow-sheet:0 32px 84px rgba(0,0,0,.60);   /* paper lifted off lacquer */
+--shadow-panel:0 18px 44px rgba(0,0,0,.45);
+--shadow-pressed:inset 0 1px 3px rgba(0,0,0,.35);
+--glow-bronze:0 0 26px rgba(183,136,77,.30);    /* a lit line on dark */
+--glow-bronze-strong:0 0 60px rgba(183,136,77,.45);
+--blur-lock:6px;                               /* locked-content blur */
+}
+
+/* ===== motion ===== */
+:root{
+/* Nothing bounces. The cast is slow on purpose (brief §9). */
+--ease-ritual:cubic-bezier(.22,.61,.36,1); /* @kind other */
+--ease-out:cubic-bezier(.16,1,.3,1); /* @kind other */
+--dur-hover:180ms; /* @kind other */
+--dur-state:320ms; /* @kind other */
+--dur-reveal:900ms; /* @kind other */      /* a line settling into place */
+--dur-cast-toss:1600ms; /* RETIRED 2026-11-11: use --dur-coin-toss */
+--dur-pause:2400ms; /* RETIRED 2026-11-11: use --dur-reveal-pause */
+}
+
+/* ===== base ===== */
+/* Minimal element defaults. Consumers may override freely. */
+body{background:var(--surface-ground);color:var(--text-on-dark);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
+a{color:var(--text-link);text-decoration:none;border-bottom:1px solid rgba(183,136,77,.35);transition:color var(--dur-hover) var(--ease-out),border-color var(--dur-hover) var(--ease-out)}
+a:hover{color:var(--text-link-hover);border-bottom-color:var(--text-link-hover)}
+:where(h1,h2,h3,h4){font-family:var(--font-display);font-weight:400;line-height:var(--leading-display);margin:0}
+:where(button){font-family:var(--font-label);cursor:pointer}
+::selection{background:var(--cinnabar-500);color:var(--text-on-seal)}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+
+/* ===== update 2026-11-11 (overrides above where names repeat) ===== */
+/* anyma CHING Design System, update of 11 November 2026.
+   New and changed custom properties. Merge each block into the file named in its heading.
+   Existing tokens not listed here are unchanged. */
+
+/* ---- into tokens/colors.css ---------------------------------------------------- */
+:root {
+  /* Surfaces (new). --surface-sheet (the paper gradient) is unchanged. */
+  --surface-ember:
+    radial-gradient(80% 120% at 0% 0%, rgba(216,178,122,.24), transparent 62%),
+    radial-gradient(70% 110% at 100% 100%, rgba(153,22,19,.32), transparent 65%),
+    linear-gradient(160deg, #2E241F, #161210);
+  --surface-ember-border: rgba(183,136,77,.38);
+  --surface-ember-highlight: inset 0 1px 0 rgba(216,178,122,.12);
+  --surface-cinnabar: linear-gradient(160deg, #991613, #6E0F0D 55%, #241310);
+
+  /* Text on cinnabar (new): white, 8.5:1 on #991613. */
+  --text-on-cinnabar: #FFFFFF;
+
+  /* Buttons (new names for existing ramps) */
+  --button-important-bg: #991613;        /* cinnabar-500 */
+  --button-important-bg-hover: #B8201B;
+  --button-important-bg-press: #7A110F;
+  --button-regular-bg: #B7884D;          /* bronze-500 */
+  --button-regular-bg-hover: #D8B27A;
+  --button-regular-bg-press: #9C7140;
+  --button-ghost-hover: #F0D3A4;         /* ghost on lacquer: label + border */
+  --button-ghost-on-red-hover-bg: rgba(246,237,219,.14);
+
+  /* Level tile (changed) */
+  --tile-border: rgba(183,136,77,.38);
+  --tile-border-hover: rgba(246,237,219,.5);
+
+  /* Hexagram (changed) */
+  --line-empty: #5D4A3C;                 /* 1px continuous outline of an empty slot */
+  --line-changing-row: #991613;          /* changing row in the cast record */
+  --line-changing-row-hover: #B8201B;
+  --line-changing-tint: rgba(153,22,19,.07); /* changing line in the line list */
+  --divider-count: #413229;              /* fixed rule between coins and count */
+}
+
+/* ---- into tokens/motion.css ---------------------------------------------------- */
+:root {
+  --ease-ritual: cubic-bezier(.22,.61,.36,1);   /* unchanged */
+  --ease-slide: cubic-bezier(.65,0,.35,1);      /* tile button slide, ease-in-out */
+  /* Retired: --dur-cast-toss (1600ms) and --dur-pause (2400ms). Use the values below. */
+  --dur-coin-toss: 880ms;        /* linear, parabolic; see motion spec */
+  --dur-coin-label-delay: 860ms; /* label fades in at landing */
+  --dur-line-settle: 520ms;      /* line drops 16px, overshoots 2px, rests */
+  --dur-line-split: 900ms;       /* yin line opens after landing */
+  --dur-changing-glow: 1100ms;   /* one ring, 380ms after landing */
+  --dur-paper-in: 350ms;
+  --dur-figure-glide: 1200ms;    /* FLIP from toss column into the sheet */
+  --dur-tile-overlay: 280ms;
+  --dur-tile-slide: 520ms;
+  --dur-reveal-pause: 1400ms;    /* after the sixth line, before the paper */
+}
+
+/* ---- into tokens/base.css ------------------------------------------------------ */
+:root {
+  --bp-tablet: 960px;  /* at or below: tablet layout */
+  --bp-mobile: 720px;  /* at or below: mobile layout */
+  --logo-h-desktop: 64px;
+  --logo-h-tablet: 56px;
+  --logo-h-mobile: 44px;
+  --tap-min: 44px;
+  --summary-min-mobile: 56px;
+}
+
+/* ---- project additions (not in the design file) ---- */
+:root {
+  --seal-color: var(--surface-seal); /* inlined seal SVGs fill with this */
+  --bone-300: var(--bone-200); /* CoinTriad.md and LevelTile.md say "bone-300", which the token file lacks; the prototypes use #B3A78E (bone-200) there */
+  --header-gap: 40px;
+}
