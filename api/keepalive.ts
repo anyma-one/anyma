@@ -16,7 +16,7 @@
 // harmless: the read returns nothing and the delete only removes rows that are due anyway.
 
 // Double opt-in tables. Each has `verified` and `consent_at` (refreshed on every sign-up).
-const UNCONFIRMED_TABLES = ["waitlist", "dosha_individual_waitlist"];
+const UNCONFIRMED_TABLES = ["anyma_waitlist", "dosha_individual_waitlist"];
 const UNCONFIRMED_TTL_DAYS = 30;
 
 interface ReqLike {
@@ -48,7 +48,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
     return;
   }
   try {
-    const r = await fetch(`${url}/rest/v1/waitlist?select=id&limit=1`, {
+    const r = await fetch(`${url}/rest/v1/anyma_waitlist?select=id&limit=1`, {
       headers: { apikey: key, Authorization: `Bearer ${key}` },
     });
     if (!r.ok) {

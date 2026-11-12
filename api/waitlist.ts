@@ -2,7 +2,7 @@
 // opt-in. Upserts an UNVERIFIED row in Supabase and emails the signer a confirmation link.
 //
 // This is the SHARED list — it lives on the hub at /api/waitlist so every anyma app can post
-// to it same-origin. It writes to the same `waitlist` table SOUL already uses, and touches
+// to it same-origin. It writes to the shared `anyma_waitlist` table SOUL already uses, and touches
 // only the columns it sends, so a row created by SOUL keeps its own `source`.
 //
 // SELF-CONTAINED on purpose: a function's imports are not available at runtime on these
@@ -19,7 +19,10 @@ const KNOWN_INTERESTS = new Set(["ching", "dosha", "soul"]);
 // Where in an app the signup happened. Soul tracks this; the hub's ching form does not send
 // one. Closed set for the same reason as the interests: the client must not be able to write
 // arbitrary text into the table.
-const KNOWN_SOURCES = new Set(["home-card", "tier-nav", "locked", "nudge", "link", "deepen"]);
+const KNOWN_SOURCES = new Set([
+  "home-card", "tier-nav", "locked", "nudge", "link", "deepen", // soul
+  "deep-cast", "full-cast", // ching
+]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface ReqLike {
@@ -119,7 +122,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
     // first. Read-then-merge is fine here: two sign-ups racing for the same address within
     // milliseconds is not a real case.
     const existing = await fetch(
-      `${url}/rest/v1/waitlist?email=eq.${encodeURIComponent(email)}&select=interests`,
+      `${url}/rest/v1/anyma_waitlist?email=eq.${encodeURIComponent(email)}&select=interests`,
       { headers: supabaseHeaders(key, "return=representation") }
     );
     if (!existing.ok) throw new Error(`supabase ${existing.status}`);
@@ -129,7 +132,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
     // Upsert on email, merging. Only the columns sent here are written, and `source` is
     // omitted entirely when the caller didn't send a recognised one — so a signup from the
     // hub never blanks the attribution on a row soul created.
-    const upsert = await fetch(`${url}/rest/v1/waitlist?on_conflict=email`, {
+    const upsert = await fetch(`${url}/rest/v1/anyma_waitlist?on_conflict=email`, {
       method: "POST",
       headers: supabaseHeaders(key, "resolution=merge-duplicates,return=representation"),
       body: JSON.stringify([

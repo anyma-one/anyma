@@ -56,22 +56,36 @@ own functions move in — see below.
 
 ### Database
 
+All apps share one Supabase project. Every table and view starts with the project it
+belongs to, so the table list sorts by project:
+
+| Prefix | Tables / views | Written by |
+|---|---|---|
+| `anyma_` | `anyma_waitlist` (shared sign-up list, every app) | `api/waitlist.ts`, `api/waitlist-confirm.ts` |
+| `hub_` | `hub_suggestions` | `api/suggest.ts` |
+| `soul_` | `soul_results`, `soul_deepdive_runs`; views `soul_results_by_animal`, `soul_results_by_tier`, `soul_results_summary`, `soul_deepdive_by_animal` | `api/log-result.ts`, `api/deepdive-log.ts` |
+| `dosha_` | `dosha_full_signups`, `dosha_individual_waitlist` | `api/dosha-signup.ts`, `api/dosha-confirm.ts` |
+| `ching_` | `ching_readings`, `ching_daily_tokens` | ching's own `supabase/ching.sql` |
+
+`api/keepalive.ts` reads `anyma_waitlist` daily and clears unconfirmed rows from both waitlists.
+A new app's tables get its own prefix.
+
 ```sql
-create table public.suggestions (
+create table public.hub_suggestions (
   id         uuid primary key default gen_random_uuid(),
   title      text not null,
   body       text not null,
   email      text,                                    -- optional, reply-to only
   created_at timestamptz not null default now()
 );
-alter table public.suggestions enable row level security;
+alter table public.hub_suggestions enable row level security;
 
-alter table public.waitlist add column if not exists interest text;
+alter table public.anyma_waitlist add column if not exists interest text;
 
 -- every project an address signed up for (`interest` keeps only the latest one).
 -- Rows from before the hub existed have no interest and were all soul sign-ups.
-alter table public.waitlist add column if not exists interests text[] not null default '{}';
-update public.waitlist set interests = array[coalesce(interest, 'soul')] where interests = '{}';
+alter table public.anyma_waitlist add column if not exists interests text[] not null default '{}';
+update public.anyma_waitlist set interests = array[coalesce(interest, 'soul')] where interests = '{}';
 
 -- dosha: Full Reading sign-ups (no email is sent; api/dosha-signup.ts, kind "full")
 create table public.dosha_full_signups (

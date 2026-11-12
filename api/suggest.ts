@@ -62,7 +62,7 @@ async function store(title: string, body: string, email: string | null): Promise
   if (!url || !key) return false;
 
   try {
-    const res = await fetch(`${url}/rest/v1/suggestions`, {
+    const res = await fetch(`${url}/rest/v1/hub_suggestions`, {
       method: "POST",
       headers: {
         apikey: key,

@@ -73,7 +73,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
     // Only flip rows that are still unverified; a second click matches nothing and falls
     // through to the "already confirmed" message.
     const patch = await fetch(
-      `${url}/rest/v1/waitlist?token=eq.${encodeURIComponent(token)}&verified=eq.false`,
+      `${url}/rest/v1/anyma_waitlist?token=eq.${encodeURIComponent(token)}&verified=eq.false`,
       {
         method: "PATCH",
         headers: {

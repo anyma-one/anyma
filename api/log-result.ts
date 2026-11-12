@@ -46,7 +46,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
   }
 
   try {
-    const r = await fetch(`${url}/rest/v1/results`, {
+    const r = await fetch(`${url}/rest/v1/soul_results`, {
       method: "POST",
       headers: {
         apikey: key,

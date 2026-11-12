@@ -12,7 +12,7 @@ import { createHash, timingSafeEqual } from "node:crypto";
 //     decided_on_low_confidence, reaction? }  -> upsert the run event
 //   { run_id, reaction }                       -> patch the reaction (1..5)
 //
-// Storage: Supabase table `deepdive_runs` (run SQL from the handover). If Supabase
+// Storage: Supabase table `soul_deepdive_runs` (run SQL from the handover). If Supabase
 // is not configured the endpoint returns 501 and the client ignores it (the run
 // still completes; logging is best-effort beta analytics).
 
@@ -66,7 +66,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
     if (reactionOnly) {
       const reaction = clampReaction(b!.reaction);
       const r = await fetch(
-        `${url}/rest/v1/deepdive_runs?run_id=eq.${encodeURIComponent(runId)}`,
+        `${url}/rest/v1/soul_deepdive_runs?run_id=eq.${encodeURIComponent(runId)}`,
         {
           method: "PATCH",
           headers: { ...headers, Prefer: "return=minimal" },
@@ -97,7 +97,7 @@ export default async function handler(req: ReqLike, res: ResLike): Promise<void>
           : null,
       reaction: b!.reaction === undefined ? null : clampReaction(b!.reaction),
     };
-    const r = await fetch(`${url}/rest/v1/deepdive_runs?on_conflict=run_id`, {
+    const r = await fetch(`${url}/rest/v1/soul_deepdive_runs?on_conflict=run_id`, {
       method: "POST",
       headers: { ...headers, Prefer: "resolution=merge-duplicates,return=minimal" },
       body: JSON.stringify(row),
