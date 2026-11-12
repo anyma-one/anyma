@@ -2713,3 +2713,8 @@ a.button--ghost:hover {
   line-height: 1.5;
   color: var(--bone-200);
 }
+
+/* The start screen's lede is two paragraphs: a paragraph break, not the hero's section gap. */
+.hero__text .lede + .lede {
+  margin-top: -10px;
+}

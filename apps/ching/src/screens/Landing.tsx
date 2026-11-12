@@ -210,7 +210,12 @@ export function Landing() {
           <h1 className="display-1" tabIndex={-1}>
             {ui.landing.headline}
           </h1>
-          <p className="lede">{copy.landing.subhead}</p>
+          {/* The lede keeps the author's paragraph breaks. */}
+          {copy.landing.subhead.split("\n\n").map((para) => (
+            <p key={para} className="lede">
+              {para}
+            </p>
+          ))}
         </div>
         <Bagua />
       </section>
