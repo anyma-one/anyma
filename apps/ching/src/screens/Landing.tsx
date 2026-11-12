@@ -125,7 +125,7 @@ export function LevelTiles() {
               <span className="level-tile__wash" aria-hidden="true" />
               <span className="eyebrow level-tile__eyebrow">{ui.landing.levelEyebrows[i]}</span>
               <span className="level-tile__name">{l.name}</span>
-              <span className="level-tile__desc">{l.description}</span>
+              <span className="level-tile__desc">{ui.landing.levelDescriptions[i]}</span>
             </>
           );
           if (level === "full") {

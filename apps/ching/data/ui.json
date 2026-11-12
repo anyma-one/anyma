@@ -23,6 +23,11 @@
       "Level II",
       "Level III"
     ],
+    "levelDescriptions": [
+      "Ask a question and get the traditional answer.",
+      "Learn how to calculate and how to interpret.",
+      "Ask questions and apply the results to a situation."
+    ],
     "levelPrices": [
       "free",
       "sign-up",
